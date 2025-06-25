@@ -87,6 +87,7 @@ macro(ctkMacroBuildQtPlugin)
   elseif(CTK_QT_VERSION EQUAL "6")
     add_definitions(-DHAVE_QT6)
   endif()
+  set(target TARGET ${MY_LIBNAME})
 
   source_group("Resources" FILES
     ${MY_RESOURCES}
