@@ -80,31 +80,12 @@ macro(ctkMacroBuildQtPlugin)
   set(dynamicHeaders
     "${dynamicHeaders};${CMAKE_CURRENT_BINARY_DIR}/${MY_EXPORT_HEADER_PREFIX}Export.h")
 
-  # Make sure variable are cleared
-  set(MY_MOC_CPP)
-  set(MY_UI_CPP)
-  set(MY_QRC_SRCS)
+  set(target TARGET ${MY_LIBNAME})
 
-  # Wrap
-  set(MY_QRC_SRCS "")
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    set(target)
-    if(Qt5Core_VERSION VERSION_GREATER "5.2.0")
-      set(target TARGET ${MY_LIBNAME})
-    endif()
-    qt5_wrap_cpp(MY_MOC_CPP ${MY_MOC_SRCS} OPTIONS -DHAVE_QT5 ${target})
-
-    if(DEFINED MY_RESOURCES)
-      qt5_add_resources(MY_QRC_SRCS ${MY_RESOURCES})
-    endif()
-
-    if(Qt5Widgets_FOUND)
-      qt5_wrap_ui(MY_UI_CPP ${MY_UI_FORMS})
-    elseif(MY_UI_FORMS)
-      message(WARNING "Argument UI_FORMS ignored because Qt5Widgets module was not specified")
-    endif()
-  else()
-    message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
+  if( CTK_QT_VERSION EQUAL "5" )
+    add_definitions(-DHAVE_QT5)
+  elseif(CTK_QT_VERSION EQUAL "6")
+    add_definitions(-DHAVE_QT6)
   endif()
 
   source_group("Resources" FILES
@@ -113,16 +94,16 @@ macro(ctkMacroBuildQtPlugin)
     )
 
   source_group("Generated" FILES
-    ${MY_MOC_CPP}
-    ${MY_QRC_SRCS}
-    ${MY_UI_CPP}
+    ${MY_MOC_SRCS}
+    ${MY_RESOURCES}
+    ${MY_UI_FORMS}
     )
 
   add_library(${lib_name} ${MY_LIBRARY_TYPE}
     ${MY_SRCS}
-    ${MY_MOC_CPP}
-    ${MY_UI_CPP}
-    ${MY_QRC_SRCS}
+    ${MY_MOC_SRCS}
+    ${MY_UI_FORMS}
+    ${MY_RESOURCES}
     )
 
   # Extract library name associated with the plugin and use it as label
@@ -130,8 +111,8 @@ macro(ctkMacroBuildQtPlugin)
 
   # Apply properties to the library target.
   set(compile_flags "-DQT_PLUGIN")
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    set(compile_flags "${compile_flags} -DHAVE_QT5")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
+    set(compile_flags "${compile_flags} -DHAVE_QT6")
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()
@@ -185,24 +166,24 @@ macro(ctkMacroBuildQtPlugin)
 endmacro()
 
 macro(ctkMacroBuildQtDesignerPlugin)
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    find_package(Qt5 COMPONENTS Designer REQUIRED)
-    add_definitions(${Qt5Designer_DEFINITIONS})
-    include_directories(${Qt5Designer_INCLUDE_DIRS})
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
+    find_package(Qt6 COMPONENTS Designer REQUIRED)
+    add_definitions(${Qt6Designer_DEFINITIONS})
+    include_directories(${Qt6Designer_INCLUDE_DIRS})
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()
   ctkMacroBuildQtPlugin(
     PLUGIN_DIR designer
     ${ARGN})
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
     cmake_parse_arguments(MY
       "" # no options
       "NAME;EXPORT_DIRECTIVE;FOLDER;PLUGIN_DIR" # one value args
       "SRCS;MOC_SRCS;UI_FORMS;INCLUDE_DIRECTORIES;TARGET_LIBRARIES;RESOURCES" # multi value args
       ${ARGN}
       )
-    target_link_libraries(${MY_NAME} Qt5::Designer)
+    target_link_libraries(${MY_NAME} Qt6::Designer)
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()

@@ -152,7 +152,7 @@ ctkFunctionGetTargetLibraries(KIT_target_libraries)
 
 list(APPEND KIT_target_libraries
   Qt${CTK_QT_VERSION}::Xml
-  Qt${CTK_QT_VERSION}::XmlPatterns
+  # Other libray needed XML Qt${CTK_QT_VERSION}::XmlPatterns
   )
 
 ctkMacroBuildLib(

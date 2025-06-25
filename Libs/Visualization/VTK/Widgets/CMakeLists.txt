@@ -248,7 +248,7 @@ if(CTK_USE_QTTESTING)
   list(APPEND KIT_target_libraries QtTesting)
 endif()
 
-# Prefer QVTKOpenGLWidget to QVTKWidget when using Qt5
+# Prefer QVTKOpenGLWidget to QVTKWidget when using Qt6
 set(_use_qvtkopenglwidget 1)
 if(VTK_VERSION VERSION_LESS "8.90")
   if(NOT VTK_RENDERING_BACKEND STREQUAL "OpenGL2")

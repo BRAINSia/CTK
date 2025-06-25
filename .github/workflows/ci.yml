@@ -83,9 +83,9 @@ jobs:
         env:
           CTK_USE_VTK: "${{ matrix.runs-on == 'ubuntu-latest' && 'ON' || 'OFF' }}"
 
-      - name: Display Qt5_DIR
+      - name: Display Qt6_DIR
         run: |
-          cat CTK-build/CMakeCache.txt | grep ^Qt5_DIR
+          cat CTK-build/CMakeCache.txt | grep ^Qt6_DIR
 
       - name: Build CTK
         run: |

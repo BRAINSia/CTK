@@ -103,13 +103,13 @@ macro(ctkMacroSetupPlugins )
 
   # Set the variable QT_INSTALLED_LIBRARY_DIR that contains all
   # Qt shared libraries
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
     if(WIN32)
-      get_target_property(_qt5_moc_executable Qt5::moc LOCATION)
-      get_filename_component(QT_INSTALLED_LIBRARY_DIR ${_qt5_moc_executable} PATH)
+      get_target_property(_qt6_moc_executable Qt6::moc LOCATION)
+      get_filename_component(QT_INSTALLED_LIBRARY_DIR ${_qt6_moc_executable} PATH)
     else()
-      get_target_property(_qt5_core_lib Qt5::Core LOCATION)
-      get_filename_component(QT_INSTALLED_LIBRARY_DIR ${_qt5_core_lib} PATH)
+      get_target_property(_qt6_core_lib Qt6::Core LOCATION)
+      get_filename_component(QT_INSTALLED_LIBRARY_DIR ${_qt6_core_lib} PATH)
     endif()
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
