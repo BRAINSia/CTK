@@ -42,9 +42,9 @@ if(NOT DEFINED QtSOAP_DIR)
 
   set(ep_cache_args)
 
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
     list(APPEND ep_cache_args
-      -DQt5_DIR:PATH=${Qt5_DIR}
+      -DQt6_DIR:PATH=${Qt6_DIR}
       )
     # XXX Backward compatible way
     if(DEFINED CMAKE_PREFIX_PATH)

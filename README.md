@@ -23,8 +23,8 @@ To work with CTK, you need to have a C++ compiler, Qt libraries, and CMake insta
 ### Configure
 
 Configure the project using CMake by setting the following options:
-  * `CTK_QT_VERSION`: 5
-  * `Qt5_DIR`: `C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5` (or a similar path, depending on your operating system)
+  * `CTK_QT_VERSION`: 6
+  * `Qt6_DIR`: `C:\Qt\6.9.1\msvc2019_64\lib\cmake\Qt6` (or a similar path, depending on your operating system)
 
 ### Notes
 
@@ -76,10 +76,10 @@ To learn more about the CLI module, see the [Command Line Interfaces](https://co
 
 CTK supports the following versions of Qt:
 
-* Qt 5
+* Qt 6
   * CMake options:
-    * `CTK_QT_VERSION` set to `5`
-    * `Qt5_DIR` set to `C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5` (or a similar path, depending on your operating system)
+    * `CTK_QT_VERSION` set to `6`
+    * `Qt6_DIR` set to `C:\Qt\6.9.1\msvc2019_64\lib\cmake\Qt6` (or a similar path, depending on your operating system)
   * Requirements
     * C++11
     * VTK 9 or newer
@@ -87,6 +87,7 @@ CTK supports the following versions of Qt:
 
 Unsupported:
 
+# Qt 5: The last CTK version to support Qt 5, ...TODO...
 * Qt 4: The last CTK version to support Qt 4, C++98, VTK 8 and ITK v4.13.3 is [CTK 2023.07.13](https://github.com/commontk/CTK/releases/tag/2023.07.13).
 
 
@@ -98,6 +99,7 @@ CTK supports the following versions of Python:
 
 Unsupported:
 
+* Python <3.9: ....
 * Python 2.7: The last CTK version to support Python 2.7 is [CTK 2023.07.13](https://github.com/commontk/CTK/releases/tag/2023.07.13).
 
 ## Dependency Management

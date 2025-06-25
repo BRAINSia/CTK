@@ -96,12 +96,7 @@ if(NOT DEFINED VTK_DIR AND NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       )
   endif()
 
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    # Qt5
-    list(APPEND additional_vtk_cmakevars
-      -DQt5_DIR:PATH=${Qt5_DIR}
-      )
-  elseif(CTK_QT_VERSION VERSION_EQUAL "6")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
     # Qt6
     list(APPEND additional_vtk_cmakevars
       -DQt6_DIR:PATH=${Qt6_DIR}

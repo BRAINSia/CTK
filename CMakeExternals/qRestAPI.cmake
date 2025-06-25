@@ -41,17 +41,7 @@ if(NOT DEFINED ${proj}_DIR)
   endif()
 
   set(ep_cache_args)
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    list(APPEND ep_cache_args
-      -DQt5_DIR:PATH=${Qt5_DIR}
-      )
-    # XXX Backward compatible way
-    if(DEFINED CMAKE_PREFIX_PATH)
-      list(APPEND ep_cache_args
-        -DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}
-        )
-    endif()
-  elseif(CTK_QT_VERSION VERSION_EQUAL "6")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
     list(APPEND ep_cache_args
       -DQt6_DIR:PATH=${Qt6_DIR}
       )

@@ -81,7 +81,7 @@ ctkFunctionGetTargetLibraries(KIT_target_libraries)
 
 list(APPEND KIT_target_libraries
   Qt${CTK_QT_VERSION}::Concurrent
-  Qt${CTK_QT_VERSION}::XmlPatterns
+  # Qt6 no longer supports XML, need other library  Qt${CTK_QT_VERSION}::XmlPatterns
   Qt${CTK_QT_VERSION}::Widgets
   )
 

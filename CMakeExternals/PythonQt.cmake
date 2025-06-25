@@ -34,9 +34,9 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
   set(qtlibs core gui multimedia network opengl sql svg uitools xml)
 
   # Enable Qt libraries PythonQt wrapping if required
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
     list(APPEND ep_PythonQt_args
-      -DQt5_DIR:PATH=${Qt5_DIR}
+      -DQt6_DIR:PATH=${Qt6_DIR}
       )
     # XXX Backward compatible way
     if(DEFINED CMAKE_PREFIX_PATH)
@@ -45,9 +45,6 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
         )
     endif()
     list(APPEND qtlibs qml quick)
-    if(CTK_QT_VERSION VERSION_LESS "5.6.0")
-      list(APPEND qtlibs webkit)
-    endif()
   elseif(CTK_QT_VERSION VERSION_EQUAL "6")
     list(APPEND ep_cache_args
       -DQt6_DIR:PATH=${Qt6_DIR}
@@ -81,8 +78,9 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
   endif()
 
   ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES PYTHON_LIBRARY)
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    set(revision_tag db525aff0d8c053bddf13902107b34c93c1e3a44) # patched-9
+  if(CTK_QT_VERSION VERSION_EQUAL "6")
+    # TODO Need to set revision_tag for qt6
+    #set(revision_tag db525aff0d8c053bddf13902107b34c93c1e3a44) # patched-9
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()
@@ -101,6 +99,9 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
     set(location_args GIT_REPOSITORY "https://github.com/commontk/PythonQt.git"
                       GIT_TAG ${revision_tag})
   endif()
+  # HACK HARDCODE TO LATEST UPSTREAM
+  #set(location_args GIT_REPOSITORY "https://github.com/MeVisLab/pythonqt" GIT_TAG master)
+  set(location_args GIT_REPOSITORY "https://github.com/hjmjohnson/PythonQt" GIT_TAG slicer-2025-06-13-a2687828)
 
   ExternalProject_Add(${proj}
     ${${proj}_EXTERNAL_PROJECT_ARGS}

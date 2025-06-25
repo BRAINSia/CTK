@@ -104,10 +104,14 @@ mark_as_advanced(CTK_SUPERBUILD)
 #-----------------------------------------------------------------------------
 # Qt version
 #
-set(CTK_QT_VERSION "5" CACHE STRING "Expected Qt version")
+set(CTK_QT_VERSION "6" CACHE STRING "Expected Qt version")
 mark_as_advanced(CTK_QT_VERSION)
-set_property(CACHE CTK_QT_VERSION PROPERTY STRINGS 5)
+set_property(CACHE CTK_QT_VERSION PROPERTY STRINGS 6)
 mark_as_superbuild(CTK_QT_VERSION)
+# Enable AUTOMOC, AUTOUIC, CMAKE_AUTORCC to work with CMake Qt5 and Qt6
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 #-----------------------------------------------------------------------------
 # Output directories.
@@ -586,7 +590,7 @@ ctk_app_option(ctkExampleHostedApp
                CTK_ENABLE_DICOMApplicationHosting AND CTK_BUILD_EXAMPLES)
 
 if(FALSE)
-# Since EventBusDemo depends on qxmlrpc that is lacking Qt5 support, it is excluded.
+# Since EventBusDemo depends on qxmlrpc that is lacking Qt6 support, it is excluded.
 ctk_app_option(ctkEventBusDemo
                "Build the DICOM example application" OFF
                CTK_ENABLE_PluginFramework AND CTK_BUILD_EXAMPLES)
@@ -691,7 +695,7 @@ ctk_plugin_option(org.commontk.dah.examplehost
 
 # Plug-ins related to the EventBus demo application
 if(FALSE)
-# Since EventBusDemo depends on qxmlrpc that is lacking Qt5 support, it is excluded.
+# Since EventBusDemo depends on qxmlrpc that is lacking Qt6 support, it is excluded.
 ctk_plugin_option(org.commontk.eventbus
                   "Build the org.commontk.eventbus plugin." OFF
                   CTK_APP_ctkEventBusDemo)

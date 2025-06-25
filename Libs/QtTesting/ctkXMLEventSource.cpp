@@ -25,8 +25,10 @@
 #include <QFile>
 #include <QMap>
 #include <QMessageBox>
+/* Need other XML parsing
 #include <QtXmlPatterns/QXmlSchema>
 #include <QtXmlPatterns/QXmlSchemaValidator>
+*/
 #include <QVariant>
 
 // CTKQtTesting includes
