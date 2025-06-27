@@ -79,7 +79,7 @@ int ctkVTKErrorLogModelFileLoggingTest1(int argc, char * argv [])
 
   {
     int entryIndex = 0;
-    QRegExp regexp(expectedLogEntryPatternTemplate.arg("WARNING").arg(66).arg("This is a VTK warning message"));
+    QRegularExpression regexp(expectedLogEntryPatternTemplate.arg("WARNING").arg(66).arg("This is a VTK warning message"));
     if (!regexp.exactMatch(logLines.at(entryIndex)))
     {
       printErrorMessage(
@@ -90,7 +90,7 @@ int ctkVTKErrorLogModelFileLoggingTest1(int argc, char * argv [])
   }
   {
     int entryIndex = 1;
-    QRegExp regexp(expectedLogEntryPatternTemplate.arg("ERROR").arg(67).arg("This is a VTK error message"));
+    QRegularExpression regexp(expectedLogEntryPatternTemplate.arg("ERROR").arg(67).arg("This is a VTK error message"));
     if (!regexp.exactMatch(logLines.at(entryIndex)))
     {
       printErrorMessage(

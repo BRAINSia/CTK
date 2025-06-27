@@ -87,7 +87,7 @@ QStringList ctkCompleterPrivate::splitPath(const QString& s)
     case ctkCompleter::FilterWordStartsWith:
     {
       this->updateSortFilterProxyModel();
-      QRegExp regexp = QRegExp(QRegExp::escape(s));
+      QRegularExpression regexp = QRegularExpression(QRegularExpression::escape(s));
       regexp.setCaseSensitivity(q->caseSensitivity());
       this->SortFilterProxyModel->setFilterRegExp(regexp);
       paths = QStringList();

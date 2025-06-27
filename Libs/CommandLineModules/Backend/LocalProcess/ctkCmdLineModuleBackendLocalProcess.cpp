@@ -49,7 +49,7 @@ struct ctkCmdLineModuleBackendLocalProcessPrivate
 
   QString normalizeFlag(const QString& flag) const
   {
-    return flag.trimmed().remove(QRegExp("^-*"));
+    return flag.trimmed().remove(QRegularExpression("^-*"));
   }
 
   QStringList commandLineArguments(const QHash<QString,QVariant>& currentValues,

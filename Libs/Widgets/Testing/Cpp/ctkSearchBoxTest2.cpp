@@ -48,7 +48,7 @@ int ctkSearchBoxTest2(int argc, char* argv[])
 
   search3.setText("phone");
 
-  QRegExp regExp(search3.text(),Qt::CaseInsensitive, QRegExp::Wildcard);
+  QRegularExpression regExp(search3.text(),Qt::CaseInsensitive, QRegularExpression::Wildcard);
 
   //QStringList testFilter = stringList.filter(search3.text());
   QStringList testFilter = stringList.filter(regExp);

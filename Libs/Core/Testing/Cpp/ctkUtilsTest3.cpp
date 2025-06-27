@@ -39,14 +39,14 @@ int ctkUtilsTest3(int argc, char * argv [] )
 
   QString dummy;
   QStringList dummyList;
-  QRegExp defaultDummyRegExp(".+");
+  QRegularExpression defaultDummyRegExp(".+");
 
   if (!ctk::extensionToRegExp(dummy).isEmpty())
   {
     qWarning() << "Line" << __LINE__ << "ctk::extensionToRegExp() failed: ";
     return EXIT_FAILURE;
   }
-  QRegExp dummyRegExp = ctk::nameFiltersToRegExp(dummyList);
+  QRegularExpression dummyRegExp = ctk::nameFiltersToRegExp(dummyList);
   if(dummyRegExp != defaultDummyRegExp )
   {
     qWarning() << "Line" << __LINE__ << "ctk::nameFiltersToRegExp() failed: ";
@@ -94,7 +94,7 @@ int ctkUtilsTest3(int argc, char * argv [] )
   standardNameFilters << standardNameFilter << simpleStandardNameFilter;
 
   QString nameFiltersExtensions("(.*\\.jpg?$|.*\\.txt?$)");
-  QRegExp defaultRegExp(nameFiltersExtensions);
+  QRegularExpression defaultRegExp(nameFiltersExtensions);
 
   if(ctk::nameFiltersToRegExp(standardNameFilters).isEmpty())
   {
@@ -104,7 +104,7 @@ int ctkUtilsTest3(int argc, char * argv [] )
     return EXIT_FAILURE;
   }
 
-  QRegExp regExp = ctk::nameFiltersToRegExp(standardNameFilters);
+  QRegularExpression regExp = ctk::nameFiltersToRegExp(standardNameFilters);
   if (regExp != defaultRegExp)
   {
     qWarning() << "Line" << __LINE__ << "ctk::nameFiltersToRegExp() failed: input "

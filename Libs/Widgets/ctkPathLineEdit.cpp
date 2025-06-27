@@ -28,8 +28,8 @@
 #include <QFileSystemModel>
 #include <QHBoxLayout>
 #include <QLineEdit>
-#include <QRegExp>
-#include <QRegExpValidator>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 #include <QSettings>
 #include <QStyleOptionComboBox>
 #include <QToolButton>
@@ -293,7 +293,7 @@ public:
   mutable QSize MinimumSizeHint;
 
   ctkFileCompleter* Completer;
-  QRegExpValidator* Validator;
+  QRegularExpressionValidator* Validator;
 };
 
 QString ctkPathLineEditPrivate::sCurrentDirectory = "";
@@ -325,7 +325,7 @@ void ctkPathLineEditPrivate::init()
   this->Completer = new ctkFileCompleter(q, true);
 
   // don't accept invalid path
-  this->Validator = new QRegExpValidator(q);
+  this->Validator = new QRegularExpressionValidator(q);
 
   this->createPathLineEditWidget(true);
 

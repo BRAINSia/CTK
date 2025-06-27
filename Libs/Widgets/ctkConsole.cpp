@@ -720,7 +720,7 @@ void ctkConsolePrivate::updateCompleter()
     }
     commandText.remove(q_ptr->ps1());
     commandText.remove('\r'); // not recongnize by python
-    //commandText.replace(QRegExp("\\s*$"), ""); // Remove trailing spaces ---- DOESN'T WORK ----
+    //commandText.replace(QRegularExpression("\\s*$"), ""); // Remove trailing spaces ---- DOESN'T WORK ----
 
     // Save current positions: Since some implementation of
     // updateCompletionModel (e.g python) can display messages
@@ -815,7 +815,7 @@ void ctkConsolePrivate::internalExecuteCommand()
   QString command = this->commandBuffer();
   if (this->EditorHints & ctkConsole::RemoveTrailingSpaces)
   {
-    command.replace(QRegExp("\\s*$"), ""); // Remove trailing spaces
+    command.replace(QRegularExpression("\\s*$"), ""); // Remove trailing spaces
     this->commandBuffer() = command; // Update buffer
   }
 
@@ -841,7 +841,7 @@ void ctkConsolePrivate::internalExecuteCommand()
   QString indent;
   if (this->EditorHints & ctkConsole::AutomaticIndentation)
   {
-    QRegExp regExp("^(\\s+)");
+    QRegularExpression regExp("^(\\s+)");
     if (regExp.indexIn(command) != -1)
     {
       indent = regExp.cap(1);
@@ -862,7 +862,7 @@ void ctkConsolePrivate::processInput()
 
   if (this->EditorHints & ctkConsole::RemoveTrailingSpaces)
   {
-    command.replace(QRegExp("\\s*$"), ""); // Remove trailing spaces
+    command.replace(QRegularExpression("\\s*$"), ""); // Remove trailing spaces
     this->commandBuffer() = command; // Update buffer
   }
 
@@ -1086,7 +1086,7 @@ void ctkConsolePrivate::pasteText(const QString& text)
   if (this->EditorHints & ctkConsole::SplitCopiedTextByLine)
   {
     // Execute line by line
-    QStringList lines = text.split(QRegExp("(?:\r\n|\r|\n)"));
+    QStringList lines = text.split(QRegularExpression("(?:\r\n|\r|\n)"));
     for(int i=0; i < lines.count(); ++i)
     {
       this->switchToUserInputTextColor(&textCursor);

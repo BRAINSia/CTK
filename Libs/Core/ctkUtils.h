@@ -146,7 +146,7 @@ CTK_CORE_EXPORT QString extensionToRegExp(const QString& extension);
 /// Convert a list of wildcar extension filters ("*.jpg")
 /// into a regular expression string
 /// "*.jpg", "*.txt" -> "(.*\\.jpg?$|.*\\.txt?$)"
-CTK_CORE_EXPORT QRegExp nameFiltersToRegExp(const QStringList& nameFilters);
+CTK_CORE_EXPORT QRegularExpression nameFiltersToRegExp(const QStringList& nameFilters);
 
 ///
 /// \ingroup Core

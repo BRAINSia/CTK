@@ -24,7 +24,7 @@
 #include <QMessageBox>
 #include <QKeyEvent>
 #include <QMouseEvent>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QTimer>
 #include <QWidget>
 
@@ -48,7 +48,7 @@ bool ctkVTKRenderViewEventPlayer::playEvent(QObject* Object,
   {
     if (Command == "3DViewSize")
     {
-      QRegExp mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
+      QRegularExpression mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
       if (mouseRegExp.indexIn(Arguments)!= -1)
       {
         QVariant v = mouseRegExp.cap(1);
@@ -91,7 +91,7 @@ bool ctkVTKRenderViewEventPlayer::playEvent(QObject* Object,
     if (Command == "mousePress" || Command == "mouseRelease" ||
         Command == "mouseMove" || Command == "mouseWheel")
     {
-      QRegExp mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
+      QRegularExpression mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
       if (mouseRegExp.indexIn(Arguments)!= -1)
       {
         double x_center = widget->size().width() / 2.0;

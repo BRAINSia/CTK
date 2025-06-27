@@ -23,7 +23,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMouseEvent>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QWidget>
 
 // CTK includes
@@ -49,7 +49,7 @@ bool ctkAxesWidgetEventPlayer::playEvent(QObject *Object,
   {
     if (Command == "mousePress" || Command == "mouseRelease")
     {
-      QRegExp mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
+      QRegularExpression mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
       if (mouseRegExp.indexIn(Arguments)!= -1)
       {
         QVariant v = mouseRegExp.cap(1);

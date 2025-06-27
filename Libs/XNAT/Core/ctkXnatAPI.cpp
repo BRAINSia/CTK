@@ -27,7 +27,7 @@
 #include "qRestResult.h"
 
 #include <QNetworkReply>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QUrl>
 #include <QUrlQuery>
 
@@ -60,7 +60,7 @@ QUuid ctkXnatAPI::get(const QString& resource, const Parameters& parameters, con
 // --------------------------------------------------------------------------
 void ctkXnatAPI::parseResponse(qRestResult* restResult, const QByteArray& response)
 {
-  static QRegExp identifierPattern("[a-zA-Z][a-zA-Z0-9_]*");
+  static QRegularExpression identifierPattern("[a-zA-Z][a-zA-Z0-9_]*");
 
   QList<QVariantMap> result;
 

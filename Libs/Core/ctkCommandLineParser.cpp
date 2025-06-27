@@ -122,7 +122,7 @@ bool CommandLineParserArgumentDescription::addParameter(const QString& value)
   if (!RegularExpression.isEmpty())
   {
     // Validate value
-    QRegExp regexp(this->RegularExpression);
+    QRegularExpression regexp(this->RegularExpression);
     if (!regexp.exactMatch(value))
     {
       return false;

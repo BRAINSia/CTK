@@ -28,7 +28,7 @@
 
 
 const QString ctkVersion::SEPARATOR = ".";
-const QRegExp ctkVersion::RegExp = QRegExp("[a-zA-Z0-9_\\-]*");
+const QRegularExpression ctkVersion::RegExp = QRegularExpression("[a-zA-Z0-9_\\-]*");
 
 //----------------------------------------------------------------------------
 ctkVersion ctkVersion::emptyVersion()

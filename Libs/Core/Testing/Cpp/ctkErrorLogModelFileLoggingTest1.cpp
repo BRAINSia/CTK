@@ -152,7 +152,7 @@ int ctkErrorLogModelFileLoggingTest1(int argc, char * argv [])
   for(int entryIndex = 0; entryIndex < expectedLogEntries.size(); ++entryIndex)
   {
     QStringList entry = expectedLogEntries.at(entryIndex);
-    QRegExp regexp(expectedLogEntryPatternTemplate.arg(entry.at(0)).arg(entry.at(1)).arg(entry.at(2)));
+    QRegularExpression regexp(expectedLogEntryPatternTemplate.arg(entry.at(0)).arg(entry.at(1)).arg(entry.at(2)));
     if (!regexp.exactMatch(currentLogEntries.at(entryIndex)))
     {
       printErrorMessage(

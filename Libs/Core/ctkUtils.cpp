@@ -21,7 +21,7 @@
 // Qt includes
 #include <QDebug>
 #include <QDir>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 
@@ -108,11 +108,11 @@ const char *ctkValidWildCard =
 //-----------------------------------------------------------------------------
 QStringList ctk::nameFilterToExtensions(const QString& nameFilter)
 {
-  QRegExp regexp(QString::fromLatin1(ctkNameFilterRegExp));
+  QRegularExpression regexp(QString::fromLatin1(ctkNameFilterRegExp));
   int i = regexp.indexIn(nameFilter);
   if (i < 0)
   {
-    QRegExp isWildCard(QString::fromLatin1(ctkValidWildCard));
+    QRegularExpression isWildCard(QString::fromLatin1(ctkValidWildCard));
     if (isWildCard.indexIn(nameFilter) >= 0)
     {
       return QStringList(nameFilter);
@@ -142,7 +142,7 @@ QStringList ctk::nameFiltersToExtensions(const QStringList& nameFilters)
 QString ctk::extensionToRegExp(const QString& extension)
 {
   // typically *.jpg
-  QRegExp extensionExtractor("\\*\\.(\\w+)");
+  QRegularExpression extensionExtractor("\\*\\.(\\w+)");
   int pos = extensionExtractor.indexIn(extension);
   if (pos < 0)
   {
@@ -152,7 +152,7 @@ QString ctk::extensionToRegExp(const QString& extension)
 }
 
 //-----------------------------------------------------------------------------
-QRegExp ctk::nameFiltersToRegExp(const QStringList& nameFilters)
+QRegularExpression ctk::nameFiltersToRegExp(const QStringList& nameFilters)
 {
   QString pattern;
   foreach(const QString& nameFilter, nameFilters)
@@ -182,7 +182,7 @@ QRegExp ctk::nameFiltersToRegExp(const QStringList& nameFilters)
   {
     pattern += ")";
   }
-  return QRegExp(pattern);
+  return QRegularExpression(pattern);
 }
 
 //-----------------------------------------------------------------------------

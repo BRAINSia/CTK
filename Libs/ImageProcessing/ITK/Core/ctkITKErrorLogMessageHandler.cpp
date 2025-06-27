@@ -142,7 +142,7 @@ QString ctkITKOutputWindow::parseText(const QString& text, ctkErrorLogContext& c
 {
   context.Message = text;
 
-  QRegExp contextRegExp("[a-zA-Z\\s]+: In (.+), line ([\\d]+)\\n(.+\\(0x[a-fA-F0-9]+\\))\\:\\s(.*)");
+  QRegularExpression contextRegExp("[a-zA-Z\\s]+: In (.+), line ([\\d]+)\\n(.+\\(0x[a-fA-F0-9]+\\))\\:\\s(.*)");
   if (contextRegExp.exactMatch(text))
   {
     context.File = contextRegExp.cap(1);

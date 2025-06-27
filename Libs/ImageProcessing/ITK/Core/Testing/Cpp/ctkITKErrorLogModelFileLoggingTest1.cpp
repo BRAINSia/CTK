@@ -117,7 +117,7 @@ int ctkITKErrorLogModelFileLoggingTest1(int argc, char * argv [])
         "\\(.+ctkITKErrorLogModelFileLoggingTest1\\.cpp\\:%2\\) \\- %3$");
 
   int entryIndex = 0;
-  QRegExp regexp(expectedLogEntryPatternTemplate.arg("WARNING").arg(70).arg("This is a ITK warning message"));
+  QRegularExpression regexp(expectedLogEntryPatternTemplate.arg("WARNING").arg(70).arg("This is a ITK warning message"));
   if (!regexp.exactMatch(logLines.at(entryIndex)))
   {
     printErrorMessage(
