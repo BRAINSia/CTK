@@ -115,7 +115,7 @@ typedef QHash<QString, ctkBusEvent *> ctkEventsHashType;
 typedef QList<ctkBusEvent *> ctkEventItemListType;
 
 /// map which represent list of function to be registered in the server, with parameters
-typedef QMap<QString, QList<QVariant::Type> >  mafRegisterMethodsMap;
+typedef QMap<QString, QList<QMetaType::Type> >  mafRegisterMethodsMap;
 
 } // namespace ctkEventBus
 

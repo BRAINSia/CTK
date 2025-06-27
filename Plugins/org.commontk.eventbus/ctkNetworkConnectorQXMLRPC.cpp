@@ -75,10 +75,10 @@ void ctkNetworkConnectorQXMLRPC::createServer(const unsigned int port) {
     connect(this, SIGNAL(registerMethodsServer(mafRegisterMethodsMap)),
             this, SLOT(registerServerMethod(mafRegisterMethodsMap)));*/
 
-    QList<QVariant::Type> parametersForRegisterteredFunction;
-    parametersForRegisterteredFunction.append(QVariant::String); //return argument
-    parametersForRegisterteredFunction.append(QVariant::List); //parameters to send, event control parameters
-    parametersForRegisterteredFunction.append(QVariant::List); //parameters to send, data parameters
+    QList<QMetaType::Type> parametersForRegisterteredFunction;
+    parametersForRegisterteredFunction.append(QMetaType::QString); //return argument
+    parametersForRegisterteredFunction.append(QMetaType::QVariantList); //parameters to send, event control parameters
+    parametersForRegisterteredFunction.append(QMetaType::QVariantList); //parameters to send, data parameters
 
     //registration of the method maf.remote.eventBus.comunication.xmlrpc at XMLRPC level
     // the connect uses function name ad signature defined by parametersForRegisterteredFunction
@@ -207,7 +207,7 @@ void ctkNetworkConnectorQXMLRPC::xmlrpcSend(const QString &methodName, QList<xml
 
 void ctkNetworkConnectorQXMLRPC::processReturnValue( int requestId, QVariant value ) {
     Q_UNUSED( requestId );
-    Q_ASSERT( value.canConvert( QVariant::String ) );
+    Q_ASSERT( value.canConvert( QMetaType::QString ) );
     qDebug("%s", value.toString().toUtf8().data());
     ctkEventBusManager::instance()->notifyEvent("ctk/local/eventBus/remoteCommunicationDone", ctkEventTypeLocal);
 }

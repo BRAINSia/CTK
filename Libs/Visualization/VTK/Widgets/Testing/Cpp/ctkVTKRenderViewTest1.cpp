@@ -47,7 +47,7 @@ int ctkVTKRenderViewTest1(int argc, char * argv [] )
 
   // Command line parser
   ctkCommandLineParser parser;
-  parser.addArgument("", "-I", QVariant::Bool);
+  parser.addArgument("", "-I", QMetaType::Bool);
   QHash<QString, QVariant> parsedArgs = parser.parseArguments(app.arguments());
   bool interactive = parsedArgs["-I"].toBool();
 

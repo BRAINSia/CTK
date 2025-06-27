@@ -200,7 +200,7 @@ QString ctkAttributeDefinitionImpl::validate(const QString& value) const
   if ((_minValue.isNull()) && (_maxValue.isNull()))
   {
     // Password is treated like String.
-    if (_dataType != QVariant::String && _dataType != QVariant::UserType)
+    if (_dataType != QMetaType::QString && _dataType != QVariant::UserType)
     {
       // No validation present
       return QString();
@@ -212,7 +212,7 @@ QString ctkAttributeDefinitionImpl::validate(const QString& value) const
 
   // Additional validation for STRING.
   // PASSWORD is treated like STRING.
-  if ((_dataType == QVariant::String || _dataType == QVariant::UserType) && _values.size() > 0 && !_values.contains(value))
+  if ((_dataType == QMetaType::QString || _dataType == QVariant::UserType) && _values.size() > 0 && !_values.contains(value))
   {
     return QCoreApplication::translate(ctkMTMsg::CONTEXT, ctkMTMsg::VALUE_OUT_OF_OPTION).arg(value);
   }
@@ -257,7 +257,7 @@ QString ctkAttributeDefinitionImpl::validateRange(const QString& value) const
   {
   // PASSWORD is treated like STRING.
   case QVariant::UserType:
-  case QVariant::String:
+  case QMetaType::QString:
   {
     if (!_minValue.isNull() && value.length() < _minValue.toInt())
     {
@@ -269,7 +269,7 @@ QString ctkAttributeDefinitionImpl::validateRange(const QString& value) const
     }
     break;
   }
-  case QVariant::LongLong:
+  case QMetaType::LongLong:
   {
     qlonglong longVal = value.toLongLong();
     if (!_minValue.isNull() && longVal < _minValue.toLongLong())
@@ -282,7 +282,7 @@ QString ctkAttributeDefinitionImpl::validateRange(const QString& value) const
     }
     break;
   }
-  case QVariant::Int:
+  case QMetaType::Int:
   {
     int intVal = value.toInt();
     if (!_minValue.isNull() && intVal < _minValue.toInt())
@@ -295,7 +295,7 @@ QString ctkAttributeDefinitionImpl::validateRange(const QString& value) const
     }
     break;
   }
-  case QVariant::Char:
+  case QMetaType::QChar:
   {
     QChar charVal = value.at(0);
     if (!_minValue.isNull() && charVal < _minValue.toChar())
@@ -308,7 +308,7 @@ QString ctkAttributeDefinitionImpl::validateRange(const QString& value) const
     }
     break;
   }
-  case QVariant::Double:
+  case QMetaType::Double:
   {
     double doubleVal = value.toDouble();
     if (!_minValue.isNull() && doubleVal < _minValue.toDouble())
@@ -321,7 +321,7 @@ QString ctkAttributeDefinitionImpl::validateRange(const QString& value) const
     }
     break;
   }
-  case QVariant::Bool:
+  case QMetaType::Bool:
     // shouldn't ever get boolean - this is a range validation
   default :
     return QString();

@@ -40,8 +40,8 @@ int main(int argc, char* argv[])
   parser.setArgumentPrefix("--", "-");
 
   // Add command line argument names
-  parser.addArgument("help", "h", QVariant::Bool, "Show this help text");
-  parser.addArgument("xml", "", QVariant::Bool, "Print a XML description of this modules command line interface");
+  parser.addArgument("help", "h", QMetaType::Bool, "Show this help text");
+  parser.addArgument("xml", "", QMetaType::Bool, "Print a XML description of this modules command line interface");
 
   QTextStream out(stdout, QIODevice::WriteOnly);
   QTextStream err(stderr, QIODevice::WriteOnly);

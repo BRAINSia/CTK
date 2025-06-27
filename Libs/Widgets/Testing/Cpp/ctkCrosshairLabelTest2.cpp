@@ -76,9 +76,9 @@ int ctkCrosshairLabelTest2(int argc, char * argv [] )
 
   // Command line parser
   ctkCommandLineParser parser;
-  parser.addArgument("", "-D", QVariant::String);
-  parser.addArgument("", "-V", QVariant::String);
-  parser.addArgument("", "-I", QVariant::String);
+  parser.addArgument("", "-D", QMetaType::QString);
+  parser.addArgument("", "-V", QMetaType::QString);
+  parser.addArgument("", "-I", QMetaType::QString);
   bool ok = false;
   QHash<QString, QVariant> parsedArgs = parser.parseArguments(app.arguments(), &ok);
   if (!ok)

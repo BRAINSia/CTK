@@ -41,7 +41,7 @@
  */
 struct CTK_PLUGINFW_EXPORT ctkAttributeDefinition
 {
-  typedef QVariant::Type Type;
+  typedef QMetaType::Type Type;
 
   static const int PASSWORD;
 
@@ -121,9 +121,9 @@ struct CTK_PLUGINFW_EXPORT ctkAttributeDefinition
    * Return the type for this attribute.
    *
    * <p>
-   * The following types from QVariant::Type are supported:
-   * QVariant::String, QVariant::LongLong, QVariant::Int, QVariant::Char,
-   * QVariant::Double, QVariant::Bool, QVariant::UserType.
+   * The following types from QMetaType::Type are supported:
+   * QMetaType::QString, QMetaType::LongLong, QMetaType::Int, QMetaType::QChar,
+   * QMetaType::Double, QMetaType::Bool, QVariant::UserType.
    *
    * <p>
    * QVariant::UserType maps to ctkAttributeDefinition::Password only.

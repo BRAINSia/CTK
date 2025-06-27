@@ -64,14 +64,14 @@ int main(int argc, char* argv[])
   parser.setArgumentPrefix("--", "-");
 
   // Add command line argument names
-  parser.addArgument("help", "h", QVariant::Bool, "Show this help text");
-  parser.addArgument("xml", "", QVariant::Bool, "Print a XML description of this modules command line interface");
-  parser.addArgument("runtime", "", QVariant::Int, "Runtime in seconds", 1);
-  parser.addArgument("numOutputs", "", QVariant::Int, "Number of outputs", 0);
-  parser.addArgument("exitCode", "", QVariant::Int, "Exit code", 0);
-  parser.addArgument("exitCrash", "", QVariant::Bool, "Force crash", false);
-  parser.addArgument("exitTime", "", QVariant::Int, "Exit time", 0);
-  parser.addArgument("errorText", "", QVariant::String, "Error text printed at the end");
+  parser.addArgument("help", "h", QMetaType::Bool, "Show this help text");
+  parser.addArgument("xml", "", QMetaType::Bool, "Print a XML description of this modules command line interface");
+  parser.addArgument("runtime", "", QMetaType::Int, "Runtime in seconds", 1);
+  parser.addArgument("numOutputs", "", QMetaType::Int, "Number of outputs", 0);
+  parser.addArgument("exitCode", "", QMetaType::Int, "Exit code", 0);
+  parser.addArgument("exitCrash", "", QMetaType::Bool, "Force crash", false);
+  parser.addArgument("exitTime", "", QMetaType::Int, "Exit time", 0);
+  parser.addArgument("errorText", "", QMetaType::QString, "Error text printed at the end");
 
   QTextStream out(stdout, QIODevice::WriteOnly | QIODevice::Text);
   QTextStream err(stderr, QIODevice::WriteOnly | QIODevice::Text);

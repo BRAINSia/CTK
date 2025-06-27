@@ -37,7 +37,7 @@ void ctkNetworkConnectorQtSoap::initializeForEventBus() {
 }
 
 
-void ctkNetworkConnectorQtSoap::registerServerMethod(QString methodName, QList<QVariant::Type> types) {
+void ctkNetworkConnectorQtSoap::registerServerMethod(QString methodName, QList<QMetaType::Type> types) {
    m_RegisterMethodsMap.insert(methodName, types);
 }
 
@@ -48,13 +48,13 @@ void ctkNetworkConnectorQtSoap::createClient(const QString hostName, const unsig
     }
 
     //maf3 service registration
-    QList<QVariant::Type> parametersForRegisterteredFunction;
-    parametersForRegisterteredFunction.append(QVariant::String); //return argument
-    parametersForRegisterteredFunction.append(QVariant::List); //parameters to send, event control parameters
-    parametersForRegisterteredFunction.append(QVariant::List); //parameters to send, data parameters
+    QList<QMetaType::Type> parametersForRegisterteredFunction;
+    parametersForRegisterteredFunction.append(QMetaType::QString); //return argument
+    parametersForRegisterteredFunction.append(QMetaType::QVariantList); //parameters to send, event control parameters
+    parametersForRegisterteredFunction.append(QMetaType::QVariantList); //parameters to send, data parameters
 
     //registration of the method REMOTE_COMMUNICATION_SOAP at Soap level
-    // this method need to reflect the name of the action of the service while QVariant::List are list of
+    // this method need to reflect the name of the action of the service while QMetaType::QVariantList are list of
     // strings, in  which each string represent the correct name of the parameter in the service function.
     registerServerMethod("testArray", parametersForRegisterteredFunction);
 
@@ -128,35 +128,35 @@ void ctkNetworkConnectorQtSoap::startListen() {
 QtSoapType *ctkNetworkConnectorQtSoap::marshall(const QString name, const QVariant &parameter) {
     QtSoapType *returnValue = NULL;
     switch( parameter.type() ){
-        case QVariant::Int:
+        case QMetaType::Int:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), QString::number(parameter.toInt()));
                 break;
-        case QVariant::UInt:
+        case QMetaType::UInt:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), QString::number(parameter.toUInt()));
                 break;
-        case QVariant::LongLong:
+        case QMetaType::LongLong:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), QString::number(parameter.toLongLong()));
                 break;
-        case QVariant::ULongLong:
+        case QMetaType::ULongLong:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), QString::number(parameter.toULongLong()));
                 break;
-        case QVariant::Double:
+        case QMetaType::Double:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), QString::number(parameter.toDouble()));
                 break;
-        case QVariant::Bool:
+        case QMetaType::Bool:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), parameter.toBool()?"True":"False");
                 break;
-        case QVariant::Date:
+        case QMetaType::QDate:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), parameter.toDate().toString());
                 break;
-        case QVariant::DateTime:
+        case QMetaType::QDateTime:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), parameter.toDateTime().toString());
                 break;
-        case QVariant::Time:
+        case QMetaType::QTime:
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), parameter.toTime().toString());
                 break;
-        case QVariant::StringList:
-        case QVariant::List: {
+        case QMetaType::QStringList:
+        case QMetaType::QVariantList: {
                 QtSoapArray *arr = new QtSoapArray(QtSoapQName(name, ""), QtSoapType::String, parameter.toList().size());
                 int index = 0;
                 foreach( QVariant item, parameter.toList() ) {
@@ -166,7 +166,7 @@ QtSoapType *ctkNetworkConnectorQtSoap::marshall(const QString name, const QVaria
                 returnValue = arr;
                 break;
         }
-        case QVariant::Map: {
+        case QMetaType::QVariantMap: {
             QMap<QString, QVariant> map = parameter.toMap();
             QMap<QString, QVariant>::ConstIterator iter = map.begin();
             QtSoapArray *arr = new QtSoapArray(QtSoapQName(name, ""), QtSoapType::String, parameter.toMap().size());
@@ -192,12 +192,12 @@ QtSoapType *ctkNetworkConnectorQtSoap::marshall(const QString name, const QVaria
             returnValue = arr;
             break;
         }
-        case QVariant::ByteArray: {
+        case QMetaType::QByteArray: {
             returnValue = new QtSoapSimpleType(QtSoapQName(name), parameter.toByteArray().data());
             break;
         }
         default: {
-            if( parameter.canConvert(QVariant::String) ) {
+            if( parameter.canConvert(QMetaType::QString) ) {
                 returnValue = new QtSoapSimpleType(QtSoapQName(name), parameter.toString());
             }
             else {
@@ -257,7 +257,7 @@ void ctkNetworkConnectorQtSoap::retrieveRemoteResponse()
 /*
 void ctkNetworkConnectorQtSoap::processReturnValue( int requestId, QVariant value ) {
     Q_UNUSED( requestId );
-    Q_ASSERT( value.canConvert( QVariant::String ) );
+    Q_ASSERT( value.canConvert( QMetaType::QString ) );
     qDebug("%s", value.toString().toUtf8().data());
     ctkEventBusManager::instance()->notifyEvent("ctk/local/eventBus/remoteCommunicationDone", ctkEventTypeLocal);
 }

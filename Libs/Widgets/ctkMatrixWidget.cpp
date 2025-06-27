@@ -79,7 +79,7 @@ public:
     Q_ASSERT(matrix);
     switch(value.type())
     {
-      case QVariant::Double:
+      case QMetaType::Double:
         return locale.toString(value.toDouble(), 'f', matrix->decimals());
       default:
         return this->QStyledItemDelegate::displayText(value, locale);
@@ -158,7 +158,7 @@ void ctkMatrixWidgetPrivate::init()
 
   // Register custom editors
   QItemEditorFactory *editorFactory = new QItemEditorFactory;
-  editorFactory->registerEditor(QVariant::Double, new QStandardItemEditorCreator<ctkMatrixDoubleSpinBox>);
+  editorFactory->registerEditor(QMetaType::Double, new QStandardItemEditorCreator<ctkMatrixDoubleSpinBox>);
 
   QStyledItemDelegate* defaultItemDelegate =
     qobject_cast<QStyledItemDelegate*>(this->Table->itemDelegate());

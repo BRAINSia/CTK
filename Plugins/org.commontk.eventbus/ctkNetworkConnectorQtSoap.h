@@ -78,7 +78,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /// register methods on the server
-    void registerServerMethod(QString methodName, QList<QVariant::Type> types);
+    void registerServerMethod(QString methodName, QList<QMetaType::Type> types);
 
 private Q_SLOTS:
     /// retrieve response from the service

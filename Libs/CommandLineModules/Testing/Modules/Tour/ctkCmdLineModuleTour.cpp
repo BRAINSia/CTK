@@ -42,16 +42,16 @@ int main(int argc, char* argv[])
   parser.setArgumentPrefix("--", "-");
 
   // Add command line argument names
-  parser.addArgument("help", "h", QVariant::Bool, "Show this help text");
-  parser.addArgument("xml", "", QVariant::Bool, "Print a XML description of this modules command line interface");
+  parser.addArgument("help", "h", QMetaType::Bool, "Show this help text");
+  parser.addArgument("xml", "", QMetaType::Bool, "Print a XML description of this modules command line interface");
 
-  parser.addArgument("integer", "i", QVariant::Int, "Show this help text",15);
-  parser.addArgument("", "b", QVariant::String, "Show this help text");
-  parser.addArgument("double", "d", QVariant::Double, "Show this help text");
-  parser.addArgument("floatVector", "f", QVariant::String, "Show this help text");
-  parser.addArgument("enumeration", "e", QVariant::String, "Show this help text");
-  parser.addArgument("string_vector", "", QVariant::String, "Show this help text");
-  parser.addArgument("", "p", QVariant::String, "Show this help text");
+  parser.addArgument("integer", "i", QMetaType::Int, "Show this help text",15);
+  parser.addArgument("", "b", QMetaType::QString, "Show this help text");
+  parser.addArgument("double", "d", QMetaType::Double, "Show this help text");
+  parser.addArgument("floatVector", "f", QMetaType::QString, "Show this help text");
+  parser.addArgument("enumeration", "e", QMetaType::QString, "Show this help text");
+  parser.addArgument("string_vector", "", QMetaType::QString, "Show this help text");
+  parser.addArgument("", "p", QMetaType::QString, "Show this help text");
 
   // Parse the command line arguments
   bool ok = false;

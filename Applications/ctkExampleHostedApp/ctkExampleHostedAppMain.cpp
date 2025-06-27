@@ -60,10 +60,10 @@ int main(int argv, char** argc)
   parser.setArgumentPrefix("--", "-"); // Use Unix-style argument names
 
   // Add command line argument names
-  parser.addArgument("hostURL", "", QVariant::String, "Hosting system URL");
-  parser.addArgument("applicationURL", "", QVariant::String, "Hosted Application URL");
-  parser.addArgument("plugin", "", QVariant::String, "Plugin implementing the DicomAppInterface", "org_commontk_dah_exampleapp");
-  parser.addArgument("help", "h", QVariant::Bool, "Show this help text");
+  parser.addArgument("hostURL", "", QMetaType::QString, "Hosting system URL");
+  parser.addArgument("applicationURL", "", QMetaType::QString, "Hosted Application URL");
+  parser.addArgument("plugin", "", QMetaType::QString, "Plugin implementing the DicomAppInterface", "org_commontk_dah_exampleapp");
+  parser.addArgument("help", "h", QMetaType::Bool, "Show this help text");
 
   bool ok = false;
   QHash<QString, QVariant> parsedArgs = parser.parseArguments(QCoreApplication::arguments(), &ok);

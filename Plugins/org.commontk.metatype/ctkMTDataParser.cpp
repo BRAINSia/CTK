@@ -381,27 +381,27 @@ void ctkMTDataParser::attributeDefinitionHandler(QList<ctkAttributeDefinitionImp
   QStringRef ad_type_val = atts.value("", TYPE);
   if (ad_type_val.compare(STRING, Qt::CaseInsensitive) == 0)
   {
-    dataType = QVariant::String;
+    dataType = QMetaType::QString;
   }
   else if (ad_type_val.compare(LONG, Qt::CaseInsensitive) == 0)
   {
-    dataType = QVariant::LongLong;
+    dataType = QMetaType::LongLong;
   }
   else if (ad_type_val.compare(DOUBLE, Qt::CaseInsensitive) == 0)
   {
-    dataType = QVariant::Double;
+    dataType = QMetaType::Double;
   }
   else if (ad_type_val.compare(INTEGER, Qt::CaseInsensitive) == 0)
   {
-    dataType = QVariant::Int;
+    dataType = QMetaType::Int;
   }
   else if (ad_type_val.compare(CHAR, Qt::CaseInsensitive) == 0)
   {
-    dataType = QVariant::Char;
+    dataType = QMetaType::QChar;
   }
   else if (ad_type_val.compare(BOOLEAN, Qt::CaseInsensitive) == 0)
   {
-    dataType = QVariant::Bool;
+    dataType = QMetaType::Bool;
   }
   else if (ad_type_val.compare(PASSWORD, Qt::CaseInsensitive) == 0)
   {
@@ -587,29 +587,29 @@ QVariant ctkMTDataParser::convert(const QString& value, int type)
     return QVariant();
   }
 
-  if (type == ctkAttributeDefinition::PASSWORD || type == QVariant::String)
+  if (type == ctkAttributeDefinition::PASSWORD || type == QMetaType::QString)
   {
     // PASSWORD should be treated like STRING.
     // Both the min and max of STRING are Integers.
     return QVariant::fromValue<int>(value.toInt());
   }
-  else if (type == QVariant::LongLong)
+  else if (type == QMetaType::LongLong)
   {
     return QVariant::fromValue<qlonglong>(value.toLongLong());
   }
-  else if (type == QVariant::Int)
+  else if (type == QMetaType::Int)
   {
     return QVariant::fromValue<int>(value.toInt());
   }
-  else if (type == QVariant::Char)
+  else if (type == QMetaType::QChar)
   {
     return QVariant::fromValue<QChar>(value.at(0));
   }
-  else if (type == QVariant::Double)
+  else if (type == QMetaType::Double)
   {
     return QVariant::fromValue<double>(value.toDouble());
   }
-  else if (type == QVariant::Bool)
+  else if (type == QMetaType::Bool)
   {
     return QVariant::fromValue<bool>(toBool(value));
   }

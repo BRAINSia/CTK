@@ -41,7 +41,7 @@ public:
   CommandLineParserArgumentDescription(
     const QString& longArg, const QString& longArgPrefix,
     const QString& shortArg, const QString& shortArgPrefix,
-    QVariant::Type type, const QString& argHelp,
+    QMetaType::Type type, const QString& argHelp,
     const QVariant& defaultValue, bool ignoreRest,
     bool deprecated)
       : LongArg(longArg), LongArgPrefix(longArgPrefix),
@@ -56,32 +56,32 @@ public:
 
     switch (type)
     {
-      case QVariant::String:
+      case QMetaType::QString:
       {
         NumberOfParametersToProcess = 1;
         RegularExpression = ".*";
       }
         break;
-      case QVariant::Bool:
+      case QMetaType::Bool:
       {
         NumberOfParametersToProcess = 0;
         RegularExpression = "";
       }
         break;
-      case QVariant::StringList:
+      case QMetaType::QStringList:
       {
         NumberOfParametersToProcess = -1;
         RegularExpression = ".*";
       }
         break;
-      case QVariant::Int:
+      case QMetaType::Int:
       {
         NumberOfParametersToProcess = 1;
         RegularExpression = "-?[0-9]+";
         ExactMatchFailedMessage = "A negative or positive integer is expected.";
       }
         break;
-      case QVariant::Double:
+      case QMetaType::Double:
       {
         NumberOfParametersToProcess = 1;
         RegularExpression = "-?[0-9]*\\.?[0-9]+";
@@ -113,7 +113,7 @@ public:
 
   QVariant       DefaultValue;
   QVariant       Value;
-  QVariant::Type ValueType;
+  QMetaType::Type ValueType;
 };
 
 // --------------------------------------------------------------------------
@@ -131,17 +131,17 @@ bool CommandLineParserArgumentDescription::addParameter(const QString& value)
 
   switch (Value.type())
   {
-    case QVariant::String:
+    case QMetaType::QString:
     {
       Value.setValue(value);
     }
       break;
-    case QVariant::Bool:
+    case QMetaType::Bool:
     {
       Value.setValue(!QString::compare(value, "true", Qt::CaseInsensitive));
     }
       break;
-    case QVariant::StringList:
+    case QMetaType::QStringList:
     {
       if (Value.isNull())
       {
@@ -157,12 +157,12 @@ bool CommandLineParserArgumentDescription::addParameter(const QString& value)
       }
     }
       break;
-    case QVariant::Int:
+    case QMetaType::Int:
     {
       Value.setValue(value.toInt());
     }
       break;
-    case QVariant::Double:
+    case QMetaType::Double:
     {
       Value.setValue(value.toDouble());
     }
@@ -571,8 +571,8 @@ QHash<QString, QVariant> ctkCommandLineParser::parseArguments(const QStringList&
         // Merge with QSettings
         QVariant settingsVal = settings->value(key);
 
-        if (desc->ValueType == QVariant::StringList &&
-            settingsVal.canConvert(QVariant::StringList))
+        if (desc->ValueType == QMetaType::QStringList &&
+            settingsVal.canConvert(QMetaType::QStringList))
         {
           QStringList stringList = desc->Value.toStringList();
           stringList.append(settingsVal.toStringList());
@@ -649,7 +649,7 @@ const QStringList& ctkCommandLineParser::unparsedArguments() const
 
 // --------------------------------------------------------------------------
 void ctkCommandLineParser::addArgument(const QString& longarg, const QString& shortarg,
-                                       QVariant::Type type, const QString& argHelp,
+                                       QMetaType::Type type, const QString& argHelp,
                                        const QVariant& defaultValue, bool ignoreRest,
                                        bool deprecated)
 {
@@ -703,7 +703,7 @@ void ctkCommandLineParser::addArgument(const QString& longarg, const QString& sh
 void ctkCommandLineParser::addDeprecatedArgument(
     const QString& longarg, const QString& shortarg, const QString& argHelp)
 {
-  addArgument(longarg, shortarg, QVariant::StringList, argHelp, QVariant(), false, true);
+  addArgument(longarg, shortarg, QMetaType::QStringList, argHelp, QVariant(), false, true);
 }
 
 // --------------------------------------------------------------------------
@@ -717,7 +717,7 @@ bool ctkCommandLineParser::setExactMatchRegularExpression(
     return false;
   }
 
-  if (argDesc->Value.type() == QVariant::Bool)
+  if (argDesc->Value.type() == QMetaType::Bool)
   {
     return false;
   }

@@ -274,7 +274,7 @@ QVariant ctkWorkflowWidget::buttonItem(QString item,
     else
     {
       res = step ? step->property(item.toLatin1()) : QVariant();
-      if (res.isValid() && res.type() == QVariant::String && res.toString().isEmpty())
+      if (res.isValid() && res.type() == QMetaType::QString && res.toString().isEmpty())
       {
         res = QVariant();
       }
@@ -371,8 +371,8 @@ QMap<QString, QVariant> ctkWorkflowWidget
               iconAlignment = Qt::AlignRight | Qt::AlignVCenter;
             }
             break;
-          case QVariant::String:
-          case QVariant::Int:
+          case QMetaType::QString:
+          case QMetaType::Int:
             text += item.toString();
             break;
           default:

@@ -48,14 +48,14 @@ int main(int argc, char** argv)
   cmdLineParser.setArgumentPrefix("--", "-");
   cmdLineParser.setStrictModeEnabled(true);
 
-  cmdLineParser.addArgument("module", "", QVariant::String, "Path to a CLI module (executable), and show the generated GUI.");
-  cmdLineParser.addArgument("gui", "", QVariant::String, "Path to a CLI XML file, and show the generated GUI.");
-  cmdLineParser.addArgument("validate-module", "", QVariant::String, "Path to a CLI module (executable), and validate the XML.");
-  cmdLineParser.addArgument("validate-xml", "", QVariant::String, "Path to a CLI XML file, and validate the XML.");
-  cmdLineParser.addArgument("string", "", QVariant::String, "An XML string to validate. Be careful to quote correctly." );
-  cmdLineParser.addArgument("xml", "", QVariant::Bool, "Generate XML for this application");
-  cmdLineParser.addArgument("verbose", "v", QVariant::Bool, "Be verbose.");
-  cmdLineParser.addArgument("help", "h", QVariant::Bool, "Print this help text.");
+  cmdLineParser.addArgument("module", "", QMetaType::QString, "Path to a CLI module (executable), and show the generated GUI.");
+  cmdLineParser.addArgument("gui", "", QMetaType::QString, "Path to a CLI XML file, and show the generated GUI.");
+  cmdLineParser.addArgument("validate-module", "", QMetaType::QString, "Path to a CLI module (executable), and validate the XML.");
+  cmdLineParser.addArgument("validate-xml", "", QMetaType::QString, "Path to a CLI XML file, and validate the XML.");
+  cmdLineParser.addArgument("string", "", QMetaType::QString, "An XML string to validate. Be careful to quote correctly." );
+  cmdLineParser.addArgument("xml", "", QMetaType::Bool, "Generate XML for this application");
+  cmdLineParser.addArgument("verbose", "v", QMetaType::Bool, "Be verbose.");
+  cmdLineParser.addArgument("help", "h", QMetaType::Bool, "Print this help text.");
 
   bool parseOkay = false;
   QHash<QString, QVariant> args = cmdLineParser.parseArguments(argc, argv, &parseOkay);

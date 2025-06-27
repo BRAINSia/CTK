@@ -56,7 +56,7 @@ void ctkCommandLineModuleAppPlugin::start(ctkPluginContext* context)
   cmdLineParser.setArgumentPrefix("--", "-");
   cmdLineParser.setStrictModeEnabled(true);
 
-  cmdLineParser.addArgument("module", "", QVariant::String, "Path to a CLI module (executable)", "CLIModuleBlur2dImage");
+  cmdLineParser.addArgument("module", "", QMetaType::QString, "Path to a CLI module (executable)", "CLIModuleBlur2dImage");
 
   QString argsstring("pluginname ");
   argsstring.append(context->getProperty("dah.args").toString());

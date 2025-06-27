@@ -158,7 +158,7 @@ public:
   {
     for (ctkProperties::iterator iter = result.begin(); iter != result.end(); ++iter)
     {
-      if (iter.value().type() == QVariant::String)
+      if (iter.value().type() == QMetaType::QString)
       {
         iter.value() = substituteVars(iter.value().toString());
       }
@@ -302,7 +302,7 @@ public:
     }
 
     QStringList installEntries;
-    if (pluginsProp.type() == QVariant::StringList)
+    if (pluginsProp.type() == QMetaType::QStringList)
     {
       installEntries = pluginsProp.toStringList();
     }

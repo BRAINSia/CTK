@@ -94,8 +94,8 @@ int main(int argc, char** argv)
     parser.setArgumentPrefix("--", "-");
 
     // Add command line argument names
-    parser.addArgument("help", "h", QVariant::Bool, "Print usage information and exit.");
-    parser.addArgument("interactive", "I", QVariant::Bool, "Enable interactive mode");
+    parser.addArgument("help", "h", QMetaType::Bool, "Print usage information and exit.");
+    parser.addArgument("interactive", "I", QMetaType::Bool, "Enable interactive mode");
 
     // Parse the command line arguments
     bool ok = false;
