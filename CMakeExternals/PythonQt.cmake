@@ -140,7 +140,7 @@ else()
   ExternalProject_Add_Empty(${proj} DEPENDS ${${proj}_DEPENDENCIES})
 endif()
 
-set(PythonQt_DIR ${PYTHONQT_INSTALL_DIR})
+set(PythonQt_DIR ${PYTHONQT_INSTALL_DIR}/lib/cmake/PythonQt)
 
 mark_as_superbuild(
   VARS

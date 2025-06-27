@@ -189,8 +189,8 @@ macro(ctkMacroWrapPythonQt WRAPPING_NAMESPACE TARGET SRCS_LIST_NAME SOURCES IS_W
   #
   # Let's include the headers associated with PythonQt
   #
-  find_package(PythonQt)
-  if(NOT PYTHONQT_FOUND)
+  find_package(PythonQt REQUIRED NO_MODULE)
+  if(NOT PythonQt_FOUND)
     message(FATAL_ERROR "error: PythonQt package is required to build ${TARGET}PythonQt")
   endif()
   include_directories(${Python3_INCLUDE_DIRS} ${PYTHONQT_INCLUDE_DIR})
