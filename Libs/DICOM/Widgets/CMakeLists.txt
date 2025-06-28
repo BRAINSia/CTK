@@ -80,28 +80,28 @@ set(KIT_MOC_SRCS
 
 # UI files - includes new widgets
 set(KIT_UI_FORMS
-  Resources/UI/ctkDICOMAppWidget.ui
-  Resources/UI/ctkDICOMBrowser.ui
-  Resources/UI/ctkDICOMDirectoryListWidget.ui
-  Resources/UI/ctkDICOMImportWidget.ui
-  Resources/UI/ctkDICOMJobListWidget.ui
-  Resources/UI/ctkDICOMListenerWidget.ui
-  Resources/UI/ctkDICOMQueryRetrieveWidget.ui
-  Resources/UI/ctkDICOMQueryWidget.ui
-  Resources/UI/ctkDICOMObjectListWidget.ui
-  Resources/UI/ctkDICOMPatientItemWidget.ui
-  Resources/UI/ctkDICOMSeriesItemWidget.ui
-  Resources/UI/ctkDICOMServerNodeWidget.ui
-  Resources/UI/ctkDICOMServerNodeWidget2.ui
-  Resources/UI/ctkDICOMStudyItemWidget.ui
-  Resources/UI/ctkDICOMTableManager.ui
-  Resources/UI/ctkDICOMTableView.ui
-  Resources/UI/ctkDICOMVisualBrowserWidget.ui
+  ctkDICOMAppWidget.ui
+  ctkDICOMBrowser.ui
+  ctkDICOMDirectoryListWidget.ui
+  ctkDICOMImportWidget.ui
+  ctkDICOMJobListWidget.ui
+  ctkDICOMListenerWidget.ui
+  ctkDICOMQueryRetrieveWidget.ui
+  ctkDICOMQueryWidget.ui
+  ctkDICOMObjectListWidget.ui
+  ctkDICOMPatientItemWidget.ui
+  ctkDICOMSeriesItemWidget.ui
+  ctkDICOMServerNodeWidget.ui
+  ctkDICOMServerNodeWidget2.ui
+  ctkDICOMStudyItemWidget.ui
+  ctkDICOMTableManager.ui
+  ctkDICOMTableView.ui
+  ctkDICOMVisualBrowserWidget.ui
 )
 
 # Resources
 set(KIT_resources
-  Resources/UI/ctkDICOMWidget.qrc
+  ctkDICOMWidget.qrc
 )
 
 # Target libraries - See CMake/ctkFunctionGetTargetLibraries.cmake

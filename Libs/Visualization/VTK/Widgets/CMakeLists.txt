@@ -145,11 +145,11 @@ set(KIT_MOC_SRCS
 
 # UI files
 set(KIT_UI_FORMS
-  Resources/UI/ctkVTKDiscretizableColorTransferWidget.ui
-  Resources/UI/ctkVTKScalarBarWidget.ui
-  Resources/UI/ctkVTKTextPropertyWidget.ui
-  Resources/UI/ctkVTKPropertyWidget.ui
-  Resources/UI/ctkVTKThresholdWidget.ui
+  ctkVTKDiscretizableColorTransferWidget.ui
+  ctkVTKScalarBarWidget.ui
+  ctkVTKTextPropertyWidget.ui
+  ctkVTKPropertyWidget.ui
+  ctkVTKThresholdWidget.ui
 )
 
 # Resources
@@ -212,8 +212,8 @@ if(${CTK_USE_CHARTS})
       ctkVTKScalarsToColorsWidget.h
       ${KIT_MOC_SRCS})
   set(KIT_UI_FORMS
-      Resources/UI/ctkVTKVolumePropertyWidget.ui
-      Resources/UI/ctkVTKScalarsToColorsWidget.ui
+      ctkVTKVolumePropertyWidget.ui
+      ctkVTKScalarsToColorsWidget.ui
       ${KIT_UI_FORMS})
   if(${VTK_VERSION} VERSION_EQUAL 8.90 OR ${VTK_VERSION} VERSION_GREATER 8.90 )
     # VTK_LIBRARIES is automatically set based on selected components

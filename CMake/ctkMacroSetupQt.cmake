@@ -23,9 +23,9 @@ macro(ctkMacroSetupQt)
 
   if(CTK_QT_VERSION VERSION_EQUAL "6")
     cmake_minimum_required(VERSION 3.16.3)
-    find_package(Qt6 COMPONENTS Core StateMachine)
+    find_package(Qt6 COMPONENTS Core Core5Compat StateMachine)
 
-    set(CTK_QT6_COMPONENTS Core StateMachine)
+    set(CTK_QT6_COMPONENTS Core Core5Compat StateMachine)
 
     # See https://github.com/commontk/CTK/wiki/Maintenance#updates-of-required-qt-components
 
@@ -134,7 +134,7 @@ macro(ctkMacroSetupQt)
 
     ctk_list_to_string(", " "${CTK_QT6_COMPONENTS}" comma_separated_module_list)
     message(STATUS "Configuring CTK with Qt ${_major}.${_minor}.${_patch} (using modules: ${comma_separated_module_list})")
-
+    set(CTK_QT6_COMPONENTS ${CTK_QT6_COMPONENTS} PARENT_SCOPE)
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()

@@ -22,7 +22,7 @@ macro(ctkQtTesting SRCS_OUTPUT_VAR MOC_CPP_OUTPUT_VAR UI_FORMS_OUTPUT_VAR RESOUR
     ${CTK_SOURCE_DIR}/Libs/QtTesting/ctkXMLEventObserver.h
     )
   list(APPEND ${UI_FORMS_OUTPUT_VAR}
-    ${CTK_SOURCE_DIR}/Libs/QtTesting/Resources/UI/ctkEventTranslatorPlayerWidget.ui
+    ${CTK_SOURCE_DIR}/Libs/QtTesting/ctkEventTranslatorPlayerWidget.ui
     )
   list(APPEND ${RESOURCES_OUTPUT_VAR}
     ${CTK_SOURCE_DIR}/Libs/QtTesting/Resources/ctkQtTesting.qrc

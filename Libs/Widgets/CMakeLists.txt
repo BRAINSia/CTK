@@ -322,20 +322,20 @@ set(KIT_GENERATE_MOC_SRCS
 
 # UI files
 set(KIT_UI_FORMS
-  Resources/UI/ctkAddRemoveComboBox.ui
-  Resources/UI/ctkRangeWidget.ui
-  Resources/UI/ctkDateRangeWidget.ui
-  Resources/UI/ctkErrorLogWidget.ui
-  Resources/UI/ctkMaterialPropertyWidget.ui
-  Resources/UI/ctkModalityWidget.ui
-  Resources/UI/ctkPathListButtonsWidget.ui
-  Resources/UI/ctkScreenshotDialog.ui
-  Resources/UI/ctkSettingsDialog.ui
-  Resources/UI/ctkSliderWidget.ui
-  Resources/UI/ctkThumbnailLabel.ui
-  Resources/UI/ctkThumbnailListWidget.ui
-  Resources/UI/ctkWorkflowGroupBox.ui
-  )
+  ctkAddRemoveComboBox.ui
+  ctkRangeWidget.ui
+  ctkDateRangeWidget.ui
+  ctkErrorLogWidget.ui
+  ctkMaterialPropertyWidget.ui
+  ctkModalityWidget.ui
+  ctkPathListButtonsWidget.ui
+  ctkScreenshotDialog.ui
+  ctkSettingsDialog.ui
+  ctkSliderWidget.ui
+  ctkThumbnailLabel.ui
+  ctkThumbnailListWidget.ui
+  ctkWorkflowGroupBox.ui
+)
 
 # Resources
 set(KIT_resources

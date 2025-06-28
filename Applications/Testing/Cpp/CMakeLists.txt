@@ -42,6 +42,7 @@ if(CTK_APP_ctkDICOMQuery AND CTK_APP_ctkDICOMRetrieve)
   target_link_libraries(ctkDICOMApplicationTest1
     CTKCore
     Qt${CTK_QT_VERSION}::Core
+    Qt${CTK_QT_VERSION}::Core5Compat # Needed for QTextCodec
     )
 
   include_directories(

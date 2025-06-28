@@ -135,7 +135,7 @@ set(KIT_MOC_SRCS
 
 # UI files
 set(KIT_UI_FORMS
-  Resources/UI/ctkEventTranslatorPlayerWidget.ui
+  ctkEventTranslatorPlayerWidget.ui
 )
 
 # Resources
