@@ -156,7 +156,10 @@ set(KIT_target_libraries)
 
 ctkFunctionGetTargetLibraries(KIT_target_libraries)
 
-list(APPEND KIT_target_libraries Qt${CTK_QT_VERSION}::Core)
+list(APPEND KIT_target_libraries Qt${CTK_QT_VERSION}::Core )
+if(CTK_QT_VERSION VERSION_GREATER_EQUAL "6.0.0")
+  list(APPEND KIT_target_libraries Qt${CTK_QT_VERSION}::StateMachine)
+endif()
 
 ctkMacroBuildLib(
   NAME ${PROJECT_NAME}
