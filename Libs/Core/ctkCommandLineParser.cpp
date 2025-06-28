@@ -48,7 +48,7 @@ public:
       : LongArg(longArg), LongArgPrefix(longArgPrefix),
       ShortArg(shortArg), ShortArgPrefix(shortArgPrefix),
       ArgHelp(argHelp), IgnoreRest(ignoreRest), NumberOfParametersToProcess(0),
-      Deprecated(deprecated), DefaultValue(defaultValue), Value(type), ValueType(type)
+      Deprecated(deprecated), DefaultValue(defaultValue), Value(QMetaType(type)), ValueType(type)
   {
     if (defaultValue.isValid())
     {
