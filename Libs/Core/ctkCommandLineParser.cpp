@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QSettings>
 #include <QPointer>
+#include <QRegularExpression>
 
 // CTK includes
 #include "ctkCommandLineParser.h"
