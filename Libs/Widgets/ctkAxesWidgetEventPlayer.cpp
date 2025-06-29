@@ -50,6 +50,7 @@ bool ctkAxesWidgetEventPlayer::playEvent(QObject *Object,
     if (Command == "mousePress" || Command == "mouseRelease")
     {
       QRegularExpression mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
       if (mouseRegExp.indexIn(Arguments)!= -1)
       {
         QVariant v = mouseRegExp.cap(1);
@@ -68,6 +69,27 @@ bool ctkAxesWidgetEventPlayer::playEvent(QObject *Object,
         QMouseEvent e(type, QPoint(x,y), button, buttons, keym);
         QCoreApplication::sendEvent(Object, &e);
       }
+#else
+      QRegularExpressionMatch match = mouseRegExp.match(Arguments);
+      if (match.hasMatch())
+      {
+        QVariant v = match.captured(1);
+        int x = static_cast<int>(v.toDouble() * widget->size().width());
+        v = match.captured(2);
+        int y = static_cast<int>(v.toDouble() * widget->size().height());
+        v = match.captured(4);
+        Qt::MouseButtons buttons = static_cast<Qt::MouseButton>(v.toInt());
+        v = match.captured(5);
+        Qt::KeyboardModifiers keym = static_cast<Qt::KeyboardModifier>(v.toInt());
+        v = match.captured(3);
+
+        Qt::MouseButton button = static_cast<Qt::MouseButton>(v.toInt());
+        QEvent::Type type = (Command == "mousePress")?
+                            QEvent::MouseButtonPress : QEvent::MouseButtonRelease;
+        QMouseEvent e(type, QPoint(x,y), button, buttons, keym);
+        QCoreApplication::sendEvent(Object, &e);
+      }
+#endif
       return true;
     }
   }

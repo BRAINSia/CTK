@@ -327,6 +327,7 @@ bool ctkPixmapIconEngine::write(QDataStream &out) const
 
 void ctkPixmapIconEngine::virtual_hook(int id, void *data)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   switch (id) {
     case QIconEngine::AvailableSizesHook: {
         QIconEngine::AvailableSizesArgument &arg =
@@ -346,4 +347,8 @@ void ctkPixmapIconEngine::virtual_hook(int id, void *data)
     default:
       QIconEngine::virtual_hook(id, data);
   }
+#else
+  // QIconEngine::AvailableSizesHook is removed in Qt6, just call base implementation
+  QIconEngine::virtual_hook(id, data);
+#endif
 }

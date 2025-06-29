@@ -55,7 +55,7 @@ QImage ctk::grabWidget(QWidget* widget, QRect rectangle)
   QImage widgetImage = widgetPixmap.toImage();
   QPainter painter;
   painter.begin(&widgetImage);
-  foreach(OpenGLWidgets* glWidget, widget->findChildren<QGLWidget*>())
+  for(auto glWidget: widget->findChildren<QOpenGLWidget*>())
   {
     if (!glWidget->isVisible())
     {
@@ -66,7 +66,7 @@ QImage ctk::grabWidget(QWidget* widget, QRect rectangle)
     {
       continue;
     }
-    QImage subImage = glWidget->grabFrameBuffer();
+    QImage subImage = glWidget->grabFramebuffer();
     painter.drawImage(subWidgetRect, subImage);
   }
   painter.end();

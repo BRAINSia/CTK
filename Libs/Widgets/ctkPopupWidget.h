@@ -113,7 +113,7 @@ public:
 
 protected:
   virtual void leaveEvent(QEvent* event);
-  virtual void enterEvent(QEvent* event);
+  virtual void enterEvent(QEnterEvent* event);
   virtual bool eventFilter(QObject* obj, QEvent* event);
 
   /// Widget the popup is attached to. It opens right under \a baseWidget

@@ -46,6 +46,7 @@ set(KIT_resources
 # Target libraries - See CMake/ctkFunctionGetTargetLibraries.cmake
 # The following macro will read the target libraries from the file 'target_libraries.cmake'
 ctkFunctionGetTargetLibraries(KIT_target_libraries)
+list(APPEND KIT_target_libraries PythonQt::PythonQt)
 
 ctkMacroBuildLib(
   NAME ${PROJECT_NAME}

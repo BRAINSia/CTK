@@ -131,7 +131,7 @@ bool CommandLineParserArgumentDescription::addParameter(const QString& value)
     }
   }
 
-  switch (static_cast<int>(Value.type()))
+  switch (Value.typeId())
   {
     case QMetaType::QString:
     {
@@ -578,7 +578,11 @@ QHash<QString, QVariant> ctkCommandLineParser::parseArguments(const QStringList&
         QVariant settingsVal = settings->value(key);
 
         if (desc->ValueType == QMetaType::QStringList &&
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             settingsVal.canConvert(QMetaType::QStringList))
+#else
+            settingsVal.canConvert<QStringList>())
+#endif
         {
           QStringList stringList = desc->Value.toStringList();
           stringList.append(settingsVal.toStringList());
@@ -663,9 +667,9 @@ void ctkCommandLineParser::addArgument(const QString& longarg, const QString& sh
              "both long and short argument names are empty");
   if (longarg.isEmpty() && shortarg.isEmpty()) { return; }
 
-  Q_ASSERT_X(!defaultValue.isValid() || defaultValue.type() == type, "addArgument",
+  Q_ASSERT_X(!defaultValue.isValid() || defaultValue.typeId() == type, "addArgument",
              "defaultValue type does not match");
-  if (defaultValue.isValid() && defaultValue.type() != type)
+  if (defaultValue.isValid() && defaultValue.typeId() != type)
     throw std::logic_error("The QVariant type of defaultValue does not match the specified type");
 
   /* Make sure it's not already added */

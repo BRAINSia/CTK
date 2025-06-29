@@ -70,7 +70,7 @@ int ctkWidgetsUtilsTestGrabWidget(int argc, char * argv [] )
 
   if (QColor(screenshot.pixel(100, 100)) != QColor(Qt::black))
   {
-    std::cout << "Failed to grab QGLWidget, pixel at (100,100)="
+    std::cout << "Failed to grab QOpenGLWidget, pixel at (100,100)="
               << std::hex << screenshot.pixel(100, 100) << " " << QColor(Qt::black).rgb() << std::endl;
     return EXIT_FAILURE;
   }

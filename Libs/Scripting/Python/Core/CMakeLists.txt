@@ -46,7 +46,7 @@ ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES PYTHON_LIBRARY)
 ctkFunctionGetTargetLibraries(KIT_target_libraries )
 
 find_package(PythonQt REQUIRED)
-list(APPEND KIT_target_libraries PythonQt::PythonQt )
+list(APPEND KIT_target_libraries PythonQt::PythonQt Python3::Python)
 ctkMacroBuildLib(
   NAME ${PROJECT_NAME}
   EXPORT_DIRECTIVE ${KIT_export_directive}
