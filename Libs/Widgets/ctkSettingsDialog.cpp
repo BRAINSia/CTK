@@ -28,37 +28,10 @@
 // CTK includes
 #include "ctkSettingsPanel.h"
 #include "ctkSettingsDialog.h"
-#include "ui_ctkSettingsDialog.h"
+
 #include "ctkLogger.h"
 
 static ctkLogger logger("org.commontk.libs.widgets.ctkSettingsDialog");
-
-//-----------------------------------------------------------------------------
-class ctkSettingsDialogPrivate: public Ui_ctkSettingsDialog
-{
-  Q_DECLARE_PUBLIC(ctkSettingsDialog);
-protected:
-  ctkSettingsDialog* const q_ptr;
-public:
-  ctkSettingsDialogPrivate(ctkSettingsDialog& object);
-  void init();
-
-  QList<ctkSettingsPanel*> panels()const;
-  ctkSettingsPanel* panel(QTreeWidgetItem* item)const;
-  QTreeWidgetItem* item(ctkSettingsPanel* panel)const;
-  QTreeWidgetItem* item(const QString& label)const;
-
-  void beginGroup(ctkSettingsPanel* panel);
-  void endGroup(ctkSettingsPanel* panel);
-
-  void updatePanelTitle(ctkSettingsPanel* panel);
-  void updateRestartRequiredLabel();
-
-  QSettings* Settings;
-
-protected:
-  QMap<QTreeWidgetItem*, ctkSettingsPanel*> Panels;
-};
 
 // --------------------------------------------------------------------------
 ctkSettingsDialogPrivate::ctkSettingsDialogPrivate(ctkSettingsDialog& object)
