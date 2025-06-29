@@ -22,7 +22,12 @@
 #include <QApplication>
 #include <QAbstractItemView>
 #include <QDebug>
-#include <QDesktopWidget>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+//#include <QDesktopWidget>
+#else
+#include <QScreen>
+#include <QGuiApplication>
+#endif
 #include <QItemDelegate>
 #include <QLayout>
 #include <QMouseEvent>

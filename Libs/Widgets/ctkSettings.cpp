@@ -57,7 +57,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <QGuiApplication>
 #include <QScreen>
 #else
-#include <QDesktopWidget>
+//#include <QDesktopWidget>
 #endif
 
 //-----------------------------------------------------------------------------
