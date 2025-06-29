@@ -577,7 +577,13 @@ QStringList ctkAbstractPythonManager::pythonAttributes(const QString& pythonVari
   // remove the temporary attribute (created to instantiate a class) from the module object
   if (PyObject_HasAttrString(main_object,instantiated_class_name.toLatin1().data()))
   {
-    PyObject_DelAttrString(main_object,instantiated_class_name.toLatin1().data());
+#if PY_VERSION_HEX < 0x030C0000
+    PyObject_DelAttrString(main_object, instantiated_class_name.toLatin1().data());
+#else
+    PyObject *name = PyUnicode_FromString(instantiated_class_name.toLatin1().data());
+    PyObject_DelAttr(main_object, name);
+    Py_DECREF(name);
+#endif
   }
 
   return results;
