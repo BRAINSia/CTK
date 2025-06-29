@@ -160,7 +160,8 @@ ${${MY_EXPORT_CUSTOM_CONTENT_FROM_VARIABLE}}
   if(MINGW)
     list(APPEND my_libs ssp) # add stack smash protection lib
   endif()
-  target_link_libraries(${lib_name} ${my_libs})
+  # HACK : adding PythonQt and Python3 libraries.
+  target_link_libraries(${lib_name} ${my_libs} PythonQt::PythonQt Python3::Python)
 
   # Update CTK_BASE_LIBRARIES
   set(CTK_BASE_LIBRARIES ${my_libs} ${lib_name} CACHE INTERNAL "CTK base libraries" FORCE)
