@@ -134,7 +134,6 @@ macro(ctkMacroSetupQt)
 
     ctk_list_to_string(", " "${CTK_QT6_COMPONENTS}" comma_separated_module_list)
     message(STATUS "Configuring CTK with Qt ${_major}.${_minor}.${_patch} (using modules: ${comma_separated_module_list})")
-    set(CTK_QT6_COMPONENTS ${CTK_QT6_COMPONENTS} PARENT_SCOPE)
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()
