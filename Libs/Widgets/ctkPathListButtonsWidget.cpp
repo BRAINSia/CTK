@@ -28,6 +28,10 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QRegularExpression>
+#endif
+
 // CTK includes
 #include "ctkPathListButtonsWidget.h"
 #include "ctkPathListButtonsWidget_p.h"
@@ -157,7 +161,9 @@ QStringList ctkPathListButtonsWidgetPrivate::openAddFilesDialog(bool multiple)
   }
 
   QFileDialog fileDialog(q, caption);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   fileDialog.setReadOnly(true);
+#endif
 
   if (multiple)
   {
@@ -185,7 +191,6 @@ QStringList ctkPathListButtonsWidgetPrivate::openAddFilesDialog(bool multiple)
     {}
 
   protected:
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex & sourceParent) const
     {
       QModelIndex sourceIndex = sourceModel()->index(sourceRow, 0, sourceParent);
       QFileSystemModel* fileModel = qobject_cast<QFileSystemModel*>(sourceModel());

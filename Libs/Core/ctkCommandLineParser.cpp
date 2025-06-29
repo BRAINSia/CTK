@@ -124,13 +124,14 @@ bool CommandLineParserArgumentDescription::addParameter(const QString& value)
   {
     // Validate value
     QRegularExpression regexp(this->RegularExpression);
-    if (!regexp.exactMatch(value))
+    QRegularExpressionMatch match = regexp.match(value);
+    if (!match.hasMatch())
     {
       return false;
     }
   }
 
-  switch (Value.type())
+  switch (static_cast<int>(Value.type()))
   {
     case QMetaType::QString:
     {
@@ -331,7 +332,11 @@ QHash<QString, QVariant> ctkCommandLineParser::parseArguments(const QStringList&
   foreach (CommandLineParserArgumentDescription* desc,
            this->Internal->ArgumentDescriptionList)
   {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    desc->Value = QVariant(QMetaType(desc->ValueType));
+#else
     desc->Value = QVariant(desc->ValueType);
+#endif
     if (desc->DefaultValue.isValid())
     {
       desc->Value = desc->DefaultValue;

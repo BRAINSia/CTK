@@ -109,17 +109,34 @@ const char *ctkValidWildCard =
 QStringList ctk::nameFilterToExtensions(const QString& nameFilter)
 {
   QRegularExpression regexp(QString::fromLatin1(ctkNameFilterRegExp));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  QRegularExpressionMatch match = regexp.match(nameFilter);
+  int i = match.hasMatch() ? match.capturedStart() : -1;
+#else
   int i = regexp.indexIn(nameFilter);
+#endif
   if (i < 0)
   {
     QRegularExpression isWildCard(QString::fromLatin1(ctkValidWildCard));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    QRegularExpressionMatch wcMatch = isWildCard.match(nameFilter);
+    if (wcMatch.hasMatch())
+    {
+      return QStringList(nameFilter);
+    }
+#else
     if (isWildCard.indexIn(nameFilter) >= 0)
     {
       return QStringList(nameFilter);
     }
+#endif
     return QStringList();
   }
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  QString f = match.captured(2);
+#else
   QString f = regexp.cap(2);
+#endif
   #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
   return f.split(QLatin1Char(' '), Qt::SkipEmptyParts);
   #else
@@ -143,12 +160,22 @@ QString ctk::extensionToRegExp(const QString& extension)
 {
   // typically *.jpg
   QRegularExpression extensionExtractor("\\*\\.(\\w+)");
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  QRegularExpressionMatch match = extensionExtractor.match(extension);
+  int pos = match.hasMatch() ? match.capturedStart() : -1;
+  if (pos < 0)
+  {
+    return QString();
+  }
+  return ".*\\." + match.captured(1) + "?$";
+#else
   int pos = extensionExtractor.indexIn(extension);
   if (pos < 0)
   {
     return QString();
   }
   return ".*\\." + extensionExtractor.cap(1) + "?$";
+#endif
 }
 
 //-----------------------------------------------------------------------------

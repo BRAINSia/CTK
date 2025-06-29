@@ -636,7 +636,7 @@ PyObject* ctkAbstractPythonManager::pythonObject(const QString& variableNameAndF
           continue;
         }
         QString keyStr = PyString_AsString(key);
-        if (keyStr.operator ==(compareFunction.toLatin1()))
+        if (keyStr == compareFunction)
         {
           finalPythonObject = value;
           break;

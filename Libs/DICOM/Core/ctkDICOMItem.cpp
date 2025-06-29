@@ -19,6 +19,7 @@
 
 =============================================================================*/
 
+#include <QtCore5Compat/QTextCodec>
 #include "ctkDICOMItem.h"
 
 #include <dcmtk/dcmdata/dcuid.h>
@@ -27,8 +28,7 @@
 #include <dcmtk/dcmdata/dcistrmb.h>
 
 #include <stdexcept>
-
-
+#include <QTextCodec>
 class ctkDICOMItemPrivate
 {
   public:
@@ -373,7 +373,7 @@ QString ctkDICOMItem::Decode( const DcmTag& tag, const OFString& raw ) const
         vr == "UT" ) )
   {
     //std::cout << "Decode from encoding " << d->m_SpecificCharacterSet.toStdString() << std::endl;
-    static QMap<QString, QTextDecoder*> decoders;
+    static QMap<QString, QTextDecoder *> decoders;
     static QMap<QString, QString> qtEncodingNamesForDICOMEncodingNames;
 
     if (qtEncodingNamesForDICOMEncodingNames.isEmpty())
@@ -417,15 +417,24 @@ QString ctkDICOMItem::Decode( const DcmTag& tag, const OFString& raw ) const
       if ( !decoders.contains( encodingName ) )
       {
         QTextCodec* codec = QTextCodec::codecForName( encodingName.toLatin1() );
+        QTextCodec* namecodec = QTextCodec::codecForName("UTF-8");
         if (!codec)
         {
           std::cerr << "Could not create QTextCodec object for '" << encodingName.toStdString() << "'. Using default encoding instead." << std::endl;
-          decoders.insert( encodingName, QTextCodec::codecForName("UTF-8")->makeDecoder() ); // uses Latin1
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+          decoders.insert(encodingName, QTextCodec::codecForName("UTF-8")->makeDecoder());
+#else
+          decoders.insert(encodingName, QTextCodec::codecForName("UTF-8")->makeDecoder());
+#endif
         }
         else
         {
           // initialize a QTextDecoder for given encoding
-          decoders.insert( encodingName, codec->makeDecoder() );
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+          decoders.insert(encodingName, codec->makeDecoder());
+#else
+          decoders.insert(encodingName, codec->makeDecoder());
+#endif
           // We are responsible for deleting the QTextDecoder objects
           // created by makeDecoder(). BUT as these objects are stored
           // in a static map that lives until application end AND

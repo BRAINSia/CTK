@@ -88,8 +88,20 @@ QStringList ctkCompleterPrivate::splitPath(const QString& s)
     {
       this->updateSortFilterProxyModel();
       QRegularExpression regexp = QRegularExpression(QRegularExpression::escape(s));
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
       regexp.setCaseSensitivity(q->caseSensitivity());
       this->SortFilterProxyModel->setFilterRegExp(regexp);
+#else
+      if (q->caseSensitivity() == Qt::CaseInsensitive)
+      {
+        regexp.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+      }
+      else
+      {
+        regexp.setPatternOptions(QRegularExpression::NoPatternOption);
+      }
+      this->SortFilterProxyModel->setFilterRegularExpression(regexp);
+#endif
       paths = QStringList();
       break;
     }

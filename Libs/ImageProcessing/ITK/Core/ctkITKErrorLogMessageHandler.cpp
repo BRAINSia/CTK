@@ -20,6 +20,7 @@
 
 // Qt includes
 #include <QThread>
+#include <QRegularExpression>
 
 // CTK includes
 #include "ctkErrorLogContext.h"
@@ -143,12 +144,13 @@ QString ctkITKOutputWindow::parseText(const QString& text, ctkErrorLogContext& c
   context.Message = text;
 
   QRegularExpression contextRegExp("[a-zA-Z\\s]+: In (.+), line ([\\d]+)\\n(.+\\(0x[a-fA-F0-9]+\\))\\:\\s(.*)");
-  if (contextRegExp.exactMatch(text))
+  QRegularExpressionMatch match = contextRegExp.match(text);
+  if (match.hasMatch())
   {
-    context.File = contextRegExp.cap(1);
-    context.Category = contextRegExp.cap(3);
-    context.Line = contextRegExp.cap(2).toInt();
-    context.Message = contextRegExp.cap(4);
+    context.File = match.captured(1);
+    context.Category = match.captured(3);
+    context.Line = match.captured(2).toInt();
+    context.Message = match.captured(4);
   }
   return context.Message;
 }

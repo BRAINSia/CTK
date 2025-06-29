@@ -152,7 +152,7 @@ void ctkConsolePrivate::init()
   this->RunFileButton->setVisible(false);
 
   QVBoxLayout * layout = new QVBoxLayout(q);
-  layout->setMargin(0);
+  layout->setContentsMargins(0, 0, 0, 0);
   layout->setSpacing(0);
   layout->addWidget(this);
   layout->addWidget(this->RunFileButton);
@@ -561,7 +561,8 @@ void ctkConsolePrivate::keyPressEvent(QKeyEvent* e)
     return;
   }
 
-  if (this->CompleterShortcuts.contains(e->key() + e->modifiers()))
+  QKeySequence keySeq(e->modifiers() | e->key());
+  if (this->CompleterShortcuts.contains(keySeq))
   {
     e->accept();
     this->updateCompleter();
@@ -842,10 +843,18 @@ void ctkConsolePrivate::internalExecuteCommand()
   if (this->EditorHints & ctkConsole::AutomaticIndentation)
   {
     QRegularExpression regExp("^(\\s+)");
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if (regExp.indexIn(command) != -1)
     {
       indent = regExp.cap(1);
     }
+#else
+    QRegularExpressionMatch match = regExp.match(command);
+    if (match.hasMatch())
+    {
+      indent = match.captured(1);
+    }
+#endif
   }
 
   // Give a chance for log messages to appear before displaying the new prompt.

@@ -29,6 +29,7 @@
 #include <QTextDocument>
 #include <QTreeView>
 #include <QVBoxLayout>
+#include <QMenu>
 
 // CTK includes
 #include "ctkActionsWidget.h"

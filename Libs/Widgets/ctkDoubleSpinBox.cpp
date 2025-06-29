@@ -405,26 +405,30 @@ double ctkDoubleSpinBoxPrivate
   // could be because of group separators:
   if (!ok && state == QValidator::Acceptable)
   {
-    if (q->locale().groupSeparator().isPrint())
-    {
-      int start = (dec == -1 ? text.size() : dec)- 1;
-      int lastGroupSeparator = start;
-      for (int digit = start; digit >= 0; --digit)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+      if (q->locale().groupSeparator().isPrint())
+#else
+      if (!q->locale().groupSeparator().isEmpty())
+#endif
       {
-        if (text.at(digit) == q->locale().groupSeparator())
+        int start = (dec == -1 ? text.size() : dec)- 1;
+        int lastGroupSeparator = start;
+        for (int digit = start; digit >= 0; --digit)
         {
-          if (digit != lastGroupSeparator - 3)
+          if (text.at(digit) == q->locale().groupSeparator())
           {
-            state = QValidator::Invalid;
-            break;
+            if (digit != lastGroupSeparator - 3)
+            {
+              state = QValidator::Invalid;
+              break;
+            }
+            text.remove(digit, 1);
+            lastGroupSeparator = digit;
           }
-          text.remove(digit, 1);
-          lastGroupSeparator = digit;
         }
       }
-    }
-    // try again without the group separators
-    value = q->locale().toDouble(text, &ok);
+      // try again without the group separators
+      value = q->locale().toDouble(text, &ok);
   }
   // test the decimalPoint
   if (!ok && state == QValidator::Acceptable)
@@ -1095,7 +1099,11 @@ QSize ctkDoubleSpinBox::sizeHint() const
   opt.rect = this->rect();
   d->CachedSizeHint = this->style()->sizeFromContents(
     QStyle::CT_SpinBox, &opt, newSizeHint, this)
-    .expandedTo(QApplication::globalStrut());
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+  .expandedTo(QApplication::globalStrut());
+#else
+  .expandedTo(QSize());
+#endif
   return d->CachedSizeHint;
 }
 
@@ -1151,7 +1159,11 @@ QSize ctkDoubleSpinBox::minimumSizeHint() const
   opt.rect = this->rect();
   d->CachedMinimumSizeHint = this->style()->sizeFromContents(
     QStyle::CT_SpinBox, &opt, newSizeHint, this)
-    .expandedTo(QApplication::globalStrut());
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+  .expandedTo(QApplication::globalStrut());
+#else
+  .expandedTo(QSize());
+#endif
   return d->CachedMinimumSizeHint;
 }
 

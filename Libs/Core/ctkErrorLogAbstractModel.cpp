@@ -376,10 +376,19 @@ void ctkErrorLogAbstractModel::filterEntry(const ctkErrorLogLevel::LogLevels& lo
   Q_D(ctkErrorLogAbstractModel);
 
   QStringList patterns;
-  if (!this->filterRegExp().pattern().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  QRegularExpression currentRegExp = this->filterRegularExpression();
+  if (!currentRegExp.pattern().isEmpty())
   {
-    patterns << this->filterRegExp().pattern().split("|");
+    patterns << currentRegExp.pattern().split("|");
   }
+#else
+  QRegExp currentRegExp = this->filterRegExp();
+  if (!currentRegExp.pattern().isEmpty())
+  {
+    patterns << currentRegExp.pattern().split("|");
+  }
+#endif
   patterns.removeAll(d->ErrorLogLevel(ctkErrorLogLevel::None));
 
   QMetaEnum logLevelEnum = d->ErrorLogLevel.metaObject()->enumerator(0);
@@ -414,7 +423,11 @@ void ctkErrorLogAbstractModel::filterEntry(const ctkErrorLogLevel::LogLevels& lo
   }
 
   bool filterChanged = true;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  QStringList currentPatterns = this->filterRegularExpression().pattern().split("|");
+#else
   QStringList currentPatterns = this->filterRegExp().pattern().split("|");
+#endif
   if (currentPatterns.count() == patterns.count())
   {
     foreach(const QString& p, patterns)
@@ -424,7 +437,11 @@ void ctkErrorLogAbstractModel::filterEntry(const ctkErrorLogLevel::LogLevels& lo
     filterChanged = currentPatterns.count() > 0;
   }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  this->setFilterRegularExpression(QRegularExpression(patterns.join("|")));
+#else
   this->setFilterRegExp(patterns.join("|"));
+#endif
 
   if (filterChanged)
   {
@@ -440,7 +457,11 @@ ctkErrorLogLevel::LogLevels ctkErrorLogAbstractModel::logLevelFilter()const
   Q_ASSERT(QString("LogLevel").compare(logLevelEnum.name()) == 0);
 
   ctkErrorLogLevel::LogLevels filter = ctkErrorLogLevel::Unknown;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  foreach(const QString& filterAsString, this->filterRegularExpression().pattern().split("|"))
+#else
   foreach(const QString& filterAsString, this->filterRegExp().pattern().split("|"))
+#endif
   {
     filter |= static_cast<ctkErrorLogLevel::LogLevels>(logLevelEnum.keyToValue(filterAsString.toLatin1()));
   }
