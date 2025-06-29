@@ -156,7 +156,9 @@ set(KIT_target_libraries)
 
 ctkFunctionGetTargetLibraries(KIT_target_libraries)
 
-list(APPEND KIT_target_libraries Qt${CTK_QT_VERSION}::Core )
+list(APPEND KIT_target_libraries Qt${CTK_QT_VERSION}::Core
+                                 Qt${CTK_QT_VERSION}::Core5Compat # Needed for QTextCodec
+)
 if(CTK_QT_VERSION VERSION_GREATER_EQUAL "6.0.0")
   list(APPEND KIT_target_libraries Qt${CTK_QT_VERSION}::StateMachine)
 endif()

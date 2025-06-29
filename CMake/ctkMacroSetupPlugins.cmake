@@ -108,7 +108,9 @@ macro(ctkMacroSetupPlugins )
       get_target_property(_qt6_moc_executable Qt6::moc LOCATION)
       get_filename_component(QT_INSTALLED_LIBRARY_DIR ${_qt6_moc_executable} PATH)
     else()
-      get_target_property(_qt6_core_lib Qt6::Core LOCATION)
+      get_target_property(_qt6_core_lib Qt6::Core
+                                        Qt${CTK_QT_VERSION}::Core5Compat # Needed for QTextCodec
+              LOCATION)
       get_filename_component(QT_INSTALLED_LIBRARY_DIR ${_qt6_core_lib} PATH)
     endif()
   else()
