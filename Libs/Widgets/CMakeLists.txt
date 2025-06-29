@@ -346,7 +346,7 @@ set(KIT_resources
 # The following macro will read the target libraries from the file 'target_libraries.cmake'
 ctkFunctionGetTargetLibraries(KIT_target_libraries)
 
-  list(APPEND KIT_target_libraries Qt6::Widgets Qt6::Xml Qt6::OpenGL)
+  list(APPEND KIT_target_libraries Qt6::Widgets Qt6::Xml Qt6::OpenGLWidgets)
 
 # A player and a translator must be added for custom Qt widgets
 if(CTK_USE_QTTESTING)
