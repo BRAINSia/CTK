@@ -191,6 +191,7 @@ QStringList ctkPathListButtonsWidgetPrivate::openAddFilesDialog(bool multiple)
     {}
 
   protected:
+    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex & sourceParent) const
     {
       QModelIndex sourceIndex = sourceModel()->index(sourceRow, 0, sourceParent);
       QFileSystemModel* fileModel = qobject_cast<QFileSystemModel*>(sourceModel());
