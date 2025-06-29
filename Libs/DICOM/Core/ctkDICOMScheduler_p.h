@@ -24,53 +24,8 @@
 #ifndef __ctkDICOMQueryJobPrivate_h
 #define __ctkDICOMQueryJobPrivate_h
 
-// Qt includes
-#include <QList>
-#include <QMap>
-#include <QSharedPointer>
-#include <QString>
-class QVariant;
-
-// ctkCore includes
-#include <ctkJobScheduler_p.h>
-class ctkAbstractJob;
-class ctkAbstractWorker;
-class ctkDICOMDatabase;
-class ctkDICOMServer;
 
 // ctkDICOMCore includes
-#include "ctkDICOMScheduler.h"
 
-//------------------------------------------------------------------------------
-struct ThumbnailUID
-{
-  QString studyInstanceUID;
-  QString seriesInstanceUID;
-  QString SOPInstanceUID;
-} ;
-
-//------------------------------------------------------------------------------
-class ctkDICOMSchedulerPrivate : public ctkJobSchedulerPrivate
-{
-  Q_OBJECT
-  Q_DECLARE_PUBLIC(ctkDICOMScheduler);
-
-public:
-  ctkDICOMSchedulerPrivate(ctkDICOMScheduler& obj);
-  virtual ~ctkDICOMSchedulerPrivate();
-
-  bool isServerAllowed(ctkDICOMServer* server, const QStringList& allowedSeversForPatient);
-  ctkDICOMServer* getServerFromProxyServersByConnectionName(const QString&);
-  bool isJobDuplicate(ctkDICOMJob* job);
-
-  QSharedPointer<ctkDICOMDatabase> DicomDatabase;
-  QList<QSharedPointer<ctkDICOMServer>> Servers;
-  QMap<QString, QMetaObject::Connection> ServersConnections;
-  QMap<QString, QVariant> Filters;
-
-  int MaximumPatientsQuery{25};
-
-  dcmtk::log4cplus::SharedAppenderPtr Appender;
-};
 
 #endif
