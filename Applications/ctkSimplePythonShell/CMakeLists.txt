@@ -91,7 +91,7 @@ if(NOT CTK_BUILD_SHARED_LIBS AND CTK_WRAP_PYTHONQT_LIGHT)
 
   foreach(lib_name ${MY_CTK_WRAPPED_LIBRARIES_PYTHONQT})
 
-    list(APPEND KIT_target_libraries ${lib_name}PythonQt)
+    list(APPEND KIT_target_libraries ${lib_name}PythonQt PythonQt::PythonQt )
 
     set(CTK_PYTHONQT_INITIALIZATION_METHOD_DEFINITION
       "${CTK_PYTHONQT_INITIALIZATION_METHOD_DEFINITION}

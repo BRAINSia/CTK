@@ -43,8 +43,10 @@ configure_file(
 # Target libraries - See CMake/ctkFunctionGetTargetLibraries.cmake
 # The following macro will read the target libraries from the file 'target_libraries.cmake'
 ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES PYTHON_LIBRARY)
-ctkFunctionGetTargetLibraries(KIT_target_libraries)
+ctkFunctionGetTargetLibraries(KIT_target_libraries )
 
+find_package(PythonQt REQUIRED)
+list(APPEND KIT_target_libraries PythonQt::PythonQt )
 ctkMacroBuildLib(
   NAME ${PROJECT_NAME}
   EXPORT_DIRECTIVE ${KIT_export_directive}
