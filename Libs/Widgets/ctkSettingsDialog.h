@@ -26,12 +26,44 @@
 
 // CTK includes
 #include "ctkWidgetsExport.h"
+#include "ctkSettingsPanel.h"
+#include "ctkSettingsDialog.h"
+#include "ui_ctkSettingsDialog.h"
 
 class QAbstractButton;
 class QSettings;
 class QTreeWidgetItem;
-class ctkSettingsDialogPrivate;
-class ctkSettingsPanel;
+// class ctkSettingsDialogPrivate;
+// class ctkSettingsPanel;
+class ctkSettingsDialog;
+
+//-----------------------------------------------------------------------------
+class ctkSettingsDialogPrivate: public Ui_ctkSettingsDialog
+{
+  Q_DECLARE_PUBLIC(ctkSettingsDialog);
+protected:
+  ctkSettingsDialog* const q_ptr;
+public:
+  ctkSettingsDialogPrivate(ctkSettingsDialog& object);
+  void init();
+
+  QList<ctkSettingsPanel*> panels()const;
+  ctkSettingsPanel* panel(QTreeWidgetItem* item)const;
+  QTreeWidgetItem* item(ctkSettingsPanel* panel)const;
+  QTreeWidgetItem* item(const QString& label)const;
+
+  void beginGroup(ctkSettingsPanel* panel);
+  void endGroup(ctkSettingsPanel* panel);
+
+  void updatePanelTitle(ctkSettingsPanel* panel);
+  void updateRestartRequiredLabel();
+
+  QSettings* Settings;
+
+protected:
+  QMap<QTreeWidgetItem*, ctkSettingsPanel*> Panels;
+};
+
 
 /// \ingroup Widgets
 class CTK_WIDGETS_EXPORT ctkSettingsDialog : public QDialog
