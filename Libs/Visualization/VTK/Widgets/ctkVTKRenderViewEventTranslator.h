@@ -46,9 +46,31 @@ public:
 
 protected:
   QByteArray   mClassType;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   QMouseEvent  lastMoveEvent;
   QMouseEvent  oldMoveEvent;
   QMouseEvent  lastMouseEvent;
+#else
+  // QMouseEvent is only valid while the event handler runs; Qt re-uses the same memory afterwards.
+  // If all you want is “where was the cursor and which buttons were down"
+  // keep those values :
+  QPointF lastMoveEventPosition;
+  Qt::MouseButton  lastMoveEventButton;
+  Qt::MouseButtons lastMoveEventButtons;
+  Qt::KeyboardModifiers lastMoveEventModifiers;
+
+  bool lastMoveEventIsMove{false};
+
+  QPointF oldMoveEventPosition;
+  Qt::MouseButtons oldMoveEventButtons;
+
+  QPointF lastMouseEventPosition;
+  Qt::MouseButtons  lastMouseEventButtons;
+
+
+
+
+#endif
 
 private:
   Q_DISABLE_COPY(ctkVTKRenderViewEventTranslator);

@@ -32,13 +32,7 @@
 // ----------------------------------------------------------------------------
 ctkVTKRenderViewEventTranslator::ctkVTKRenderViewEventTranslator(const QByteArray& Classname, QObject* Parent)
   : pqWidgetEventTranslator(Parent),
-    mClassType(Classname),
-    lastMoveEvent(QEvent::MouseButtonPress, QPoint(), Qt::MouseButton(),
-                                             Qt::MouseButtons(), Qt::KeyboardModifiers()),
-    oldMoveEvent(QEvent::MouseMove, QPoint(), Qt::MouseButton(),
-                                             Qt::MouseButtons(), Qt::KeyboardModifiers()),
-    lastMouseEvent(QEvent::MouseButtonRelease, QPoint(), Qt::MouseButton(),
-                                             Qt::MouseButtons(), Qt::KeyboardModifiers())
+    mClassType(Classname)
 {
 }
 
@@ -133,9 +127,12 @@ bool ctkVTKRenderViewEventTranslator::translateEvent(QObject *Object,
         QMouseEvent e(QEvent::MouseButtonPress, QPoint(), Qt::MouseButton(),
                       Qt::MouseButtons(), Qt::KeyboardModifiers());
 
-        lastMoveEvent = e;
-        lastMouseEvent = e;
-    }
+        lastMoveEventPosition = e.position();
+        lastMoveEventButtons = e.buttons();
+        lastMoveEventIsMove = e.type() == QEvent::MouseMove ;
+        lastMouseEventPosition = e.position();
+        lastMouseEventButtons = e.buttons();
+      }
       handled = true;
       break;
 
@@ -148,11 +145,14 @@ bool ctkVTKRenderViewEventTranslator::translateEvent(QObject *Object,
                           mouseEvent->button(), mouseEvent->buttons(),
                           mouseEvent->modifiers());
 
-            lastMoveEvent = e;
+            lastMoveEventPosition = e.position();
+            lastMoveEventButtons = e.buttons();
+            lastMoveEventButton = e.button();
+            lastMoveEventModifiers = e.modifiers();
 
             QSize size = widget->size();
 
-            if(lastMouseEvent.type() == QEvent::MouseButtonPress )
+            if(lastMouseEventButtons )
             {
               int x = mouseEvent->x();
               int y = mouseEvent->y();
@@ -185,7 +185,7 @@ bool ctkVTKRenderViewEventTranslator::translateEvent(QObject *Object,
           QSize size = widget->size();
 
           // record last move event if it is valid
-          if(lastMoveEvent.type() == QEvent::MouseMove)
+          if(lastMoveEventIsMove == QEvent::MouseMove)
           {
             int x = mouseEvent->x();
             int y = mouseEvent->y();
@@ -195,9 +195,9 @@ bool ctkVTKRenderViewEventTranslator::translateEvent(QObject *Object,
             double x_norm = (x_center - x)/static_cast<double>(size.width()/2.0);
             double y_norm = (y_center - y)/static_cast<double>(size.height()/2.0);
 
-            int button = lastMoveEvent.button();
-            int buttons = lastMoveEvent.buttons();
-            int modifiers = lastMoveEvent.modifiers();
+            int button = lastMoveEventButton;
+            int buttons = lastMoveEventButtons;
+            int modifiers = lastMoveEventModifiers;
 
             emit recordEvent(Object, "mouseMove", QString("(%1,%2,%3,%4,%5)")
               .arg(x_norm)
@@ -230,7 +230,8 @@ bool ctkVTKRenderViewEventTranslator::translateEvent(QObject *Object,
         QMouseEvent e(QEvent::MouseButtonRelease, QPoint(), Qt::MouseButton(),
                       Qt::MouseButtons(), Qt::KeyboardModifiers());
 
-        lastMouseEvent = e;
+        lastMouseEventPosition = e.position();
+        lastMouseEventButtons = e.buttons();
     }
 
       handled = true;
