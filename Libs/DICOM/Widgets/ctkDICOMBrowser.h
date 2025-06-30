@@ -28,10 +28,10 @@
 #include "ctkDICOMWidgetsExport.h"
 
 #include "ctkDICOMModel.h"
+#include "ctkDICOMTableManager.h"
 
 class ctkDICOMBrowserPrivate;
 class ctkDICOMDatabase;
-class ctkDICOMTableManager;
 class ctkFileDialog;
 class ctkThumbnailLabel;
 class QMenu;

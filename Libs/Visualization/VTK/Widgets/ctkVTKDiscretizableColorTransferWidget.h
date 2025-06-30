@@ -21,6 +21,8 @@
 #ifndef __ctkVTKDiscretizableColorTransferWidget_h
 #define __ctkVTKDiscretizableColorTransferWidget_h
 
+#include <vtkScalarsToColors.h>
+
 // CTK includes
 #include "ctkVisualizationVTKWidgetsExport.h"
 class ctkVTKDiscretizableColorTransferWidgetPrivate;
@@ -32,7 +34,6 @@ class vtkAlgorithmOutput;
 class vtkDiscretizableColorTransferFunction;
 class vtkImageAccumulate;
 class vtkPiecewiseFunction;
-class vtkScalarsToColors;
 
 // Qt includes
 #include <QWidget>

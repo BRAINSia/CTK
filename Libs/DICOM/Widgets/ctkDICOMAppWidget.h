@@ -25,11 +25,57 @@
 #include <QWidget>
 
 #include "ctkDICOMWidgetsExport.h"
+#include "ctkDICOMDatabase.h""
+#include "ui_ctkDICOMAppWidget.h"
+#include "ctkDICOMQueryRetrieveWidget.h"
+#include "ctkDICOMThumbnailGenerator.h"
 
-class ctkDICOMAppWidgetPrivate;
+//class ctkDICOMAppWidgetPrivate;
 class ctkThumbnailLabel;
 class QModelIndex;
-class ctkDICOMDatabase;
+class ctkDICOMAppWidget;
+
+//----------------------------------------------------------------------------
+class ctkDICOMAppWidgetPrivate: public Ui_ctkDICOMAppWidget
+{
+public:
+  ctkDICOMAppWidget* const q_ptr;
+  Q_DECLARE_PUBLIC(ctkDICOMAppWidget);
+
+  ctkDICOMAppWidgetPrivate(ctkDICOMAppWidget* );
+  ~ctkDICOMAppWidgetPrivate();
+
+  ctkFileDialog* ImportDialog;
+  ctkDICOMQueryRetrieveWidget* QueryRetrieveWidget;
+
+  QSharedPointer<ctkDICOMDatabase> DICOMDatabase;
+  QSharedPointer<ctkDICOMThumbnailGenerator> ThumbnailGenerator;
+  ctkDICOMModel DICOMModel;
+  ctkDICOMFilterProxyModel DICOMProxyModel;
+  QSharedPointer<ctkDICOMIndexer> DICOMIndexer;
+  QProgressDialog *IndexerProgress;
+  QProgressDialog *UpdateSchemaProgress;
+
+  void showIndexerDialog();
+  void showUpdateSchemaDialog();
+
+  // used when suspending the ctkDICOMModel
+  QSqlDatabase EmptyDatabase;
+
+  QTimer* AutoPlayTimer;
+
+  bool CopyOnImport{false};
+
+  bool IsSearchWidgetPopUpMode;
+
+  // local count variables to keep track of the number of items
+  // added to the database during an import operation
+  bool DisplayImportSummary;
+  int PatientsAddedDuringImport;
+  int StudiesAddedDuringImport;
+  int SeriesAddedDuringImport;
+  int InstancesAddedDuringImport;
+};
 
 /// \ingroup DICOM_Widgets
 class CTK_DICOM_WIDGETS_EXPORT ctkDICOMAppWidget : public QWidget

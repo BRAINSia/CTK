@@ -28,11 +28,10 @@ class QWidget;
 
 // CTKVTKWidgets includes
 #include "ctkVisualizationVTKWidgetsExport.h"
+#include <vtkScalarsToColors.h>
 
 // VTK includes
 class vtkImageData;
-class vtkScalarsToColors;
-
 namespace ctk {
 
 ///

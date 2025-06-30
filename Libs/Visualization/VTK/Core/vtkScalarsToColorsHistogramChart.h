@@ -25,9 +25,9 @@
 
 #include <vtkChartXY.h>
 #include <vtkNew.h>
+#include <vtkScalarsToColors.h>
 
 class vtkPlotBar;
-class vtkScalarsToColors;
 class vtkTable;
 
 class CTK_VISUALIZATION_VTK_CORE_EXPORT vtkScalarsToColorsHistogramChart

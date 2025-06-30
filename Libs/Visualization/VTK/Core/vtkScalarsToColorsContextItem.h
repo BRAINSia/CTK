@@ -27,11 +27,11 @@
 #include <vtkNew.h>
 #include <vtkSmartPointer.h>
 #include <vtkVector.h>
+#include <vtkScalarsToColors.h>
 
 class vtkScalarsToColorsHistogramChart;
 class vtkDiscretizableColorTransferChart;
 class vtkDiscretizableColorTransferFunction;
-class vtkScalarsToColors;
 class vtkScalarsToColorsPreviewChart;
 class vtkTable;
 

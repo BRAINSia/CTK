@@ -23,10 +23,10 @@
 
 // CTK includes
 #include "ctkVisualizationVTKCoreExport.h"
+#include <vtkScalarsToColors.h>
 
 // VTK includes
 class vtkDiscretizableColorTransferFunction;
-class vtkScalarsToColors;
 
 namespace ctk
 {
