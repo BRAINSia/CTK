@@ -14,7 +14,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL FreeBSD)
 endif()
 
 #
-# Add the libraries QtTesting
+# Add the libraries qttesting
 #
 if(CTK_USE_QTTESTING)
   find_package(QtTesting REQUIRED)
@@ -433,7 +433,7 @@ if(CTK_USE_QTTESTING)
     ctkTreeComboBoxEventPlayer.h
     ctkTreeComboBoxEventTranslator.h
     )
-  list(APPEND KIT_target_libraries QtTesting)
+  list(APPEND KIT_target_libraries qttesting)
 endif()
 
 ctkMacroBuildLib(

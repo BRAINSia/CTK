@@ -245,7 +245,7 @@ if(CTK_USE_QTTESTING)
     ctkVTKRenderViewEventPlayer.h
     ctkVTKRenderViewEventTranslator.h
 )
-  list(APPEND KIT_target_libraries QtTesting)
+  list(APPEND KIT_target_libraries qttesting)
 endif()
 
 # Prefer QVTKOpenGLWidget to QVTKWidget when using Qt6
