@@ -483,7 +483,7 @@ void ctkPathLineEditPrivate::updateFilter()
   Q_Q(ctkPathLineEdit);
   this->Completer->setShowFiles(this->Filters & QDir::Files);
   this->Completer->setNameFilters(ctk::nameFiltersToExtensions(this->NameFilters));
-  this->Validator->setRegExp(ctk::nameFiltersToRegExp(this->NameFilters));
+  this->Validator->setRegularExpression(ctk::nameFiltersToRegExp(this->NameFilters));
 }
 
 //-----------------------------------------------------------------------------
