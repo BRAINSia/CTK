@@ -87,7 +87,11 @@ void ctkDICOMDirectoryListWidget::addDirectory(const QString& newDir)
 {
   Q_D(ctkDICOMDirectoryListWidget);
   QSqlRecord newDirRecord;
-  newDirRecord.append(QSqlField("Dirname",QMetaType::QString));
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+  newDirRecord.append(QSqlField("Dirname", QMetaType::QString));
+#else
+  newDirRecord.append(QSqlField("Dirname", QMetaType(QMetaType::QString)));
+#endif
   newDirRecord.setValue("Dirname",newDir);
   /*bool success = */d->directoryListModel->insertRecord(-1,newDirRecord);
   bool success2 = d->directoryListModel->submitAll();

@@ -48,7 +48,11 @@ public:
 
   bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
   {
-    if (filterRegExp().isEmpty())
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    if (this->filterRegularExpression().isEmpty())
+#else
+    if (this->filterRegularExpression().pattern().isEmpty())
+#endif
     {
       return true;
     }
@@ -60,15 +64,31 @@ private:
   bool filterAcceptsIndex(const QModelIndex index) const
   {
     // Accept item if its tag, attribute, or value text matches
-    if ((sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::TagColumn,
-      index.parent()), Qt::DisplayRole).toString().contains(filterRegExp()))
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QRegExp regExp = this->filterRegExp();
+    if (
+      (sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::TagColumn,
+        index.parent()), Qt::DisplayRole).toString().contains(regExp))
       || (sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::AttributeColumn,
-      index.parent()), Qt::DisplayRole).toString().contains(filterRegExp()))
+        index.parent()), Qt::DisplayRole).toString().contains(regExp))
       || (sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::ValueColumn,
-      index.parent()), Qt::DisplayRole).toString().contains(filterRegExp())))
+        index.parent()), Qt::DisplayRole).toString().contains(regExp)))
     {
       return true;
     }
+#else
+    QRegularExpression regExp = this->filterRegularExpression();
+    if (
+      (sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::TagColumn,
+        index.parent()), Qt::DisplayRole).toString().contains(regExp))
+      || (sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::AttributeColumn,
+        index.parent()), Qt::DisplayRole).toString().contains(regExp))
+      || (sourceModel()->data(sourceModel()->index(index.row(), ctkDICOMObjectModel::ValueColumn,
+        index.parent()), Qt::DisplayRole).toString().contains(regExp)))
+    {
+      return true;
+    }
+#endif
     // Accept item if any child matches
     for (int row = 0; row < sourceModel()->rowCount(index); row++)
     {
@@ -134,7 +154,11 @@ void ctkDICOMObjectListWidgetPrivate::setFilterExpressionInModel(qRecursiveTreeP
   if (expr.startsWith(regexpPrefix))
   {
     filterModel->setFilterCaseSensitivity(Qt::CaseSensitive);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     filterModel->setFilterRegExp(expr.right(expr.length() - regexpPrefix.length()));
+#else
+    filterModel->setFilterRegularExpression(expr.right(expr.length() - regexpPrefix.length()));
+#endif
   }
   else
   {

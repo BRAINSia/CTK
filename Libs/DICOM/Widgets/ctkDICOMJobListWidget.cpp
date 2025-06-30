@@ -1210,7 +1210,11 @@ void ctkDICOMJobListWidget::onJobUserStopped(QList<QVariant> datas)
 void ctkDICOMJobListWidget::onFilterTextChanged(QString text)
 {
   Q_D(ctkDICOMJobListWidget);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   d->proxyModel->setFilterRegExp(text);
+#else
+  d->proxyModel->setFilterRegularExpression(text);
+#endif
 }
 
 //----------------------------------------------------------------------------
@@ -1333,7 +1337,11 @@ void ctkDICOMJobListWidget::onShowCompletedButtonToggled(bool toggled)
       .arg(tr("user-stopped"))
       .arg(tr("failed"));
   }
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   d->showCompletedProxyModel->setFilterRegExp(filterText);
+#else
+  d->showCompletedProxyModel->setFilterRegularExpression(filterText);
+#endif
 }
 
 //----------------------------------------------------------------------------

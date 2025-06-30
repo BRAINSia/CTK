@@ -49,6 +49,7 @@ bool ctkVTKRenderViewEventPlayer::playEvent(QObject* Object,
     if (Command == "3DViewSize")
     {
       QRegularExpression mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
       if (mouseRegExp.indexIn(Arguments)!= -1)
       {
         QVariant v = mouseRegExp.cap(1);
@@ -61,6 +62,21 @@ bool ctkVTKRenderViewEventPlayer::playEvent(QObject* Object,
 //        int app_h = v.toInt();
         v = mouseRegExp.cap(5);
         bool rescale = v.toBool();
+#else
+      QRegularExpressionMatch match = mouseRegExp.match(Arguments);
+      if (match.hasMatch())
+      {
+        QVariant v = match.captured(1);
+        int w = v.toInt();
+        v = match.captured(2);
+        int h = v.toInt();
+        v = match.captured(3);
+//        int app_w = v.toInt();
+        v = match.captured(4);
+//        int app_h = v.toInt();
+        v = match.captured(5);
+        bool rescale = v.toBool();
+#endif
 
         if ( (w != widget->width() || h != widget->height()) && rescale == true)
         {
@@ -92,32 +108,53 @@ bool ctkVTKRenderViewEventPlayer::playEvent(QObject* Object,
         Command == "mouseMove" || Command == "mouseWheel")
     {
       QRegularExpression mouseRegExp("\\(([^,]*),([^,]*),([^,]),([^,]),([^,]*)\\)");
-      if (mouseRegExp.indexIn(Arguments)!= -1)
+      QRegularExpressionMatch matcher = mouseRegExp.match(Arguments);  // = indexIn + captures
+      if (matcher.hasMatch() != -1)
       {
         double x_center = widget->size().width() / 2.0;
         double y_center = widget->size().height() / 2.0;
 
-        QVariant v = mouseRegExp.cap(1);
+        QVariant v = matcher.captured(1);
         double x = x_center - (v.toDouble() * x_center);
         x = static_cast<int>(x + 0.5);
 
-        v = mouseRegExp.cap(2);
+        v = matcher.captured(2);
         double y = y_center - (v.toDouble() * y_center);
         y = static_cast<int>(y + 0.5);
 
-        v = mouseRegExp.cap(4);
+        v = matcher.captured(4);
         Qt::MouseButtons buttons = static_cast<Qt::MouseButton>(v.toInt());
 
-        v = mouseRegExp.cap(5);
+        v = matcher.captured(5);
         Qt::KeyboardModifiers keym = static_cast<Qt::KeyboardModifier>(v.toInt());
 
-        v = mouseRegExp.cap(3);
+        v = matcher.captured(3);
         if (Command == "mouseWheel")
         {
 //           QEvent::Type type = QEvent::Wheel;
            int delta = ( v.toInt() == 0 ) ? -1 : 1;
-           QWheelEvent we(QPoint(x,y), delta, buttons, keym);
-           QCoreApplication::sendEvent(Object, &we);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+          // Build the replacement event for **vertical** wheel motion.
+          // For horizontal motion use QPoint(delta, 0) instead.
+          QWheelEvent we(QPointF(x, y),            // local position
+                         QPointF(x, y),            // global position (use mapToGlobal if needed)
+                         QPoint(),                           // pixelDelta  – leave 0,0 if unknown
+                         QPoint(0, delta),         // angleDelta  – old ‘delta’ becomes y-component
+                         buttons,
+                         keym,
+                         Qt::NoScrollPhase,
+                         /* inverted = */ false);
+
+#else   // Qt 5 branch
+
+          QWheelEvent we(QPoint(x, y),                        // local position
+                         delta,                               // angle/8  (vertical)
+                         buttons,
+                         keym);
+
+#endif
+
+          QCoreApplication::sendEvent(Object, &we);
            return true;
         }
         Qt::MouseButton button = static_cast<Qt::MouseButton>(v.toInt());

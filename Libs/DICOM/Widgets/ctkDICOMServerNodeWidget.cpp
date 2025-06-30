@@ -317,7 +317,11 @@ QMap<QString, QVariant> ctkDICOMServerNodeWidget::serverNodeParameters(const QSt
     if ( d->NodeTable->item(row,0)->text() == node )
     {
       // TBD: not sure what it means to merge parameters
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
       parameters.unite(this->serverNodeParameters(row));
+#else
+      parameters.insert(this->serverNodeParameters(row));
+#endif
     }
   }
 

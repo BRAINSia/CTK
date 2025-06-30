@@ -383,7 +383,7 @@ void ctkErrorLogAbstractModel::filterEntry(const ctkErrorLogLevel::LogLevels& lo
     patterns << currentRegExp.pattern().split("|");
   }
 #else
-  QRegExp currentRegExp = this->filterRegExp();
+  QRegExp currentRegExp = this->filterRegularExpression();
   if (!currentRegExp.pattern().isEmpty())
   {
     patterns << currentRegExp.pattern().split("|");
@@ -426,7 +426,7 @@ void ctkErrorLogAbstractModel::filterEntry(const ctkErrorLogLevel::LogLevels& lo
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
   QStringList currentPatterns = this->filterRegularExpression().pattern().split("|");
 #else
-  QStringList currentPatterns = this->filterRegExp().pattern().split("|");
+  QStringList currentPatterns = this->filterRegularExpression().pattern().split("|");
 #endif
   if (currentPatterns.count() == patterns.count())
   {
@@ -460,7 +460,7 @@ ctkErrorLogLevel::LogLevels ctkErrorLogAbstractModel::logLevelFilter()const
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
   foreach(const QString& filterAsString, this->filterRegularExpression().pattern().split("|"))
 #else
-  foreach(const QString& filterAsString, this->filterRegExp().pattern().split("|"))
+  foreach(const QString& filterAsString, this->filterRegularExpression().pattern().split("|"))
 #endif
   {
     filter |= static_cast<ctkErrorLogLevel::LogLevels>(logLevelEnum.keyToValue(filterAsString.toLatin1()));

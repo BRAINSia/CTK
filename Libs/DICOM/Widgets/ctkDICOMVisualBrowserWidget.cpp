@@ -77,7 +77,11 @@ public:
     this->setModal(true);
     this->setSizeGripEnabled(true);
     QVBoxLayout* layout = new QVBoxLayout(this);
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     layout->setMargin(0);
+#else
+    layout->setContentsMargins(0, 0, 0, 0);
+#endif
     this->tagListWidget = new ctkDICOMObjectListWidget();
     layout->addWidget(this->tagListWidget);
   }
@@ -110,7 +114,19 @@ public:
       this->restoreGeometry(this->savedGeometry);
       if (this->isMaximized())
       {
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
         this->setGeometry(QApplication::desktop()->availableGeometry(this));
+#else
+        QScreen* screen = QGuiApplication::screenAt(this->geometry().center());
+        if (!screen)
+        {
+          screen = QGuiApplication::primaryScreen();
+        }
+        if (screen)
+        {
+          this->setGeometry(screen->availableGeometry());
+        }
+#endif
       }
     }
   }
@@ -1003,8 +1019,8 @@ void ctkDICOMVisualBrowserWidgetPrivate::retrieveSeries()
       continue;
     }
 
-    QList<ctkDICOMStudyItemWidget*> studyItemWidgetsList = patientItemWidget->studyItemWidgetsList();
-    foreach (ctkDICOMStudyItemWidget* studyItemWidget, studyItemWidgetsList)
+    QList<ctkDICOMStudyItemWidget*> studyItemWidgets = patientItemWidget->studyItemWidgetsList();
+    foreach (ctkDICOMStudyItemWidget* studyItemWidget, studyItemWidgets)
     {
       QTableWidget* seriesListTableWidget = studyItemWidget->seriesListTableWidget();
       for (int row = 0; row < seriesListTableWidget->rowCount(); row++)
