@@ -77,7 +77,7 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
     endif()
   endif()
 
-  ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES PYTHON_LIBRARY)
+  ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES Python3_LIBRARY)
   if(CTK_QT_VERSION VERSION_EQUAL "6")
     # TODO Need to set revision_tag for qt6
     #set(revision_tag db525aff0d8c053bddf13902107b34c93c1e3a44) # patched-9
@@ -113,9 +113,19 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
     CMAKE_CACHE_ARGS
       ${ep_common_cache_args}
       -DPythonQt_QT_VERSION:STRING=${CTK_QT_VERSION}
-      -DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR}
-      -DPYTHON_INCLUDE_DIR2:PATH=${PYTHON_INCLUDE_DIR2}
-      -DPYTHON_LIBRARY:FILEPATH=${PYTHON_LIBRARY}
+      -DPython3_INCLUDE_DIR:PATH=${Python3_INCLUDE_DIR}
+      -DPython3_INCLUDE_DIR2:PATH=${Python3_INCLUDE_DIR2}
+      -DPython3_LIBRARY:FILEPATH=${Python3_LIBRARY}
+      -DPython3_EXECUTABLE:FILEPATH=${Python3_EXECUTABLE}
+      -DPython3_INTERPRETER:FILEPATH=${Python3_EXECUTABLE}
+      -DPython3_FIND_STRATEGY:STRING=LOCATION
+      -DPython3_ROOT_DIR:PATH=${Python3_ROOT_DIR}
+      -DPython3_DIR:PATH=${Python3_ROOT_DIR}/share/python3.12 # Where to find PythonConfig.cmake file
+      -DPython3_INCLUDE_DIR:PATH=${Python3_INCLUDE_DIR}
+      -DPython3_LIBRARY:FILEPATH=${Python3_LIBRARY}
+      -DPython3_LIBRARY_DEBUG:FILEPATH=${Python3_LIBRARY_DEBUG}
+      -DPython3_LIBRARY_RELEASE:FILEPATH=${Python3_LIBRARY_RELEASE}
+      -DPython3_EXECUTABLE:FILEPATH=${Python3_EXECUTABLE}
       ${ep_PythonQt_args}
     DEPENDS
       ${${proj}_DEPENDENCIES}
@@ -147,9 +157,9 @@ mark_as_superbuild(
   VARS
     PYTHONQT_INSTALL_DIR:PATH
     Python3_EXECUTABLE:FILEPATH # FindPythonInterp expects Python3_EXECUTABLE variable to be defined
-    PYTHON_INCLUDE_DIR:PATH # FindPythonQt expects PYTHON_INCLUDE_DIR variable to be defined
-    PYTHON_INCLUDE_DIR2:PATH
-    PYTHON_LIBRARY:FILEPATH # FindPythonQt expects PYTHON_LIBRARY variable to be defined
+    Python3_INCLUDE_DIR:PATH # FindPythonQt expects Python3_INCLUDE_DIR variable to be defined
+    Python3_INCLUDE_DIR2:PATH
+    Python3_LIBRARY:FILEPATH # FindPythonQt expects Python3_LIBRARY variable to be defined
   LABELS "FIND_PACKAGE_VARS"
   )
 mark_as_superbuild(
