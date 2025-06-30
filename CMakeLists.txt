@@ -113,6 +113,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS
+        "${PROJECT_SOURCE_DIR}/Libs/DICOM/Resources/UI"
+        "${PROJECT_SOURCE_DIR}/Common/UI"
+        "${PROJECT_SOURCE_DIR}/Libs/Widgets"
+)
+
 #-----------------------------------------------------------------------------
 # Output directories.
 #
