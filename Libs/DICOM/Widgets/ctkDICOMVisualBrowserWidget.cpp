@@ -67,6 +67,65 @@ QColor ctkDICOMVisualBrowserWidgetDefaultColor(Qt::white);
 QColor ctkDICOMVisualBrowserWidgetDarkModeDefaultColor(50, 50, 50);
 QColor ctkDICOMVisualBrowserWidgetWarningColor(Qt::darkYellow);
 
+class ctkDICOMWidgetMetadataDialog : public QDialog
+{
+public:
+  ctkDICOMWidgetMetadataDialog(QWidget* parent = 0)
+    : QDialog(parent)
+  {
+    this->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint | Qt::Window);
+    this->setModal(true);
+    this->setSizeGripEnabled(true);
+    QVBoxLayout* layout = new QVBoxLayout(this);
+    layout->setMargin(0);
+    this->tagListWidget = new ctkDICOMObjectListWidget();
+    layout->addWidget(this->tagListWidget);
+  }
+
+  virtual ~ctkDICOMWidgetMetadataDialog()
+  {
+  }
+
+  void setFileList(const QStringList& fileList)
+  {
+    this->tagListWidget->setFileList(fileList);
+  }
+
+  void closeEvent(QCloseEvent* evt)
+  {
+    // just hide the window when close button is clicked
+    evt->ignore();
+    this->hide();
+  }
+
+  void showEvent(QShowEvent* event)
+  {
+    QDialog::showEvent(event);
+    // QDialog would reset window position and size when shown.
+    // Restore its previous size instead (user may look at metadata
+    // of different series one after the other and would be inconvenient to
+    // set the desired size manually each time).
+    if (!this->savedGeometry.isEmpty())
+    {
+      this->restoreGeometry(this->savedGeometry);
+      if (this->isMaximized())
+      {
+        this->setGeometry(QApplication::desktop()->availableGeometry(this));
+      }
+    }
+  }
+
+  void hideEvent(QHideEvent* event)
+  {
+    this->savedGeometry = this->saveGeometry();
+    QDialog::hideEvent(event);
+  }
+
+protected:
+  ctkDICOMObjectListWidget* tagListWidget;
+  QByteArray savedGeometry;
+};
+
 //----------------------------------------------------------------------------
 class ctkDICOMVisualBrowserWidgetPrivate : public Ui_ctkDICOMVisualBrowserWidget
 {
@@ -156,7 +215,7 @@ public:
   int SeriesAddedDuringImport;
   int InstancesAddedDuringImport;
   ctkFileDialog* ImportDialog;
-  ctkDICOMMetadataDialog* MetadataDialog;
+  ctkDICOMWidgetMetadataDialog* MetadataDialog;
 
   // Settings key that stores database directory
   QString DatabaseDirectorySettingsKey;
@@ -217,7 +276,7 @@ ctkDICOMVisualBrowserWidgetPrivate::ctkDICOMVisualBrowserWidgetPrivate(ctkDICOMV
   this->Indexer->setDatabase(this->DicomDatabase.data());
   this->Indexer->setBackgroundImportEnabled(true);
 
-  this->MetadataDialog = new ctkDICOMMetadataDialog();
+  this->MetadataDialog = new ctkDICOMWidgetMetadataDialog();
   this->MetadataDialog->setObjectName("DICOMMetadata");
   this->MetadataDialog->setWindowTitle(ctkDICOMVisualBrowserWidget::tr("DICOM File Metadata"));
 
