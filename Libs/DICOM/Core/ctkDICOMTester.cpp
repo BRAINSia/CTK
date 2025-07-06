@@ -342,13 +342,18 @@ bool ctkDICOMTester::storeData(const QStringList& data)
   QProcess storeSCU(this);
   // usage of storescu:
   // storescu -aec CTK_AE -aet CTK_AE localhost 11112 ./CTKData/Data/DICOM/MRHEAD/*.IMA
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+  // Qt 6+: safe to use startCommand with the full command string
+  storeSCU.startCommand(d->StoreSCUExecutable + " " + storescuArgs.join(' '));
+#else
+  // Qt 5.x: use standard start(program, args)
   QStringList storescuArgs;
   storescuArgs << "-aec" << "CTK_AE";
   storescuArgs << "-aet" << "CTK_AE";
   storescuArgs << "localhost" <<  QString::number(d->DCMQRSCPPort);
   storescuArgs << data;
-
   storeSCU.start(d->StoreSCUExecutable, storescuArgs);
+#endif
   bool res = storeSCU.waitForFinished(-1);
 
   d->printProcessOutputs("StoreSCU", &storeSCU);
