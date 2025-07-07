@@ -221,7 +221,7 @@ void ctkDICOMTableViewPrivate::applyColumnProperties()
   QHeaderView* header = this->tblDicomDatabaseView->horizontalHeader();
   int columnCount = this->dicomSQLModel.columnCount();
   QList<int> columnWeights;
-  QMap<int,int> visualIndexToColumnIndexMap;
+  QMultiMap<int,int> visualIndexToColumnIndexMap;
   for (int col=0; col<columnCount; ++col)
   {
     QString columnName = this->dicomSQLModel.headerData(col, Qt::Horizontal).toString();
@@ -234,7 +234,7 @@ void ctkDICOMTableViewPrivate::applyColumnProperties()
     else
     {
       columnName = originalColumnName;
-      visualIndexToColumnIndexMap[header->visualIndex(col)] = col;
+      visualIndexToColumnIndexMap.insert(header->visualIndex(col), col);
     }
 
     // Apply displayed name

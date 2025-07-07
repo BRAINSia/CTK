@@ -82,14 +82,14 @@ QStringList ctkDICOMDisplayedFieldGeneratorDefaultRule::getRequiredDICOMTags()
 
 //------------------------------------------------------------------------------
 void ctkDICOMDisplayedFieldGeneratorDefaultRule::registerEmptyFieldNames(
-  QMap<QString, QString> emptyFieldsDisplaySeries,
-  QMap<QString, QString> emptyFieldsDisplayStudies,
-  QMap<QString, QString> emptyFieldsDisplayPatients )
+  QMultiMap<QString, QString> emptyFieldsDisplaySeries,
+  QMultiMap<QString, QString> emptyFieldsDisplayStudies,
+  QMultiMap<QString, QString> emptyFieldsDisplayPatients)
 {
   Q_UNUSED(emptyFieldsDisplaySeries);
   Q_UNUSED(emptyFieldsDisplayStudies);
   Q_UNUSED(emptyFieldsDisplayPatients);
-  emptyFieldsDisplaySeries.insertMulti("SeriesDescription", EMPTY_SERIES_DESCRIPTION);
+  emptyFieldsDisplaySeries.insert("SeriesDescription", EMPTY_SERIES_DESCRIPTION);
 }
 
 //------------------------------------------------------------------------------
