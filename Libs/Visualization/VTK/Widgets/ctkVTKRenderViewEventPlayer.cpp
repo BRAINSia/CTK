@@ -116,7 +116,18 @@ bool ctkVTKRenderViewEventPlayer::playEvent(QObject* Object,
         {
 //           QEvent::Type type = QEvent::Wheel;
            int delta = ( v.toInt() == 0 ) ? -1 : 1;
-           QWheelEvent we(QPoint(x,y), delta, buttons, keym);
+           // For Qt 5.15+ (including Qt6)
+           QPointF globalPos = widget->mapToGlobal(QPoint(x, y));
+           QWheelEvent we(
+             QPointF(x, y),
+             globalPos,
+             /*pixelDelta=*/QPoint(0, 0),
+             /*angleDelta= transform old delta into QPoint*/ QPoint(0, delta),
+             buttons,
+             keym,
+             Qt::ScrollUpdate,
+             /*inverted=*/false
+           );
            QCoreApplication::sendEvent(Object, &we);
            return true;
         }
