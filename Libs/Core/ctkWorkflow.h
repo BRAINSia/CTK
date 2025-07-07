@@ -39,9 +39,9 @@ class QAbstractState;
 class CTK_CORE_EXPORT ctkWorkflow : public QObject
 {
   Q_OBJECT
-  Q_PROPERTY(bool isRunning READ isRunning DESIGNABLE false)
-  Q_PROPERTY(bool goBackToOriginStepUponSuccess READ goBackToOriginStepUponSuccess WRITE setGoBackToOriginStepUponSuccess)
-  Q_PROPERTY(bool verbose READ verbose WRITE setVerbose)
+  Q_PROPERTY(bool isRunning READ isRunning DESIGNABLE false CONSTANT)
+  Q_PROPERTY(bool goBackToOriginStepUponSuccess READ goBackToOriginStepUponSuccess WRITE setGoBackToOriginStepUponSuccess NOTIFY goBackToOriginStepUponSuccessChanged)
+  Q_PROPERTY(bool verbose READ verbose WRITE setVerbose NOTIFY verboseChanged)
 
 public:
 
@@ -242,6 +242,9 @@ Q_SIGNALS:
   /// Emitted when a step is registered with this workflow
   /// \sa addTransition
   void stepRegistered(ctkWorkflowStep* step);
+
+  void goBackToOriginStepUponSuccessChanged(bool goBackToOriginStepUponSuccess);
+  void verboseChanged(bool verbose);
 
 protected:
   QScopedPointer<ctkWorkflowPrivate> d_ptr;
