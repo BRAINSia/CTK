@@ -54,18 +54,18 @@ class CTK_WIDGETS_EXPORT ctkLanguageComboBox : public QComboBox
   /// If empty, there is no default language, and there is no entry added.
   /// By default, there is no default language.
   /// \sa defaultLanguage(), setDefaultLanguage(), QLocale::setDefault()
-  Q_PROPERTY(QString defaultLanguage READ defaultLanguage WRITE setDefaultLanguage)
+  Q_PROPERTY(QString defaultLanguage READ defaultLanguage WRITE setDefaultLanguage NOTIFY defaultLanguageChanged);
 
   /// This property controls the directory where the translation files are
   /// located. Setting it removes all other directories. When multiple directories
   /// are set then it returns the first directory.
   /// \sa directory(), setDirectory()
-  Q_PROPERTY(QString directory READ directory WRITE setDirectory)
+  Q_PROPERTY(QString directory READ directory WRITE setDirectory NOTIFY directoryChanged);
 
   /// This property controls the directories where the translation files are
   /// located.
   /// \sa directories(), setDirectories()
-  Q_PROPERTY(QStringList directories READ directories WRITE setDirectories)
+  Q_PROPERTY(QStringList directories READ directories WRITE setDirectories NOTIFY directoriesChanged);
 
   /// This property controls the current language of the combobox.
   /// The \a defaultLanguage by default.
@@ -74,8 +74,13 @@ class CTK_WIDGETS_EXPORT ctkLanguageComboBox : public QComboBox
 
   /// Controls visibility of country flags. It is enabled by default.
   /// \sa countryFlagsVisible(), setCountryFlagsVisible()
-  Q_PROPERTY(bool countryFlagsVisible READ countryFlagsVisible WRITE setCountryFlagsVisible)
+  Q_PROPERTY(bool countryFlagsVisible READ countryFlagsVisible WRITE setCountryFlagsVisible NOTIFY countryFlagsVisibleChanged);
 
+Q_SIGNALS:
+  void defaultLanguageChanged(QString);
+  void directoryChanged(QString);
+  void directoriesChanged(QStringList);
+  void countryFlagsVisibleChanged(bool);
 public:
   typedef QComboBox Superclass;
   /// Constructor of ctkLanguageComboBox
@@ -148,3 +153,4 @@ private:
   Q_DISABLE_COPY(ctkLanguageComboBox);
 };
 #endif // __ctkLanguageComboBox_h
+

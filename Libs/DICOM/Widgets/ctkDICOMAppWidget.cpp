@@ -358,6 +358,7 @@ void ctkDICOMAppWidget::setDisplayImportSummary(bool onOff)
   Q_D(ctkDICOMAppWidget);
 
   d->DisplayImportSummary = onOff;
+  emit displayImportSummaryChanged(onOff);
 }
 
 //----------------------------------------------------------------------------
@@ -463,6 +464,7 @@ void ctkDICOMAppWidget::setTagsToPrecache( const QStringList tags)
 {
   Q_D(ctkDICOMAppWidget);
   d->DICOMDatabase->setTagsToPrecache(tags);
+  emit tagsToPrecacheChanged(tags);
 }
 
 //------------------------------------------------------------------------------
@@ -504,6 +506,7 @@ void ctkDICOMAppWidget::setSearchWidgetPopUpMode(bool flag){
   }
 
   d->IsSearchWidgetPopUpMode = flag;
+  emit searchWidgetPopUpModeChanged(flag);
 }
 
 //----------------------------------------------------------------------------

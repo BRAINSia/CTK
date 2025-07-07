@@ -49,10 +49,11 @@ class CTK_CORE_EXPORT ctkJobScheduler : public QObject
   Q_PROPERTY(int numberOfJobs READ numberOfJobs CONSTANT);
   Q_PROPERTY(int numberOfPersistentJobs READ numberOfPersistentJobs CONSTANT);
   Q_PROPERTY(int numberOfRunningJobs READ numberOfRunningJobs CONSTANT);
-  Q_PROPERTY(int freezeJobsScheduling READ freezeJobsScheduling WRITE setFreezeJobsScheduling);
-  Q_PROPERTY(int maximumThreadCount READ maximumThreadCount WRITE setMaximumThreadCount);
-  Q_PROPERTY(int maximumNumberOfRetry READ maximumNumberOfRetry WRITE setMaximumNumberOfRetry);
-  Q_PROPERTY(int retryDelay READ retryDelay WRITE setRetryDelay);
+  Q_PROPERTY(int freezeJobsScheduling READ freezeJobsScheduling WRITE setFreezeJobsScheduling NOTIFY freezeJobsSchedulingChanged);
+  Q_PROPERTY(int maximumNumberOfRetry READ maximumNumberOfRetry WRITE setMaximumNumberOfRetry NOTIFY maximumNumberOfRetryChanged);
+
+  Q_PROPERTY(int maximumThreadCount READ maximumThreadCount WRITE setMaximumThreadCount NOTIFY maximumThreadCountChanged);
+  Q_PROPERTY(int retryDelay READ retryDelay WRITE setRetryDelay NOTIFY retryDelayChanged);
 
 public:
   typedef QObject Superclass;
@@ -124,6 +125,10 @@ Q_SIGNALS:
   void jobAttemptFailed(QList<QVariant>);
   void jobFailed(QList<QVariant>);
   void progressJobDetail(QList<QVariant>);
+  void freezeJobsSchedulingChanged(bool);
+  void maximumThreadCountChanged(int);
+  void maximumNumberOfRetryChanged(int);
+  void retryDelayChanged(int);
 
 public Q_SLOTS:
   virtual void onJobStarted(ctkAbstractJob*);

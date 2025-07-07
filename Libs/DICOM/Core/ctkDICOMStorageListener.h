@@ -39,10 +39,10 @@ class ctkDICOMStorageListenerPrivate;
 class CTK_DICOM_CORE_EXPORT ctkDICOMStorageListener : public QObject
 {
   Q_OBJECT
-  Q_PROPERTY(QString AETitle READ AETitle WRITE setAETitle);
-  Q_PROPERTY(int port READ port WRITE setPort);
-  Q_PROPERTY(int connectionTimeout READ connectionTimeout WRITE setConnectionTimeout);
-  Q_PROPERTY(QString jobUID READ jobUID WRITE setJobUID);
+  Q_PROPERTY(QString AETitle READ AETitle WRITE setAETitle NOTIFY AETitleChanged);
+  Q_PROPERTY(int port READ port WRITE setPort NOTIFY portChanged);
+  Q_PROPERTY(int connectionTimeout READ connectionTimeout WRITE setConnectionTimeout NOTIFY connectionTimeoutChanged);
+  Q_PROPERTY(QString jobUID READ jobUID WRITE setJobUID NOTIFY jobUIDChanged);
 
 public:
   explicit ctkDICOMStorageListener(QObject* parent = 0);
@@ -108,6 +108,10 @@ Q_SIGNALS:
   /// Signal is emitted inside the listener() function when a frame has been fetched
   void progressJobDetail(QVariant);
 
+  void AETitleChanged(QString);
+  void portChanged(int);
+  void connectionTimeoutChanged(int);
+  void jobUIDChanged(QString);
 public Q_SLOTS:
   void cancel();
 

@@ -213,7 +213,7 @@ public:
 
 CTK_GET_CPP(ctkDICOMBrowser, bool, isSendActionVisible, SendActionVisible);
 CTK_GET_CPP(ctkDICOMBrowser, QString, databaseDirectoryBase, DatabaseDirectoryBase);
-CTK_SET_CPP(ctkDICOMBrowser, const QString&, setDatabaseDirectoryBase, DatabaseDirectoryBase);
+CTK_SET_CPP_EMIT(ctkDICOMBrowser, const QString&, setDatabaseDirectoryBase, DatabaseDirectoryBase, setDatabaseDirectoryBase);
 
 //----------------------------------------------------------------------------
 // ctkDICOMBrowserPrivate methods
@@ -452,6 +452,7 @@ void ctkDICOMBrowser::setDisplayImportSummary(bool onOff)
   Q_D(ctkDICOMBrowser);
 
   d->DisplayImportSummary = onOff;
+  emit displayImportSummaryChanged(onOff);
 }
 
 //----------------------------------------------------------------------------
@@ -468,6 +469,7 @@ void ctkDICOMBrowser::setConfirmRemove(bool onOff)
   Q_D(ctkDICOMBrowser);
 
   d->ConfirmRemove = onOff;
+  emit confirmRemoveChanged(onOff);
 }
 
 //----------------------------------------------------------------------------
@@ -752,6 +754,7 @@ void ctkDICOMBrowser::setDatabaseDirectorySettingsKey(const QString& key)
   QSettings settings;
   QString databaseDirectory = ctk::absolutePathFromInternal(settings.value(d->DatabaseDirectorySettingsKey, "").toString(), d->DatabaseDirectoryBase);
   this->setDatabaseDirectory(databaseDirectory);
+  emit databaseDirectorySettingsKeyChanged(key);
 }
 
 //------------------------------------------------------------------------------
@@ -759,6 +762,7 @@ void ctkDICOMBrowser::setTagsToPrecache( const QStringList tags)
 {
   Q_D(ctkDICOMBrowser);
   d->DICOMDatabase->setTagsToPrecache(tags);
+  emit tagsToPrecacheChanged(tags);
 }
 
 //------------------------------------------------------------------------------
@@ -1070,6 +1074,7 @@ void ctkDICOMBrowser::setImportDirectoryMode(ctkDICOMBrowser::ImportDirectoryMod
   }
   QComboBox* comboBox = d->ImportDialog->bottomWidget()->findChild<QComboBox*>();
   comboBox->setCurrentIndex(comboBox->findData(static_cast<int>(mode)));
+  emit importDirectoryModeChanged(mode);
 }
 
 //----------------------------------------------------------------------------
@@ -1555,6 +1560,7 @@ void ctkDICOMBrowser::setToolbarVisible(bool state)
 {
   Q_D(ctkDICOMBrowser);
   d->ToolBar->setVisible(state);
+  emit toolbarVisibleChanged(state);
 }
 
 //----------------------------------------------------------------------------
@@ -1570,6 +1576,7 @@ void ctkDICOMBrowser::setSendActionVisible(bool visible)
   Q_D(ctkDICOMBrowser);
   d->SendActionVisible = visible;
   d->ActionSend->setVisible(visible);
+  emit sendActionVisibleChanged(visible);
 }
 
 //----------------------------------------------------------------------------
@@ -1577,6 +1584,7 @@ void ctkDICOMBrowser::setDatabaseDirectorySelectorVisible(bool state)
 {
   Q_D(ctkDICOMBrowser);
   d->DirectoryButton->setVisible(state);
+  emit databaseDirectorySelectorVisibleChanged(state);
 }
 
 //----------------------------------------------------------------------------
