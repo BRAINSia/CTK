@@ -232,9 +232,9 @@ Q_SIGNALS:
   void maximumChanged(double);
   void singleStepChanged(double);
   void trackingChanged(bool);
-  void orientationChanged(Qt::Orientation);
+  void orientationChanged(const Qt::Orientation &);
   void tickIntervalChanged(double);
-  void tickPositionChanged(QSlider::TickPosition);
+  void tickPositionChanged(const QSlider::TickPosition &);
   void symmetricMovesChanged(bool);
 
 public Q_SLOTS:

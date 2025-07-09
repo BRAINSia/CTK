@@ -65,7 +65,7 @@ Q_SIGNALS:
   /// at the messages.
   void userViewed();
 
-  void layoutOrientationChanged(Qt::Orientation);
+  void layoutOrientationChanged(const Qt::Orientation &);
 
 public Q_SLOTS:
   void setLayoutOrientation(Qt::Orientation orientation);

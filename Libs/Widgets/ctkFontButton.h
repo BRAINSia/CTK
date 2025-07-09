@@ -93,7 +93,7 @@ Q_SIGNALS:
   /// clicking on the button.
   void currentFontChanged(const QFont&);
 
-  void fontTextFormatChanged(QString);
+  void fontTextFormatChanged(const QString &);
 
 protected:
   QScopedPointer<ctkFontButtonPrivate> d_ptr;

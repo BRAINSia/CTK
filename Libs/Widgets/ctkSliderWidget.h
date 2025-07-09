@@ -303,9 +303,9 @@ Q_SIGNALS:
   void prefixChanged(const QString& prefix);
   void suffixChanged(const QString& suffix);
   void tickIntervalChanged(double tick);
-  void tickPositionChanged(QSlider::TickPosition position);
-  void synchronizeSiblingsChanged(SynchronizeSiblings options);
-  void spinBoxAlignmentChanged(Qt::Alignment alignment);
+  void tickPositionChanged(const QSlider::TickPosition & position);
+  void synchronizeSiblingsChanged(const SynchronizeSiblings & options);
+  void spinBoxAlignmentChanged(const Qt::Alignment & alignment);
   void trackingChanged(bool enable);
   void spinBoxVisibleChanged(bool visible);
   void popupSliderChanged(bool popup);

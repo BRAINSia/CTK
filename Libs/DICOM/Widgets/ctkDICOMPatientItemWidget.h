@@ -211,13 +211,13 @@ public:
   Q_INVOKABLE QString stoppedJobUID() const;
 
 Q_SIGNALS:
-  void patientItemChanged(QString);
-  void patientIDChanged(QString);
-  void patientNameChanged(QString);
+  void patientItemChanged(const QString &);
+  void patientIDChanged(const QString &);
+  void patientNameChanged(const QString &);
   void numberOfOpenedStudiesPerPatientChanged(int);
-  void thumbnailSizeChanged(ctkDICOMStudyItemWidget::ThumbnailSizeOption);
-  void allowedServersChanged(QStringList);
-  void operationStatusChanged(OperationStatus);
+  void thumbnailSizeChanged(const ctkDICOMStudyItemWidget::ThumbnailSizeOption &);
+  void allowedServersChanged(const QStringList &);
+  void operationStatusChanged(const OperationStatus &);
 public Q_SLOTS:
   void generateStudies(bool query = true, bool retrieve = true);
   void generateSeriesAtToggle(bool toggled = true, const QString& studyItem = "");

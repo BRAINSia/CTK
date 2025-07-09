@@ -42,8 +42,8 @@ class CTK_WIDGETS_EXPORT ctkCheckBox : public QCheckBox
   Q_PROPERTY(QSize indicatorIconSize READ indicatorIconSize WRITE setIndicatorIconSize NOTIFY indicatorIconSizeChanged);
 
 Q_SIGNALS:
-  void indicatorIconChanged(QIcon);
-  void indicatorIconSizeChanged(QSize);
+  void indicatorIconChanged(const QIcon &);
+  void indicatorIconSizeChanged(const QSize &);
 public:
   typedef QCheckBox Superclass;
 

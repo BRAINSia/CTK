@@ -71,9 +71,9 @@ private:
 Q_SIGNALS:
   void doubleClicked(const QModelIndex&);
 
-  void currentFileChanged(QString);
-  void fileListChanged(QStringList);
-  void filterExpressionChanged(QString);
+  void currentFileChanged(const QString &);
+  void fileListChanged(const QStringList &);
+  void filterExpressionChanged(const QString &);
   void thumbnailVisibleChanged(bool);
 
 public Q_SLOTS:

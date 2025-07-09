@@ -128,12 +128,12 @@ public Q_SLOTS:
 Q_SIGNALS:
   /// colorChanged is fired anytime a new color is set. Programmatically or
   /// by the user when choosing a color from the color dialog
-  void colorChanged(QColor);
+  void colorChanged(const QColor &);
 
   /// This signaled is fired anytime a new color name is set.
-  void colorNameChanged(QString);
+  void colorNameChanged(const QString &);
   void displayColorNameChanged(bool);
-  void dialogOptionsChanged(ColorDialogOptions);
+  void dialogOptionsChanged(const ColorDialogOptions &);
 
 protected Q_SLOTS:
   void onToggled(bool change = true);

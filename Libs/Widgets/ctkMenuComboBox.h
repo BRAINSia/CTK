@@ -142,11 +142,11 @@ Q_SIGNALS:
   void actionChanged(QAction* action);
   void popupShown();
 
-  void defaultTextChanged(QString);
-  void defaultIconChanged(QIcon);
-  void editBehaviorChanged(EditableBehavior);
+  void defaultTextChanged(const QString &);
+  void defaultIconChanged(const QIcon &);
+  void editBehaviorChanged(const EditableBehavior &);
   void searchIconVisibleChanged(bool);
-  void toolButtonStyleChanged(Qt::ToolButtonStyle);
+  void toolButtonStyleChanged(const Qt::ToolButtonStyle &);
 protected Q_SLOTS:
   /// Change the current text/icon on the QComboBox
   /// And trigger the action.

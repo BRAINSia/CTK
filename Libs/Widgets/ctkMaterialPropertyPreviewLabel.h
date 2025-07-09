@@ -54,7 +54,7 @@ Q_SIGNALS:
   void specularPowerChanged(double);
   void metallicChanged(double);
   void roughnessChanged(double);
-  void colorChanged(QColor);
+  void colorChanged(const QColor &);
   void interpolationPBRChanged(bool);
   void opacityChanged(double);
   void gridOpacityChanged(double);

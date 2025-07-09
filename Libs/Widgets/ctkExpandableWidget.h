@@ -68,9 +68,9 @@ class CTK_WIDGETS_EXPORT ctkExpandableWidget: public QFrame
   Q_PROPERTY(QSize sizeGripMargins READ sizeGripMargins WRITE setSizeGripMargins NOTIFY sizeGripMarginsChanged);
 
 Q_SIGNALS:
-  void orientationsChanged(Qt::Orientations);
+  void orientationsChanged(const Qt::Orientations &);
   void sizeGripInsideChanged(bool);
-  void sizeGripMarginsChanged(QSize);
+  void sizeGripMarginsChanged(const QSize &);
 
 public:
   typedef QFrame Superclass;

@@ -188,15 +188,15 @@ public Q_SLOTS:
   Q_INVOKABLE void releaseAssociation();
 
 Q_SIGNALS:
-  void connectionNameChanged(QString);
-  void callingAETitleChanged(QString);
-  void calledAETitleChanged(QString);
-  void hostChanged(QString);
+  void connectionNameChanged(const QString &);
+  void callingAETitleChanged(const QString &);
+  void calledAETitleChanged(const QString &);
+  void hostChanged(const QString &);
   void portChanged(int);
-  void moveDestinationAETitleChanged(QString);
+  void moveDestinationAETitleChanged(const QString &);
   void keepAssociationOpenChanged(bool);
   void connectionTimeoutChanged(int);
-  void jobUIDChanged(QString);
+  void jobUIDChanged(const QString &);
 
   /// Signal is emitted inside the retrieve() function. It ranges from 0 to 100.
   /// In case of an error, you are assured that the progress value 100 is fired
@@ -215,7 +215,7 @@ Q_SIGNALS:
   /// true for success or false for error
   void done(const bool& error);
   /// Signal is emitted inside the retrieve() function when a frame has been fetched
-  void progressJobDetail(QVariant data);
+  void progressJobDetail(const QVariant & data);
 
 protected:
   QScopedPointer<ctkDICOMRetrievePrivate> d_ptr;

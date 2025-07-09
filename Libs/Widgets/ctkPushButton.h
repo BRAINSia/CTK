@@ -55,9 +55,9 @@ class CTK_WIDGETS_EXPORT ctkPushButton : public QPushButton
   Q_PROPERTY(Qt::TextElideMode elideMode READ elideMode WRITE setElideMode NOTIFY elideModeChanged)
 
 Q_SIGNALS:
-  void buttonTextAlignmentChanged(Qt::Alignment);
-  void iconAlignmentChanged(Qt::Alignment);
-  void elideModeChanged(Qt::TextElideMode);
+  void buttonTextAlignmentChanged(const Qt::Alignment &);
+  void iconAlignmentChanged(const Qt::Alignment &);
+  void elideModeChanged(const Qt::TextElideMode &);
 
 public:
   ctkPushButton(QWidget *parent = 0);

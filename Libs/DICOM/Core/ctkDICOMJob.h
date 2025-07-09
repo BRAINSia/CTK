@@ -122,13 +122,13 @@ public:
   Q_INVOKABLE virtual void releaseResources() override;
 
 Q_SIGNALS:
-  void progressJobDetail(QVariant);
+  void progressJobDetail(const QVariant &);
 
   void patientIDChanged(const QString& patientID);
   void studyInstanceUIDChanged(const QString& studyInstanceUID);
   void seriesInstanceUIDChanged(const QString& seriesInstanceUID);
   void sopInstanceUIDChanged(const QString& sopInstanceUID);
-  void dicomLevelChanged(DICOMLevels dicomLevel);
+  void dicomLevelChanged(const DICOMLevels & dicomLevel);
   void referenceInserterJobUIDChanged(const QString& referenceInserterJobUID);
 
 protected:

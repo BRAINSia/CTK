@@ -62,11 +62,11 @@ class CTK_WIDGETS_EXPORT ctkWorkflowGroupBox : public QWidget
 
 
 Q_SIGNALS:
-  void preTextChanged(QString);
-  void postTextChanged(QString);
-  void titleFormatChanged(QString);
-  void subTitleFormatChanged(QString);
-  void errorTextFormatChanged(QString);
+  void preTextChanged(const QString &);
+  void postTextChanged(const QString &);
+  void titleFormatChanged(const QString &);
+  void subTitleFormatChanged(const QString &);
+  void errorTextFormatChanged(const QString &);
   void hideWidgetsOfNonCurrentStepsChanged(bool);
   void errorTextEnabledChanged(bool);
 

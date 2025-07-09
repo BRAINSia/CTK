@@ -46,10 +46,10 @@ class CTK_DICOM_CORE_EXPORT ctkDICOMThumbnailGeneratorJob : public ctkDICOMJob
   Q_PROPERTY(QString modality READ modality WRITE setModality NOTIFY modalityChanged);
   Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor NOTIFY backgroundColorChanged);
 Q_SIGNALS:
-  void databaseFilenameChanged(QString);
-  void dicomFilePathChanged(QString);
-  void modalityChanged(QString);
-  void backgroundColorChanged(QColor);
+  void databaseFilenameChanged(const QString &);
+  void dicomFilePathChanged(const QString &);
+  void modalityChanged(const QString &);
+  void backgroundColorChanged(const QColor &);
 public:
   typedef ctkDICOMJob Superclass;
   explicit ctkDICOMThumbnailGeneratorJob();

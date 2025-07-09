@@ -259,7 +259,7 @@ Q_SIGNALS:
   void showHistoryButtonChanged(bool visible);
   void minimumContentsLengthChanged(int length);
   void nameFiltersChanged(const QStringList& nameFilters);
-  void sizeAdjustPolicyChanged(ctkPathLineEdit::SizeAdjustPolicy policy);
+  void sizeAdjustPolicyChanged(const ctkPathLineEdit::SizeAdjustPolicy & policy);
 public Q_SLOTS:
   void setCurrentPath(const QString& path);
 

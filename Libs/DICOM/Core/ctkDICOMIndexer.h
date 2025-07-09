@@ -123,9 +123,9 @@ public:
 
 Q_SIGNALS:
   /// Description of current phase of the indexing (parsing, importing, ...)
-  void progressStep(QString);
+  void progressStep(const QString &);
   /// Detailed information about the current progress (e.g., name of currently processed file)
-  void progressDetail(QString);
+  void progressDetail(const QString &);
   /// Progress in percentage
   void progress(int);
   /// Indexing is completed.

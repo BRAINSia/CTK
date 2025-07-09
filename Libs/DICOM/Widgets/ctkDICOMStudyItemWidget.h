@@ -237,18 +237,18 @@ Q_SIGNALS:
   /// Emitted when the GUI finished to update after a series query.
   void updateGUIFinished();
 
-  void studyItemChanged(QString);
-  void patientIDChanged(QString);
-  void studyInstanceUIDChanged(QString);
-  void titleChanged(QString);
-  void descriptionChanged(QString);
+  void studyItemChanged(const QString &);
+  void patientIDChanged(const QString &);
+  void studyInstanceUIDChanged(const QString &);
+  void titleChanged(const QString &);
+  void descriptionChanged(const QString &);
   void collapsedChanged(bool);
-  void thumbnailSizeChanged(ThumbnailSizeOption);
+  void thumbnailSizeChanged(const ThumbnailSizeOption &);
   void selectionChanged(int);
-  void filteringSeriesDescriptionChanged(QString);
-  void filteringModalitiesChanged(QStringList);
-  void allowedServersChanged(QStringList);
-  void operationStatusChanged(OperationStatus);
+  void filteringSeriesDescriptionChanged(const QString &);
+  void filteringModalitiesChanged(const QStringList &);
+  void allowedServersChanged(const QStringList &);
+  void operationStatusChanged(const OperationStatus &);
 protected:
   QScopedPointer<ctkDICOMStudyItemWidgetPrivate> d_ptr;
 

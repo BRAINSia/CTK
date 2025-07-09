@@ -62,8 +62,8 @@ class CTK_CORE_EXPORT ctkCoreSettings : public QSettings
   Q_PROPERTY(QString applicationHomePlaceholder READ applicationHomePlaceholder WRITE setApplicationHomePlaceholder NOTIFY applicationHomePlaceholderChanged);
 
 Q_SIGNALS:
-  void applicationHomeDirectoryChanged(QString);
-  void applicationHomePlaceholderChanged(QString);
+  void applicationHomeDirectoryChanged(const QString &);
+  void applicationHomePlaceholderChanged(const QString &);
 public:
   /// \see QSettings::QSettings(const QString& ,const QString& , QObject* )
   ctkCoreSettings(

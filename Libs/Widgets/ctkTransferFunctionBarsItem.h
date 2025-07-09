@@ -65,9 +65,9 @@ public:
   virtual void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
 
 Q_SIGNALS:
-  void barWidthChanged(qreal);
-  void barColorChanged(QColor);
-  void logModeChanged(LogMode);
+  void barWidthChanged(const qreal &);
+  void barColorChanged(const QColor &);
+  void logModeChanged(const LogMode &);
 
 
 protected:

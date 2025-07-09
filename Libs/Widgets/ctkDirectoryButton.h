@@ -182,11 +182,11 @@ Q_SIGNALS:
   /// \sa directoryChanged
   void directorySelected(const QString&);
 
-  void acceptModeChanged(QFileDialog::AcceptMode);
-  void captionChanged(QString);
-  void textChanged(QString);
-  void iconChanged(QIcon);
-  void elideModeChanged(Qt::TextElideMode);
+  void acceptModeChanged(const QFileDialog::AcceptMode &);
+  void captionChanged(const QString &);
+  void textChanged(const QString &);
+  void iconChanged(const QIcon &);
+  void elideModeChanged(const Qt::TextElideMode &);
 
 #ifdef USE_QFILEDIALOG_OPTIONS
   void optionsChanged(const QFileDialog::Options &);

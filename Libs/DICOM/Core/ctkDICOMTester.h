@@ -46,10 +46,10 @@ class CTK_DICOM_CORE_EXPORT ctkDICOMTester : public QObject
   Q_PROPERTY(int dcmqrscpPort READ dcmqrscpPort WRITE setDCMQRSCPPort NOTIFY dcmqrscpPortChanged)
 
 Q_SIGNALS:
-  void dcmqrscpExecutableChanged(QString value);
-  void dcmqrscpConfigFileChanged(QString value);
-  void storeSCUExecutableChanged(QString value);
-  void storeSCPExecutableChanged(QString value);
+  void dcmqrscpExecutableChanged(const QString & value);
+  void dcmqrscpConfigFileChanged(const QString & value);
+  void storeSCUExecutableChanged(const QString & value);
+  void storeSCPExecutableChanged(const QString & value);
   void dcmqrscpPortChanged(int value);
 public:
   ctkDICOMTester(QObject* parent = 0);

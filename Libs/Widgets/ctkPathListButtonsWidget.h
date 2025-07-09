@@ -79,22 +79,22 @@ Q_SIGNALS:
   void showAddDirectoryButtonChanged(bool);
   void showRemoveButtonChanged(bool);
   void showEditButtonChanged(bool);
-  void textAddFilesButtonChanged(QString);
-  void textAddDirectoryButtonChanged(QString);
-  void textRemoveButtonChanged(QString);
-  void textEditButtonChanged(QString);
-  void toolTipAddFilesButtonChanged(QString);
-  void toolTipAddDirectoryButtonChanged(QString);
-  void toolTipRemoveButtonChanged(QString);
-  void toolTipEditButtonChanged(QString);
-  void iconAddFilesButtonChanged(QIcon);
-  void iconAddDirectoryButtonChanged(QIcon);
-  void iconRemoveButtonChanged(QIcon);
-  void iconEditButtonChanged(QIcon);
+  void textAddFilesButtonChanged(const QString &);
+  void textAddDirectoryButtonChanged(const QString &);
+  void textRemoveButtonChanged(const QString &);
+  void textEditButtonChanged(const QString &);
+  void toolTipAddFilesButtonChanged(const QString &);
+  void toolTipAddDirectoryButtonChanged(const QString &);
+  void toolTipRemoveButtonChanged(const QString &);
+  void toolTipEditButtonChanged(const QString &);
+  void iconAddFilesButtonChanged(const QIcon &);
+  void iconAddDirectoryButtonChanged(const QIcon &);
+  void iconRemoveButtonChanged(const QIcon &);
+  void iconEditButtonChanged(const QIcon &);
 
   void buttonsAutoRaiseChanged(bool);
   void buttonSpacingChanged(int);
-  void orientationChanged(Qt::Orientation);
+  void orientationChanged(const Qt::Orientation &);
 public:
 
   /// Superclass typedef

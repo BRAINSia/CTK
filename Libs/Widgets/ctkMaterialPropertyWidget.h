@@ -162,7 +162,7 @@ public Q_SLOTS:
   void setBackfaceCulling(bool enable);
 
 Q_SIGNALS:
-  void colorChanged(QColor newColor);
+  void colorChanged(const QColor & newColor);
   void opacityChanged(double newOpacity);
 
   void interpolationModeChanged(int interpolationMode);

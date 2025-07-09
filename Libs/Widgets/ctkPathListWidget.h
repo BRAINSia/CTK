@@ -299,11 +299,11 @@ Q_SIGNALS:
   /// \param previousAbsolutePath The path entry that previously had the focus.
   void currentPathChanged(const QString& currentAbsolutePath, const QString& previousAbsolutePath);
 
-  void modeChanged(Mode);
-  void fileOptionsChanged(PathOptions);
-  void directoryOptionsChanged(PathOptions);
-  void fileIconChanged(QIcon);
-  void directoryIconChanged(QIcon);
+  void modeChanged(const Mode &);
+  void fileOptionsChanged(const PathOptions &);
+  void directoryOptionsChanged(const PathOptions &);
+  void fileIconChanged(const QIcon &);
+  void directoryIconChanged(const QIcon &);
 
 protected:
   QScopedPointer<ctkPathListWidgetPrivate> d_ptr;

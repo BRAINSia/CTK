@@ -185,12 +185,12 @@ Q_SIGNALS:
   void dimensionChanged(int);
   void normalizedChanged(bool);
   void decimalsChanged(int);
-  void decimalsOptionChanged(ctkDoubleSpinBox::DecimalsOptions);
+  void decimalsOptionChanged(const ctkDoubleSpinBox::DecimalsOptions &);
   void singleStepChanged(double);
   void minimumChanged(double);
   void maximumChanged(double);
-  void coordinatesChanged(QString);
-  void sizeHintPolicyChanged(ctkDoubleSpinBox::SizeHintPolicy);
+  void coordinatesChanged(const QString &);
+  void sizeHintPolicyChanged(const ctkDoubleSpinBox::SizeHintPolicy &);
   void frameChanged(bool);
   void readOnlyChanged(bool);
 

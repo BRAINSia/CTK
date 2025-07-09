@@ -196,14 +196,14 @@ Q_SIGNALS:
   void failed();
   void finished();
   void jobUIDChanged();
-  void statusChanged(ctkAbstractJob::JobStatus status);
+  void statusChanged(const ctkAbstractJob::JobStatus & status);
   void isPersistentChanged(bool persistent);
   void retryCounterChanged(bool retryCounter);
   void maximumConcurrentJobsPerTypeChanged(bool maximumConcurrentJobsPerType);
   void maximumNumberOfRetryChanged(int maximumNumberOfRetry);
   void retryDelayChanged(int retryDelay);
-  void priorityChanged(QThread::Priority priority);
-  void runningThreadIDChanged(QString runningThreadID);
+  void priorityChanged(const QThread::Priority & priority);
+  void runningThreadIDChanged(const QString & runningThreadID);
   void destroyAfterUseChanged(bool destroyAfterUse);
 
 protected:

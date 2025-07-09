@@ -74,8 +74,8 @@ class CTK_WIDGETS_EXPORT ctkMessageBox : public QMessageBox
 
 Q_SIGNALS:
   void dontShowAgainChanged(bool);
-  void dontShowAgainButtonRolesChanged(QList<QMessageBox::ButtonRole>);
-  void dontShowAgainSettingsKeyChanged(QString);
+  void dontShowAgainButtonRolesChanged(const QList<QMessageBox::ButtonRole> &);
+  void dontShowAgainSettingsKeyChanged(const QString &);
   void dontShowAgainVisibleChanged(bool);
 public:
   typedef QMessageBox Superclass;

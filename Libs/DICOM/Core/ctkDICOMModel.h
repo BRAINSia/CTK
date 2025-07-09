@@ -86,7 +86,7 @@ public:
   virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
 Q_SIGNALS:
-  void endLevelChanged(IndexType);
+  void endLevelChanged(const IndexType &);
 
 public Q_SLOTS:
   virtual void reset();

@@ -122,12 +122,12 @@ protected:
 Q_SIGNALS:
   void returnRelease();
 
-  void defaultTextChanged(QString);
-  void defaultIconChanged(QIcon);
+  void defaultTextChanged(const QString &);
+  void defaultIconChanged(const QIcon &);
   void forceDefaultChanged(bool);
-  void elideModeChanged(Qt::TextElideMode);
-  void scrollWheelEffectChanged(ScrollEffect);
-  void currentUserDataAsStringChanged(QString);
+  void elideModeChanged(const Qt::TextElideMode &);
+  void scrollWheelEffectChanged(const ScrollEffect &);
+  void currentUserDataAsStringChanged(const QString &);
 
 protected:
   QScopedPointer<ctkComboBoxPrivate> d_ptr;

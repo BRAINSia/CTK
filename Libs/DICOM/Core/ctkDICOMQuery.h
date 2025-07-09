@@ -185,14 +185,14 @@ Q_SIGNALS:
   void done(const bool& error);
 
 Q_SIGNALS:
-  void connectionNameChanged(QString);
-  void callingAETitleChanged(QString);
-  void calledAETitleChanged(QString);
-  void hostChanged(QString);
+  void connectionNameChanged(const QString &);
+  void callingAETitleChanged(const QString &);
+  void calledAETitleChanged(const QString &);
+  void hostChanged(const QString &);
   void portChanged(int);
   void connectionTimeoutChanged(int);
   void maximumPatientsQueryChanged(int);
-  void jobUIDChanged(QString);
+  void jobUIDChanged(const QString &);
 public Q_SLOTS:
   /// Cancel the current operation
   Q_INVOKABLE void cancel();

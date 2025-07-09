@@ -40,7 +40,7 @@ class CTK_CORE_EXPORT ctkFileLogger : public QObject
 
 Q_SIGNALS:
   void enabledChanged(bool);
-  void filePathChanged(QString);
+  void filePathChanged(const QString &);
 public:
   typedef QObject Superclass;
   typedef ctkFileLogger Self;

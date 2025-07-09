@@ -181,15 +181,15 @@ Q_SIGNALS:
   /// \sa showPopup(), hidePopup()
   void popupOpened(bool open);
 
-  void animationEffectChanged(AnimationEffect effect);
+  void animationEffectChanged(const AnimationEffect & effect);
   void effectDurationChanged(int duration);
-  void easingCurveChanged(QEasingCurve::Type easingCurve);
-  void alignmentChanged(Qt::Alignment alignment);
-  void orientationChanged(Qt::Orientations orientation);
-  void verticalDirectionChanged(VerticalDirection direction);
-  void horizontalDirectionChanged(Qt::LayoutDirection direction);
+  void easingCurveChanged(const QEasingCurve::Type & easingCurve);
+  void alignmentChanged(const Qt::Alignment & alignment);
+  void orientationChanged(const Qt::Orientations & orientation);
+  void verticalDirectionChanged(const VerticalDirection & direction);
+  void horizontalDirectionChanged(const Qt::LayoutDirection & direction);
   void effectAlphaChanged(double alpha);
-  void effectGeometryChanged(QRect geometry);
+  void effectGeometryChanged(const QRect & geometry);
 
 protected:
   explicit ctkBasePopupWidget(ctkBasePopupWidgetPrivate* pimpl, QWidget* parent = 0);

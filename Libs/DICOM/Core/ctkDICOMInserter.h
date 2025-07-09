@@ -41,9 +41,9 @@ class CTK_DICOM_CORE_EXPORT ctkDICOMInserter : public QObject
   Q_PROPERTY(QStringList tagsToPrecache READ tagsToPrecache WRITE setTagsToPrecache NOTIFY tagsToPrecacheChanged);
   Q_PROPERTY(QStringList tagsToExcludeFromStorage READ tagsToExcludeFromStorage WRITE setTagsToExcludeFromStorage NOTIFY tagsToExcludeFromStorageChanged);
 Q_SIGNALS:
-  void databaseFilenameChanged(QString);
-  void tagsToPrecacheChanged(QStringList);
-  void tagsToExcludeFromStorageChanged(QStringList);
+  void databaseFilenameChanged(const QString &);
+  void tagsToPrecacheChanged(const QStringList &);
+  void tagsToExcludeFromStorageChanged(const QStringList &);
 public:
   explicit ctkDICOMInserter(QObject* parent = 0);
   virtual ~ctkDICOMInserter();

@@ -152,7 +152,7 @@ Q_SIGNALS:
   void positionsChanged(int min, int max);
 
   void symmetricMovesChanged(bool);
-  void handleToolTipChanged(QString);
+  void handleToolTipChanged(const QString &);
 
 public Q_SLOTS:
   ///

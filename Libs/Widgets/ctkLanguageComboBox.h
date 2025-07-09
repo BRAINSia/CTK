@@ -77,9 +77,9 @@ class CTK_WIDGETS_EXPORT ctkLanguageComboBox : public QComboBox
   Q_PROPERTY(bool countryFlagsVisible READ countryFlagsVisible WRITE setCountryFlagsVisible NOTIFY countryFlagsVisibleChanged);
 
 Q_SIGNALS:
-  void defaultLanguageChanged(QString);
-  void directoryChanged(QString);
-  void directoriesChanged(QStringList);
+  void defaultLanguageChanged(const QString &);
+  void directoryChanged(const QString &);
+  void directoriesChanged(const QStringList &);
   void countryFlagsVisibleChanged(bool);
 public:
   typedef QComboBox Superclass;
@@ -153,4 +153,3 @@ private:
   Q_DISABLE_COPY(ctkLanguageComboBox);
 };
 #endif // __ctkLanguageComboBox_h
-

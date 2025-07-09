@@ -260,7 +260,7 @@ Q_SIGNALS:
   void databaseDirectoryBaseChanged(const QString &);
   void tagsToPrecacheChanged(const QStringList&);
   void displayImportSummaryChanged(bool);
-  void importDirectoryModeChanged(ctkDICOMBrowser::ImportDirectoryMode);
+  void importDirectoryModeChanged(const ctkDICOMBrowser::ImportDirectoryMode &);
   void confirmRemoveChanged(bool);
   void toolbarVisibleChanged(bool);
   void databaseDirectorySelectorVisibleChanged(bool);

@@ -43,7 +43,7 @@ class CTK_WIDGETS_EXPORT ctkTransferFunctionRepresentation: public QObject
   Q_PROPERTY(QColor verticalGradientColor READ verticalGradientColor WRITE setVerticalGradientColor NOTIFY verticalGradientColorChanged);
 
 Q_SIGNALS:
-  void verticalGradientColorChanged(QColor);
+  void verticalGradientColorChanged(const QColor &);
 public:
   /// Construct a representation with no transfer function.
   ctkTransferFunctionRepresentation(QObject* parent = 0);

@@ -42,8 +42,8 @@ class CTK_WIDGETS_EXPORT ctkDynamicSpacer : public QWidget
   Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged);
 
 Q_SIGNALS:
-  void activeSizePolicyChanged(QSizePolicy);
-  void inactiveSizePolicyChanged(QSizePolicy);
+  void activeSizePolicyChanged(const QSizePolicy &);
+  void inactiveSizePolicyChanged(const QSizePolicy &);
   void activeChanged(bool);
 public:
   /// Constructor, builds a ctkDynamicSpacer, inactive by default

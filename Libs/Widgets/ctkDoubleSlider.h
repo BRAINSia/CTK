@@ -263,9 +263,9 @@ Q_SIGNALS:
   void minimumChanged(double min);
   void maximumChanged(double max);
   void tickIntervalChanged(double interval);
-  void tickPositionChanged(QSlider::TickPosition position);
+  void tickPositionChanged(const QSlider::TickPosition & position);
   void trackingChanged(bool enable);
-  void orientationChanged(Qt::Orientation orientation);
+  void orientationChanged(const Qt::Orientation & orientation);
   void handleToolTipChanged(const QString& toolTip);
   void invertedAppearanceChanged(bool invertedAppearance);
   void invertedControlsChanged(bool invertedControls);

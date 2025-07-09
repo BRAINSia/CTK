@@ -152,7 +152,7 @@ Q_SIGNALS:
 
   void selectionModeChanged(int);
 
-  void tableOrientationChanged(Qt::Orientation);
+  void tableOrientationChanged(const Qt::Orientation &);
   void dynamicTableLayoutChanged(bool);
   void autoSelectSeriesChanged(bool);
 

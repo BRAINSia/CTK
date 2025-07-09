@@ -163,7 +163,7 @@ Q_SIGNALS:
   /// Since an entryAdded() signal with more parameters was added, this signal is somewhat redundant,
   /// but it is kept for backward compatibility.
   /// \sa addEntry()
-  void entryAdded(ctkErrorLogLevel::LogLevel logLevel);
+  void entryAdded(const ctkErrorLogLevel::LogLevel & logLevel);
 
   /// Called when an entry is added.
   /// \sa addEntry()
@@ -178,7 +178,7 @@ Q_SIGNALS:
     const QString& origin, const ctkErrorLogContext& context, const QString& text);
 
   void logEntryGroupingChanged(bool);
-  void terminalOutputsChanged(ctkErrorLogTerminalOutput::TerminalOutputs);
+  void terminalOutputsChanged(const ctkErrorLogTerminalOutput::TerminalOutputs &);
   void asynchronousLoggingChanged(bool);
   void filePathChanged(const QString& filePath);
   void numberOfFilesToKeepChanged(int);

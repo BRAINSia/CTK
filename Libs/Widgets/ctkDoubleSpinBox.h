@@ -343,18 +343,18 @@ Q_SIGNALS:
   /// Signal emitted when the decimals of the displayed are changed.
   void decimalsChanged(int);
 
-  void alignmentChanged(Qt::Alignment);
+  void alignmentChanged(const Qt::Alignment &);
   void frameChanged(bool);
   void readOnlyChanged(bool);
   void prefixChanged(const QString&);
   void suffixChanged(const QString&);
-  void decimalsOptionChanged(ctkDoubleSpinBox::DecimalsOptions);
+  void decimalsOptionChanged(const ctkDoubleSpinBox::DecimalsOptions &);
   void minimumChanged(double);
   void maximumChanged(double);
   void singleStepChanged(double);
-  void setModeChanged(ctkDoubleSpinBox::SetMode);
+  void setModeChanged(const ctkDoubleSpinBox::SetMode &);
   void invertedControlsChanged(bool);
-  void sizeHintPolicyChanged(ctkDoubleSpinBox::SizeHintPolicy);
+  void sizeHintPolicyChanged(const ctkDoubleSpinBox::SizeHintPolicy &);
 
 
 protected:

@@ -106,12 +106,12 @@ Q_SIGNALS:
   /// true for success or false for error
   void done(bool error);
   /// Signal is emitted inside the listener() function when a frame has been fetched
-  void progressJobDetail(QVariant);
+  void progressJobDetail(const QVariant &);
 
-  void AETitleChanged(QString);
+  void AETitleChanged(const QString &);
   void portChanged(int);
   void connectionTimeoutChanged(int);
-  void jobUIDChanged(QString);
+  void jobUIDChanged(const QString &);
 public Q_SLOTS:
   void cancel();
 

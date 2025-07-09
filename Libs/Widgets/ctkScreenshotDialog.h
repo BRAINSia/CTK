@@ -51,8 +51,8 @@ class CTK_WIDGETS_EXPORT ctkScreenshotDialog : public QDialog
   Q_PROPERTY(int delay READ delay WRITE setDelay NOTIFY delayChanged);
 
 Q_SIGNALS:
-  void baseFileNameChanged(QString);
-  void directoryChanged(QString);
+  void baseFileNameChanged(const QString &);
+  void directoryChanged(const QString &);
   void delayChanged(int);
 public:
   typedef QDialog Superclass;

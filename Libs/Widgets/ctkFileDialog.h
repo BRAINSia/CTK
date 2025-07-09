@@ -105,7 +105,7 @@ Q_SIGNALS:
   /// selection is changed, not just when the dialog is accepted.
   void fileSelectionChanged(const QStringList& selected);
 
-  void SelectionModeChanged(QAbstractItemView::SelectionMode);
+  void SelectionModeChanged(const QAbstractItemView::SelectionMode &);
 
 protected Q_SLOTS:
   void onSelectionChanged();

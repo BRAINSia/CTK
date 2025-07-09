@@ -119,10 +119,10 @@ public:
 Q_SIGNALS:
   void showCrosshairChanged(bool);
   void crosshairPenChanged(const QPen&);
-  void crosshairColorChanged(QColor);
+  void crosshairColorChanged(const QColor &);
   void lineWidthChanged(int);
-  void crosshairTypeChanged(CrosshairTypes);
-  void marginColorChanged(QColor);
+  void crosshairTypeChanged(const CrosshairTypes &);
+  void marginColorChanged(const QColor &);
   void bullsEyeWidthChanged(int);
 
 

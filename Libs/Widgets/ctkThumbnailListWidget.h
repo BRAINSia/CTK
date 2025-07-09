@@ -77,8 +77,8 @@ Q_SIGNALS:
   void doubleClicked(const ctkThumbnailLabel& widget);
 
   void currentThumbnailChanged(int);
-  void flowChanged(Qt::Orientation);
-  void thumbnailSizeChanged(QSize);
+  void flowChanged(const Qt::Orientation &);
+  void thumbnailSizeChanged(const QSize &);
 
 protected Q_SLOTS:
   void onThumbnailSelected(const ctkThumbnailLabel& widget);

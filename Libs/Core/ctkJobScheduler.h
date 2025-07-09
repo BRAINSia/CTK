@@ -117,14 +117,14 @@ public:
   QSharedPointer<QThreadPool> threadPoolShared() const;
 
 Q_SIGNALS:
-  void jobInitialized(QVariant);
-  void jobQueued(QVariant);
-  void jobStarted(QList<QVariant>);
-  void jobUserStopped(QList<QVariant>);
-  void jobFinished(QList<QVariant>);
-  void jobAttemptFailed(QList<QVariant>);
-  void jobFailed(QList<QVariant>);
-  void progressJobDetail(QList<QVariant>);
+  void jobInitialized(const QVariant &);
+  void jobQueued(const QVariant &);
+  void jobStarted(const QList<QVariant> &);
+  void jobUserStopped(const QList<QVariant> &);
+  void jobFinished(const QList<QVariant> &);
+  void jobAttemptFailed(const QList<QVariant> &);
+  void jobFailed(const QList<QVariant> &);
+  void progressJobDetail(const QList<QVariant> &);
   void freezeJobsSchedulingChanged(bool);
   void maximumThreadCountChanged(int);
   void maximumNumberOfRetryChanged(int);

@@ -47,7 +47,7 @@ class CTK_DICOM_CORE_EXPORT ctkDICOMStorageListenerJob : public ctkDICOMJob
 
 Q_SIGNALS:
   void portChanged(int);
-  void AETitleChanged(QString);
+  void AETitleChanged(const QString &);
   void connectionTimeoutChanged(int);
 public:
   typedef ctkDICOMJob Superclass;

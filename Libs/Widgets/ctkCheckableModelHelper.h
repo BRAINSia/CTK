@@ -75,7 +75,7 @@ class CTK_WIDGETS_EXPORT ctkCheckableModelHelper : public QObject
 Q_SIGNALS:
   void forceCheckabilityChanged(bool);
   void propagateDepthChanged(int);
-  void defaultCheckStateChanged(Qt::CheckState);
+  void defaultCheckStateChanged(const Qt::CheckState &);
 
 public:
   ctkCheckableModelHelper(Qt::Orientation orientation, QObject *parent=0);

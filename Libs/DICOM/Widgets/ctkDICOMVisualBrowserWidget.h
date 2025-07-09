@@ -415,22 +415,22 @@ Q_SIGNALS:
   /// Emitted when the directory import operation has completed
   void directoryImported();
 
-  void databaseDirectorySettingsKeyChanged(QString);
-  void databaseDirectoryBaseChanged(QString);
+  void databaseDirectorySettingsKeyChanged(const QString &);
+  void databaseDirectoryBaseChanged(const QString &);
 
-  void filteringPatientIDChanged(QString);
-  void filteringPatientNameChanged(QString);
-  void filteringStudyDescriptionChanged(QString);
-  void filteringDateChanged(ctkDICOMPatientItemWidget::DateType);
-  void filteringSeriesDescriptionChanged(QString);
-  void filteringModalitiesChanged(QStringList);
+  void filteringPatientIDChanged(const QString &);
+  void filteringPatientNameChanged(const QString &);
+  void filteringStudyDescriptionChanged(const QString &);
+  void filteringDateChanged(const ctkDICOMPatientItemWidget::DateType &);
+  void filteringSeriesDescriptionChanged(const QString &);
+  void filteringModalitiesChanged(const QStringList &);
   void numberOfOpenedStudiesPerPatientChanged(int);
-  void thumbnailSizeChanged(ctkDICOMStudyItemWidget::ThumbnailSizeOption);
-  void storageAETitleChanged(QString);
+  void thumbnailSizeChanged(const ctkDICOMStudyItemWidget::ThumbnailSizeOption &);
+  void storageAETitleChanged(const QString &);
   void storagePortChanged(int);
   void sendActionVisibleChanged(bool);
   void deleteActionVisibleChanged(bool);
-  void importDirectoryModeChanged(ctkDICOMVisualBrowserWidget::ImportDirectoryMode);
+  void importDirectoryModeChanged(const ctkDICOMVisualBrowserWidget::ImportDirectoryMode &);
 
 protected:
   QScopedPointer<ctkDICOMVisualBrowserWidgetPrivate> d_ptr;

@@ -375,8 +375,8 @@ Q_SIGNALS:
 
   void batchUpdateChanged(bool);
   void headerVisibleChanged(bool);
-  void queryTableNameChanged(QString);
-  void queryForeignKeyChanged(QString);
+  void queryTableNameChanged(const QString &);
+  void queryForeignKeyChanged(const QString &);
 
 protected:
   QScopedPointer<ctkDICOMTableViewPrivate> d_ptr;

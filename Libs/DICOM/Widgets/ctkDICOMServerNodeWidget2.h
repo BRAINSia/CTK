@@ -129,7 +129,7 @@ Q_SIGNALS:
   /// Emitted when server settings are changed
   void serversSettingsChanged();
 
-  void storageAETitleChanged(QString);
+  void storageAETitleChanged(const QString &);
   void storagePortChanged(int);
 
 protected:

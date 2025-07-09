@@ -89,9 +89,9 @@ Q_SIGNALS:
   /// Fired anytime the checkbox change of state
   void checkBoxToggled(bool);
   /// Fired anytime the checkbox change of state
-  void checkStateChanged(Qt::CheckState newCheckState);
+  void checkStateChanged(const Qt::CheckState & newCheckState);
 
-  void indicatorAlignmentChanged(Qt::Alignment);
+  void indicatorAlignmentChanged(const Qt::Alignment &);
   void checkBoxControlsButtonChanged(bool);
   void checkBoxControlsButtonToggleStateChanged(bool);
   void checkBoxUserCheckableChanged(bool);

@@ -60,8 +60,8 @@ class CTK_WIDGETS_EXPORT ctkSearchBox : public QLineEdit
 
 Q_SIGNALS:
   void showSearchIconChanged(bool);
-  void searchIconChanged(QIcon);
-  void clearIconChanged(QIcon);
+  void searchIconChanged(const QIcon &);
+  void clearIconChanged(const QIcon &);
 public:
   /// Superclass typedef
   typedef QLineEdit Superclass;

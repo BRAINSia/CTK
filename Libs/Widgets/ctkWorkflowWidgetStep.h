@@ -126,13 +126,13 @@ public:
   virtual void setHasCreateUserInterfaceCommand(bool flag);
 
 Q_SIGNALS:
-  void stepidChanged(QString);
-  void nameChanged(QString);
-  void descriptionChanged(QString);
-  void iconChanged(QIcon);
-  void backButtonTextChanged(QString);
-  void nextButtonTextChanged(QString);
-  void buttonBoxHintsChanged(ButtonBoxHints);
+  void stepidChanged(const QString &);
+  void nameChanged(const QString &);
+  void descriptionChanged(const QString &);
+  void iconChanged(const QIcon &);
+  void backButtonTextChanged(const QString &);
+  void nextButtonTextChanged(const QString &);
+  void buttonBoxHintsChanged(const ButtonBoxHints &);
 
 protected:
 

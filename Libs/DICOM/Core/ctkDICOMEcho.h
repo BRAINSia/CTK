@@ -47,13 +47,13 @@ class CTK_DICOM_CORE_EXPORT ctkDICOMEcho : public QObject
   Q_PROPERTY(QString jobUID READ jobUID WRITE setJobUID NOTIFY jobUIDChanged);
 
 Q_SIGNALS:
-  void connectionNameChanged(QString);
-  void callingAETitleChanged(QString);
-  void calledAETitleChanged(QString);
-  void hostChanged(QString);
+  void connectionNameChanged(const QString &);
+  void callingAETitleChanged(const QString &);
+  void calledAETitleChanged(const QString &);
+  void hostChanged(const QString &);
   void portChanged(int);
   void connectionTimeoutChanged(int);
-  void jobUIDChanged(QString);
+  void jobUIDChanged(const QString &);
 public:
   explicit ctkDICOMEcho(QObject* parent = 0);
   virtual ~ctkDICOMEcho();

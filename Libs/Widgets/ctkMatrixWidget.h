@@ -172,7 +172,7 @@ Q_SIGNALS:
   void editableChanged(bool);
   void minimumChanged(double);
   void maximumChanged(double);
-  void decimalsOptionChanged(ctkDoubleSpinBox::DecimalsOptions);
+  void decimalsOptionChanged(const ctkDoubleSpinBox::DecimalsOptions &);
   void singleStepChanged(double);
   void valuesChanged(const QVector<double>&);
 

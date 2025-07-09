@@ -48,7 +48,7 @@ class CTK_WIDGETS_EXPORT ctkExpandButton
   Q_PROPERTY(bool mirrorOnExpand READ mirrorOnExpand WRITE setMirrorOnExpand NOTIFY mirrorOnExpandChanged);
 
 Q_SIGNALS:
-  void orientationChanged(Qt::Orientation);
+  void orientationChanged(const Qt::Orientation &);
   void mirrorOnExpandChanged(bool);
 public:
   /// Superclass typedef

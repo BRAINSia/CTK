@@ -247,22 +247,22 @@ Q_SIGNALS:
   /// \sa cursorPosition()
   void cursorPositionChanged();
 
-  void promptColorChanged(QColor);
-  void outputTextColorChanged(QColor);
-  void errorTextColorChanged(QColor);
-  void stdinTextColorChanged(QColor);
-  void commandTextColorChanged(QColor);
-  void welcomeTextColorChanged(QColor);
-  void backgroundColorChanged(QColor);
-  void ps1Changed(QString);
-  void ps2Changed(QString);
-  void editorHintsChanged(EditorHints);
-  void scrollBarPolicyChanged(Qt::ScrollBarPolicy);
-  void completerShortcutsChanged(QList<QKeySequence>);
-  void runFileOptionsChanged(RunFileOptions);
+  void promptColorChanged(const QColor &);
+  void outputTextColorChanged(const QColor &);
+  void errorTextColorChanged(const QColor &);
+  void stdinTextColorChanged(const QColor &);
+  void commandTextColorChanged(const QColor &);
+  void welcomeTextColorChanged(const QColor &);
+  void backgroundColorChanged(const QColor &);
+  void ps1Changed(const QString &);
+  void ps2Changed(const QString &);
+  void editorHintsChanged(const EditorHints &);
+  void scrollBarPolicyChanged(const Qt::ScrollBarPolicy &);
+  void completerShortcutsChanged(const QList<QKeySequence> &);
+  void runFileOptionsChanged(const RunFileOptions &);
   void maxVisibleCompleterItemsChanged(int);
-  void commandBufferChanged(QString);
-  void commandHistoryChanged(QStringList);
+  void commandBufferChanged(const QString &);
+  void commandHistoryChanged(const QStringList &);
 
 public Q_SLOTS:
 

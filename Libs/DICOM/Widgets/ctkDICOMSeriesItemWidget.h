@@ -188,18 +188,18 @@ public:
   Q_INVOKABLE QString stoppedJobUID() const;
 
 Q_SIGNALS:
-  void seriesItemChanged(QString);
-  void patientIDChanged(QString);
-  void studyInstanceUIDChanged(QString);
-  void seriesInstanceUIDChanged(QString);
-  void seriesNumberChanged(QString);
-  void modalityChanged(QString);
-  void seriesDescriptionChanged(QString);
+  void seriesItemChanged(const QString &);
+  void patientIDChanged(const QString &);
+  void studyInstanceUIDChanged(const QString &);
+  void seriesInstanceUIDChanged(const QString &);
+  void seriesNumberChanged(const QString &);
+  void modalityChanged(const QString &);
+  void seriesDescriptionChanged(const QString &);
   void retrieveFailedChanged(bool);
   void thumbnailSizePixelChanged(int);
   void stopJobsChanged(bool);
   void raiseJobsPriorityChanged(bool);
-  void allowedServersChanged(QStringList);
+  void allowedServersChanged(const QStringList &);
 
 public Q_SLOTS:
   void generateInstances(bool query = true, bool retrieve = true);

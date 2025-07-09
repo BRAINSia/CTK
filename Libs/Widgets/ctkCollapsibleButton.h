@@ -152,12 +152,12 @@ Q_SIGNALS:
 
   void collapsedHeightChanged(int);
   void flatChanged(bool);
-  void contentsFrameShapeChanged(QFrame::Shape);
-  void contentsFrameShadowChanged(QFrame::Shadow);
+  void contentsFrameShapeChanged(const QFrame::Shape &);
+  void contentsFrameShadowChanged(const QFrame::Shadow &);
   void contentsLineWidthChanged(int);
   void contentsMidLineWidthChanged(int);
-  void buttonTextAlignmentChanged(Qt::Alignment);
-  void indicatorAlignmentChanged(Qt::Alignment);
+  void buttonTextAlignmentChanged(const Qt::Alignment &);
+  void indicatorAlignmentChanged(const Qt::Alignment &);
 
 
 protected Q_SLOTS:

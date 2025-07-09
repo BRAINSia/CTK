@@ -88,7 +88,7 @@ public:
   void setSourceModel(QAbstractItemModel* model);
 
 Q_SIGNALS:
-    void modelFilteringChanged(ModelFiltering);
+    void modelFilteringChanged(const ModelFiltering &);
 
 protected:
   QScopedPointer<ctkCompleterPrivate> d_ptr;

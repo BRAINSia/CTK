@@ -81,9 +81,9 @@ class CTK_WIDGETS_EXPORT ctkWorkflowButtonBoxWidget : public QWidget
   Q_PROPERTY(bool hideInvalidButtons READ hideInvalidButtons WRITE setHideInvalidButtons NOTIFY hideInvalidButtonsChanged);
 
 Q_SIGNALS:
-  void backButtonFormatChanged(QString);
-  void nextButtonFormatChanged(QString);
-  void goToButtonsFormatChanged(QString);
+  void backButtonFormatChanged(const QString &);
+  void nextButtonFormatChanged(const QString &);
+  void goToButtonsFormatChanged(const QString &);
   void hideGoToButtonsChanged(bool);
   void hideInvalidButtonsChanged(bool);
 

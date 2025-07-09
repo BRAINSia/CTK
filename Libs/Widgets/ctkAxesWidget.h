@@ -65,7 +65,7 @@ public :
   bool autoReset() const;
 
 Q_SIGNALS:
-  void currentAxisChanged(ctkAxesWidget::Axis axis);
+  void currentAxisChanged(const ctkAxesWidget::Axis & axis);
   void autoResetChanged(bool autoReset);
   void axesLabelsChanged(const QStringList& labels);
 

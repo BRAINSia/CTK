@@ -156,7 +156,7 @@ Q_SIGNALS:
   void filePathChanged(const QString& filePath);
   void copyFileChanged(bool copyFile);
   void overwriteExistingDatasetChanged(bool overwriteExistingDataset);
-  void jobTypeChanged(ctkDICOMJobResponseSet::JobType jobType);
+  void jobTypeChanged(const ctkDICOMJobResponseSet::JobType & jobType);
   void jobUIDChanged(const QString& jobUID);
   void patientIDChanged(const QString& patientID);
   void studyInstanceUIDChanged(const QString& studyInstanceUID);

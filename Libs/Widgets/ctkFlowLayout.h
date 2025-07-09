@@ -73,8 +73,8 @@ class CTK_WIDGETS_EXPORT ctkFlowLayout : public QLayout
   Q_PROPERTY(int verticalSpacing READ verticalSpacing WRITE setVerticalSpacing NOTIFY verticalSpacingChanged)
 
 Q_SIGNALS:
-  void orientationChanged(Qt::Orientation);
-  void preferredExpandingDirectionsChanged(Qt::Orientations);
+  void orientationChanged(const Qt::Orientation &);
+  void preferredExpandingDirectionsChanged(const Qt::Orientations &);
   void alignItemsChanged(bool);
   void horizontalSpacingChanged(int);
   void verticalSpacingChanged(int);

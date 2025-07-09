@@ -41,7 +41,7 @@ class CTK_WIDGETS_EXPORT ctkTransferFunctionItem: public QGraphicsObject
   Q_PROPERTY(QRectF rect READ rect WRITE setRect NOTIFY rectChanged);
 
 Q_SIGNALS:
-  void rectChanged(QRectF);
+  void rectChanged(const QRectF &);
 public:
   ctkTransferFunctionItem(QGraphicsItem* parent = 0);
   ctkTransferFunctionItem(ctkTransferFunction* transferFunction,
